@@ -1,0 +1,20 @@
+.finish-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.finish-btn {
+    width: 75px;
+    height: 30px;
+    background-color: #00c896;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; 
+    font-size: 14px; 
+    border: none; 
+    cursor: pointer; 
+}

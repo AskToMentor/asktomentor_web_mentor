@@ -1,0 +1,334 @@
+
+.signup-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #fff;
+    min-height: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-top: 100px;
+  }
+  
+  .sidebar {
+    width: 25%;
+    background-color: #252525;
+    padding: 40px 20px;
+    position: relative;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 20px 35px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #aaa;
+    position: relative;
+  }
+  
+  .sidebar li::before {
+    content: "";
+    width: 2px;
+    height: 55%;
+    background-color: #333;
+    position: absolute;
+    left: 15px;
+    top: -18px;
+  }
+  
+  .sidebar li:first-child::before {
+    display: none;
+  }
+  
+  .sidebar li::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #333;
+    border: 2px solid #00c896;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  
+  .sidebar li.active::after,
+  .sidebar li.completed::after {
+    background-color: #00c896;
+    border-color: #00c896;
+    content: "✔";
+    color: #fff;
+    font-size: 12px;
+  }
+  
+  .sidebar li.active,
+  .sidebar li.completed {
+    color: #fff;
+  }
+  
+  .sidebar li.active + li::before,
+  .sidebar li.completed + li::before {
+    background-color: #00c896;
+  }
+  
+  .form-content {
+    width: 75%;
+    padding: 40px;
+    background-color: #2c2c2c;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .start-step,
+  .skills-step,
+  .finish-step {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .personal-info,
+  .services-step {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 20px;
+  }
+  
+  .profile-image {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #333;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .profile-image p {
+    color: #00c896;
+    cursor: pointer;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 10px;
+    color: #ccc;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #333;
+    border: 1px solid #444;
+    color: #fff;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 10px;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #00c896;
+  }
+  
+  .services-step h2 {
+    margin-bottom: 20px;
+  }
+  
+  .add-service-button {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .add-service-button button {
+    background-color: transparent;
+    border: 2px dashed #00c896;
+    color: #00c896;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-service-button button:hover {
+    background-color: rgba(0, 200, 150, 0.1);
+  }
+  
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .service-item {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .service-item h3 {
+    margin-bottom: 10px;
+    color: #00c896;
+  }
+  
+  .service-item p {
+    margin-bottom: 5px;
+    color: #ddd;
+  }
+  
+  .service-actions {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .service-actions button {
+    background-color: #00c896;
+    border: none;
+    padding: 8px 12px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.3s;
+  }
+  
+  .service-actions button:hover {
+    opacity: 0.8;
+  }
+  
+  .service-form-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .service-form {
+    background-color: #252525;
+    padding: 40px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+  }
+  
+  .service-form h3 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #00c896;
+  }
+  
+  .service-form .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .service-form .form-buttons button {
+    width: 48%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .service-form .form-buttons button:first-child {
+    background-color: #00c896;
+    color: #fff;
+  }
+  
+  .service-form .form-buttons button:last-child {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  .form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .nav-button {
+    background-color: #00c896;
+    border: none;
+    padding: 12px 30px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.3s;
+  }
+  
+  .nav-button:hover {
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .signup-container {
+      flex-direction: column;
+    }
+  
+    .sidebar,
+    .form-content {
+      width: 100%;
+    }
+  
+    .sidebar {
+      padding: 20px;
+    }
+  
+    .form-content {
+      padding: 20px;
+    }
+  }
+  .backbutton{
+    background-color: #00c896;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px 20px 20px 20px;
+    padding-top: 3px;
+  }

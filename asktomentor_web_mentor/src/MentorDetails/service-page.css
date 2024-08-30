@@ -1,0 +1,85 @@
+.container {
+    background-color: #1b1b1b;
+    padding: 20px;
+    color: white;
+    height:850px !important;
+    width: 80%;
+  }
+  
+  .card {
+    background-color: #2c2c2c;
+    color: white;
+  }
+  
+  .time-picker {
+    margin-right: 10px;
+    background-color: #1b1b1b;
+    color: white;
+  }
+  
+  .checkbox-label {
+    flex: 1;
+  }
+  
+  .day-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .switcher{
+    display: flex;
+    justify-content: end;
+  }
+  .switch-btn{
+    margin-right: 6% !important;
+  }
+  .switch-timepicker{
+    margin-right: 6px;
+    margin-bottom: 40px;
+  }
+
+  .card-inside{
+    background-color: #1b1b1b;
+    color: #FFFFFF;
+  }
+  .backbutton{
+    background-color: #00c896;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px 20px 20px 20px;
+    padding-top: 3px;
+    margin-top: 10px;
+  }
+  .forwordbutton{
+    background-color: #00c896;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px 20px 20px 20px;
+    padding-top: 3px;
+    margin-left: 960px;
+    margin-top: 10px;
+  }
+  .checkboxes{
+    
+    background-color: black;
+    
+  }
+  .time-pick{
+    background-color: #FFFFFF;
+    color: black;
+    width: 200px;
+    
+  }
+  .side-card{
+    background-color: #333333;
+    color: white;
+  }
+  .watch{
+    background-color: #1b1b1b;
+    color: #FFFFFF;
+  }

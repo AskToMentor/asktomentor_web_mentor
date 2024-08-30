@@ -1,0 +1,136 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background-color: #1e1e1e; /* Dark background */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+  }
+  
+  .popup-content h4 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .popup-content .section {
+    margin-bottom: 20px;
+  }
+  
+  .popup-content .section-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #b3b3b3;
+  }
+  
+  .popup-content p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  
+  .popup-content .popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .popup-content .popup-close:hover {
+    color: #ff6b6b;
+  }
+  
+  /* Button group styling */
+  .popup-content .button-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .popup-content .button-group button {
+    background-color: #333333;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    background-color: #00c896;
+    width: 140px;
+  }
+  
+  .popup-content .button-group button:hover {
+    background-color: #00c896; /* Green on hover */
+  }
+  
+  /* Pricing buttons */
+  .popup-content .price-button {
+    background-color: #333333;
+    color: white;
+    border: 2px solid #00c896;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 0.9rem;
+  }
+  
+  .popup-content .price-button:nth-of-type(2) {
+    border-color: #00c896; /* Different color for second price button */
+  }
+  
+  .popup-content .pricing-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .popup-content .button-group-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .popup-content .button-group-footer button {
+    width: 48%;
+    background-color: #333333;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .popup-content .button-group-footer button:hover {
+    background-color: #00c9a7; /* Green on hover */
+  }
+  
+  .popup-content .button-group-footer button:nth-of-type(2) {
+    background-color: #00796b; /* Green color for Add button */
+  }
+  
+  .popup-content .button-group-footer button:nth-of-type(2):hover {
+    background-color: #00574b;
+  }
+  

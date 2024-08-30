@@ -1,0 +1,98 @@
+/* Style for the navigation bar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Adjust the height based on your navbar */
+  background-color: #333; /* Adjust the background color as needed */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+/* Adjusting the page content to not scroll under the navbar */
+.skills-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1c1c1c;
+  padding: 30px; /* Increase padding for more space */
+  border-radius: 8px;
+  color: #fff;
+  min-height: 80vh; /* Ensure container takes up at least 80% of viewport height */
+  margin-top: 60px; /* Add margin to push content below the fixed navbar */
+}
+
+/* Other styles remain the same */
+.skills-select {
+  width: 45%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  position: relative;
+  margin-bottom: 20px; /* Add margin to create space between search bar and skills list */
+}
+
+.search-icon {
+  color: #00c896;
+  position: absolute; /* Position icon inside the input */
+  left: 10px; /* Adjust left position */
+  pointer-events: none; /* Ensure the icon does not block input interaction */
+}
+
+.skills-search {
+  width: 100%;
+  padding: 10px;
+  padding-left: 40px; /* Space for the icon */
+  border-radius: 5px;
+  border: 1px solid #00c896;
+  background-color: #333;
+  color: #fff;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px; /* Space between search bar and the list of skills */
+}
+
+.skill-item {
+  background-color: #555;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skill-item:hover {
+  background-color: #888;
+}
+
+.skills-selected {
+  background-color: #555;
+  width: 45%;
+  border-radius: 5px;
+  min-height: 300px; /* Ensure this section has a minimum height */
+}
+
+.selected-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px; /* Add padding for better spacing */
+}
+
+.selected-skill-item {
+  background-color: #00c896;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.my-list{
+  margin-left: 20px;
+}

@@ -1,0 +1,24 @@
+.custom-stepper .MuiStepIcon-root.Mui-completed,
+.custom-stepper .MuiStepIcon-root.Mui-active {
+    color: #00c896; 
+}
+
+.custom-stepper .MuiStepConnector-line {
+    border-color: #00c896; 
+}
+
+.custom-button {
+    background-color: #00c896 !important;
+    color: white !important;
+}
+
+.custom-button:hover {
+    background-color: #00b586; 
+}
+
+.custom-button:disabled {
+    background-color: #b2b2b2; 
+}
+.inner-step{
+    color: #00c896;
+}
