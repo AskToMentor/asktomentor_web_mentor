@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
         <div className="h-[10%]">
           <Navbar />
         </div>
-        <div className="w-full h-[90%] overflow-hidden flex pb-2">
+        <div className="w-full h-[90%] overflow-y-auto flex pb-2">
           orem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
