@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./skill.css";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 const Skills = () => {
   const availableSkills = [
@@ -34,22 +34,24 @@ const Skills = () => {
   };
 
   return (
-    <div className="skills-container">
-      <div className="skills-select">
-        <div className="input-container">
-          <span className="search-icon"><SearchIcon /></span>
+    <div className="flex flex-col md:flex-row justify-between bg-[#1c1c1c] text-white min-h-[80vh] p-[15px] rounded-lg">
+      <div className="w-full md:w-[45%]">
+        <div className="flex items-center relative mb-5">
+          <span className="text-[#00c896] absolute pointer-events-none left-2.5">
+            <SearchIcon />
+          </span>
           <input
             type="text"
-            placeholder="        Search"
-            className="skills-search"
+            placeholder="Search"
+            className="w-full border bg-[#333] text-white box-border pl-10 p-2.5 rounded-[5px] border-solid border-[#00c896]"
             onChange={handleSearch}
           />
         </div>
-        <div className="skills-list">
+        <div className="flex flex-wrap gap-2.5 mt-5">
           {filteredSkills.map((skill, index) => (
             <div
               key={index}
-              className="skill-item"
+              className="py-[8px] px-[8px] text-sm rounded-[20px] bg-[#555] cursor-pointer "
               onClick={() => addSkill(skill)}
             >
               {skill}
@@ -57,12 +59,15 @@ const Skills = () => {
           ))}
         </div>
       </div>
-      <div className="skills-selected">
-        <h3 className="my-list">My Skills List</h3>
-        <div className="selected-skills-list">
+      <div className="bg-[#555] p-2  w-full md:w-[45%] min-h-[300px] rounded-[5px]">
+        <h3 className="">My Skill Lists</h3>
+        <div className="flex flex-wrap gap-2.5  mt-2">
           {selectedSkills.length > 0 ? (
             selectedSkills.map((skill, index) => (
-              <div key={index} className="selected-skill-item">
+              <div
+                key={index}
+                className="py-[8px] px-[8px] text-sm rounded-[20px] bg-[#00c896] cursor-pointer "
+              >
                 {skill}
               </div>
             ))

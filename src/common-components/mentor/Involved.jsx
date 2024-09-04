@@ -10,7 +10,7 @@ const Involved = () => {
   return (
     <div className="mt-5">
       <h3 className="text-white font-semibold pl-5 text-2xl">Steps Involved</h3>
-      <div className="grid items-center grid-cols-4 gap-6 mt-2">
+      <div className="grid w-full items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6 mt-2">
         <InvolvedCard
           name="Connect with Mentors"
           description="Choose from a variety of mentors specializing in different fields of expertise"
