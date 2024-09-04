@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ProtectedComponent from "./protected/protectedComponent";
-import SignUpForm from "./pages/mentor-register/Register";
+import Register from "./pages/mentor-register/Register";
 import ImportComponent from "./pages/mentor-register/AccountProceed";
 import ManuallySignUpForm from "./MentorDetails/SignupManually";
 import MentorLogin from "./pages/mentor-register/MentorLogin"
@@ -19,7 +19,7 @@ function App() {
           />
           <Route
             path="mentor-signup"
-            element={<ProtectedComponent Component={SignUpForm} />}
+            element={<ProtectedComponent Component={Register} />}
           ></Route>
           <Route
             path="proceed-continue"
