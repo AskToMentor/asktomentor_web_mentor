@@ -3,7 +3,7 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import "../MentorDetails/addquestion.css";
 
-const addquestion = () => {
+const AddQuestions = () => {
   const [isQuestionVisible, setIsQuestionVisible] = useState(false);
   const toggleQuestionVisibility = () => {
     setIsQuestionVisible(prevState => !prevState);
@@ -36,4 +36,4 @@ const addquestion = () => {
   )
 }
 
-export default addquestion
+export default AddQuestions
