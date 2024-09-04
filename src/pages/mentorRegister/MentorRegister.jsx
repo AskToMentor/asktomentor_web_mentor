@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ConfirmationModal from "../Mentor-register/ConfirmationModal";
+import ConfirmationModal from "./ConfirmationModal";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
-const SignUpForm = () => {
+const MentorRegister = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -141,4 +141,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default MentorRegister;

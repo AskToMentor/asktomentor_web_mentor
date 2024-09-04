@@ -11,7 +11,7 @@ import AddService from './addservices';
 
 const steps = ['Add Service', 'General Setting', 'Add Question', 'Service Page'];
 
-function Appservices() {
+function AppServices() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const getStepContent = (step) => {
@@ -21,7 +21,7 @@ function Appservices() {
       case 1:
         return <GeneralSetting />;
       case 2:
-        return <AddQuestion />;
+        return <AddQuestion/>;
       case 3:
         return <ServicePage />;
       default:
@@ -73,4 +73,4 @@ function Appservices() {
   );
 }
 
-export default Appservices;
+export default AppServices;

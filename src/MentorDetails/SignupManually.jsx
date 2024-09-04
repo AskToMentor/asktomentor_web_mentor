@@ -4,8 +4,8 @@ import Skills from "./skill";
 // import logo from './personal_profile.png';
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Appservices from "./appservices";
 import Finish from "./finish";
+import AppServices from "./appservices";
 
 const ManuallySignUpForm = () => {
   const [step, setStep] = useState(1);
@@ -126,8 +126,8 @@ const ManuallySignUpForm = () => {
         )}
 
         {step === 3 && <Skills />}
-        {step === 4 && <Appservices />}
-        {step === 5 && <Finish />}
+        {step === 4 && <AppServices />}
+        {step === 5 &&  <Finish/>}
 
         <div className="form-navigation">
           {step > 1 && (
