@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import AddService from './addservices';
 // import GeneralSetting from './GeneralSetting';
 import GeneralSettings from './GeneralSettings';
+import AddQuestions from './AddQuestions';
 // import AddQuestions from './AddQuestion';
 
 const steps = ['Add Service', 'General Setting', 'Add Question', 'Service Page'];
@@ -21,8 +22,8 @@ function AppServices() {
         return <AddService />;
       case 1:
         return <GeneralSettings />;
-      // case 2:
-      //   return <AddQuestions/>;
+      case 2:
+        return <AddQuestions/>;
       case 3:
         return <ServicePage />;
       default:
