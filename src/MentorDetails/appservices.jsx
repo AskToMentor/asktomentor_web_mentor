@@ -1,13 +1,13 @@
 import React from 'react';
 import './appservices.css';
 import ServicePage from './ServicePage';
-import GeneralSetting from './GeneralSetting';
 import AddQuestion from './AddQuestion';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import AddService from './addservices';
+import GeneralSetting from './GeneralSetting';
 
 const steps = ['Add Service', 'General Setting', 'Add Question', 'Service Page'];
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const generalsetting = () => {
+const GeneralSetting = () => {
   return (
     <div>
       <div className="genreral-conatiner">
@@ -52,4 +52,4 @@ const generalsetting = () => {
   );
 };
 
-export default generalsetting;
+export default GeneralSetting;
