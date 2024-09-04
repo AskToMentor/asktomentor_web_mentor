@@ -1,5 +1,6 @@
+import React from 'react'
 import"./finish.css"
-export default function Finish(){
+const Finish = () => {
     return(
         <div>
             <div className="finish-container">
@@ -11,3 +12,4 @@ export default function Finish(){
         </div>
     )
 }
+export default Finish
