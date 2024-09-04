@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ConfirmationModal from "./ConfirmationModal";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
-const Register = () => {
+const MentorRegister = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -141,4 +141,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default MentorRegister;
