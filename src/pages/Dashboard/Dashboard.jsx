@@ -50,7 +50,11 @@ const Dashboard = () => {
         </div>
         {/* Right Section */}
         <div className="flex w-full items-center lg:items-end justify-center lg:justify-end mb-4">
-          <img src={Image1} alt="Icon" className="w-[28rem] xl:w-[35rem] h-[28rem] xl:h-[30rem] mt-[2rem] lg:mt-[3rem]" />
+          <img
+            src={Image1}
+            alt="Icon"
+            className="w-[28rem] xl:w-[35rem] h-[28rem] xl:h-[30rem] mt-[2rem] lg:mt-[3rem]"
+          />
         </div>
       </div>
       <div className="px-2 md:px-5">

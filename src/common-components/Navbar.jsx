@@ -24,7 +24,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="px-2 md:px-5 py-1 sm:py-2 flex justify-between items-center font-semibold shadow-lg z-[10000] w-full bg-[#212A31]">
+    <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold shadow-lg z-[10000] w-full bg-[#212A31]">
       <Link to="/" className="text-white text-base">
         <div className="logo">
           <img src={Logo} alt="Logo" className=" w-[70px] h-[50px] mobile-lg:w-[92px] mobile-lg:h-full" />
