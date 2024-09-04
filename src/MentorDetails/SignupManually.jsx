@@ -4,8 +4,8 @@ import Skills from "./skill";
 // import logo from './personal_profile.png';
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import AppServices from "./AppServices"
 import Finish from "./Finish";
+import AppServices from "./appservices";
 
 const ManuallySignUpForm = () => {
   const [step, setStep] = useState(1);

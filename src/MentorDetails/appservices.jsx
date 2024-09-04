@@ -1,7 +1,7 @@
 import React from 'react';
 import './appservices.css';
 import ServicePage from './ServicePage';
-import AddService from './AddServices';
+import AddService from './addservices';
 import GeneralSetting from './GeneralSetting';
 import AddQuestion from './AddQuestion';
 import Stepper from '@mui/material/Stepper';
