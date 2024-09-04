@@ -63,7 +63,7 @@ const Dashboard = () => {
       <div className="px-2 md:px-5">
         <Involved />
       </div>
-      <div className="px-2 md:px-5">
+      <div className="px-2 mb-5 md:px-5">
         <Working />
       </div>
     </div>
