@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 
 const steps = ['Add Service', 'General Setting', 'Add Question', 'Service Page'];
 
-function Appservices() {
+function AppServices() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const getStepContent = (step) => {
@@ -73,4 +73,4 @@ function Appservices() {
   );
 }
 
-export default Appservices;
+export default AppServices;

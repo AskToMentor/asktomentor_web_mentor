@@ -42,7 +42,7 @@ const Dashboard = () => {
               <li>Connect with a community of learners</li>
             </ul>
             <button className="bg-[#124E66] hover:bg-[#0F3A4D] text-white py-2 px-4 rounded">
-              <Link to="/mentor-signup" className="text-white text-base">
+              <Link to="/login" className="text-white text-base">
                 Join as Mentor
               </Link>
             </button>

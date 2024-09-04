@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ConfirmationModal from "../Mentor-register/ConfirmationModal";
+import ConfirmationModal from "./ConfirmationModal";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const SignUpForm = () => {
