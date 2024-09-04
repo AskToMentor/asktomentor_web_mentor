@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../MentorDetails/signup-manually.css";
-import Skills from "../MentorDetails/skill";
+import Skills from "./skill";
 // import logo from './personal_profile.png';
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Appservices from "../MentorDetails/appservices";
-import Finish from "../MentorDetails/finish";
+import Appservices from "./Appservices";
+import Finish from "./Finish";
 
 const ManuallySignUpForm = () => {
   const [step, setStep] = useState(1);

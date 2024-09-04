@@ -1,9 +1,9 @@
 import React from 'react';
 import './appservices.css';
-import ServicePage from '../MentorDetails/service-page';
-import AddService from '../MentorDetails/addservices';
-import GeneralSetting from '../MentorDetails/generalsetting';
-import AddQuestion from '../MentorDetails/addquestion';
+import ServicePage from './ServicePage';
+import AddService from './AddServices';
+import GeneralSetting from './GeneralSetting';
+import AddQuestion from './AddQuestion';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';

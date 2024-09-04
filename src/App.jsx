@@ -5,7 +5,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import ProtectedComponent from "./protected/protectedComponent";
 import SignUpForm from "./pages/Mentor-register/Register";
 import ImportComponent from "./pages/Mentor-register/AccountProceed";
-import ManuallySignUpForm from "./MentorDetails/signup-manually";
+import ManuallySignUpForm from "./MentorDetails/SignupManually";
 
 function App() {
   return (
@@ -26,6 +26,10 @@ function App() {
           ></Route>
           <Route
             path="signup-manually"
+            element={<ProtectedComponent Component={ManuallySignUpForm} />}
+          ></Route>
+          <Route
+            path="login"
             element={<ProtectedComponent Component={ManuallySignUpForm} />}
           ></Route>
         </Routes>
