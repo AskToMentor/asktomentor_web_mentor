@@ -3,10 +3,10 @@ import Layout from "./Layout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ProtectedComponent from "./protected/protectedComponent";
-import MentorRegister from "./pages/mentor-register/MentorRegister";
-import ImportComponent from "./pages/mentor-register/AccountProceed";
+import MentorRegister from "./pages/mentorRegister/MentorRegister";
+import ImportComponent from "./pages/mentorRegister/AccountProceed";
 import ManuallySignUpForm from "./MentorDetails/SignupManually";
-import MentorLogin from "./pages/mentor-register/MentorLogin"
+import MentorLogin from "./pages/mentorRegister/MentorLogin"
 
 function App() {
   return (
