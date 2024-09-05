@@ -6,9 +6,18 @@ import ProtectedComponent from "./protected/protectedComponent";
 import MentorRegister from "./pages/mentorRegister/MentorRegister";
 import ImportComponent from "./pages/mentorRegister/AccountProceed";
 import ManuallySignUpForm from "./MentorDetails/SignupManually";
-import MentorLogin from "./pages/mentorRegister/MentorLogin"
+import MentorLogin from "./pages/mentorRegister/MentorLogin";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    if (!localStorage.getItem("loginType")) {
+      localStorage.setItem("loginType", "Mentor");
+      window.location.reload()
+    } else {
+    }
+  }, []);
+
   return (
     <div className="w-full overflow-hidden h-full">
       <Layout>

@@ -15,7 +15,7 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     '&::before': {
-      content: '"Mentor"',
+      content: `"mentor"`,
       position: 'absolute',
       top: '50%',
       left: 40,  // Adjusted left position to make space for thumb
@@ -27,7 +27,7 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
       transition: 'opacity 0.3s',
     },
     '&::after': {
-      content: '"Mentee"',
+     content: `"mentee"`,
       position: 'absolute',
       top: '50%',
       right: 40,  // Adjusted right position to make space for thumb

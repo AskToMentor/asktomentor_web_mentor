@@ -4,8 +4,11 @@ import Mentor from "../../common-components/mentor/Mentors";
 import Involved from "../../common-components/mentor/Involved";
 import Working from "../../common-components/mentor/Working";
 import { Link } from "react-router-dom";
+import { GetLoginType } from "../../utility/GetLoginType";
 
 const Dashboard = () => {
+  const getLoginType = GetLoginType();
+  console.log("getLoginType", getLoginType);
   return (
     <div className="overflow-y-auto h-full w-full">
       {/* Header Section */}
@@ -43,7 +46,9 @@ const Dashboard = () => {
             </ul>
             <button className="bg-[#124E66] hover:bg-[#0F3A4D] text-white py-2 px-4 rounded">
               <Link to="/login" className="text-white text-base">
-                Join as Mentor
+                {getLoginType == "Mentee"
+                  ? "Join as Mentee"
+                  : "Join as Mentor"}{" "}
               </Link>
             </button>
           </div>
@@ -63,7 +68,7 @@ const Dashboard = () => {
       <div className="px-2 md:px-5">
         <Involved />
       </div>
-      <div className="px-2 mb-5 md:px-5">
+      <div className="px-2 mb-16 lg:mb-1 md:px-5">
         <Working />
       </div>
     </div>
