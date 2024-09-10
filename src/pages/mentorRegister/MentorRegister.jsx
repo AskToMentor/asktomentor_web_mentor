@@ -37,7 +37,7 @@ const MentorRegister = () => {
 
   return (
     <div className="h-full overflow-y-auto">
-      <div className="bg-gray-900 mb-10 mt-[1rem] sm:mt-[3rem] md:mt-[5rem] p-4 md:p-10 rounded-lg text-white max-w-2xl mx-auto font-sans">
+      <div className="bg-gray-900 mb-10 mt-[1rem] sm:mt-[3rem] md:mt-[2rem] p-4 md:p-5 rounded-lg text-white w-[35%] mx-auto font-sans">
         <span className="text-lg">User Information</span>
         <input
           type="text"
@@ -70,6 +70,18 @@ const MentorRegister = () => {
           className="w-full p-2 md:p-4 my-[6px] md:my-3 bg-gray-800 rounded text-[16px] md:text-lg"
         />
         <span className="text-lg">Security</span>
+        <div className="relative bg-gray-800 rounded flex items-center p-2 md:p-4 my-[10px] md:my-3">
+          <input
+            type="text"
+            name="password"
+            placeholder="Email"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+            className="w-full  bg-gray-800 h-full rounded text-[16px] md:text-lg pr-14 focus:outline-none "
+          />
+        </div>
         <div className="relative bg-gray-800 rounded flex items-center p-2 md:p-4 my-[10px] md:my-3">
           <input
             type={showPassword ? "text" : "password"}

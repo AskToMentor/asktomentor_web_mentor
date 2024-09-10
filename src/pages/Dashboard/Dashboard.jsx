@@ -5,6 +5,7 @@ import Involved from "../../common-components/mentor/Involved";
 import Working from "../../common-components/mentor/Working";
 import { Link } from "react-router-dom";
 import { GetLoginType } from "../../utility/GetLoginType";
+import HowWorks from "../../common-components/mentor/HowWorks";
 
 const Dashboard = () => {
   const getLoginType = GetLoginType();
@@ -70,6 +71,9 @@ const Dashboard = () => {
       </div>
       <div className="px-2 mb-16 lg:mb-1 md:px-5">
         <Working />
+      </div>
+      <div className="px-2 mb-16 lg:mb-1 md:px-5">
+        <HowWorks />
       </div>
     </div>
   );
