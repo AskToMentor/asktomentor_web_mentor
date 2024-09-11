@@ -6,6 +6,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Finish from "./finish";
 import AppServices from "./appservices";
+import MentorSlides from "../common-components/mentor-sliders/MentorSlides";
 
 const ManuallySignUpForm = () => {
   const [step, setStep] = useState(1);
@@ -13,7 +14,7 @@ const ManuallySignUpForm = () => {
   const nextStep = () => setStep((prev) => Math.min(prev + 1, 5));
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
   const activeColor = (index) =>
-    step >= index ? "bg-[#00c896]" : "bg-gray-300";
+    step >= index ? "bg-ask-to-mentor-primary" : "bg-gray-300";
   const processSteps = [
     "Start",
     "Personal info",
@@ -95,7 +96,19 @@ const ManuallySignUpForm = () => {
             ))}
           </div>
         </div>
-        <div className="w-full md:w-9/12 bg-[#2c2c2c] flex flex-col relative p-4 ps-[68px]">
+        <div className="w-full md:w-9/12 bg-[#2c2c2c] flex flex-col relative p-4">
+          <div className="flex justify-between">
+            <div>
+              <p className="text-[25px] font-semibold">Let's get started!</p>
+              <p>Just enter your basic details to create your account</p>
+            </div>
+            <div>
+              <button className="bg-ask-to-mentor-primary text-white py-3 w-fit rounded-full  mx-auto block">
+                Import from LinkedIn
+              </button>
+            </div>
+          </div>
+          {step === 1 && <MentorSlides />}
           {step === 2 && (
             <div className="personal-info">
               <div className="flex items-center justify-between gap-3">

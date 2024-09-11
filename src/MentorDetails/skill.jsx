@@ -15,7 +15,7 @@ const Skills = () => {
     "Computer Vision",
   ];
 
-  const [filteredSkills, setFilteredSkills] = useState(availableSkills);
+  const [filteredSkills, setFilteredSkills] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
 
   const handleSearch = (e) => {
@@ -66,7 +66,7 @@ const Skills = () => {
             selectedSkills.map((skill, index) => (
               <div
                 key={index}
-                className="py-[8px] px-[8px] text-sm rounded-[20px] bg-[#00c896] cursor-pointer "
+                className="py-[8px] px-[8px] text-sm rounded-[20px] bg-ask-to-mentor-primary cursor-pointer "
               >
                 {skill}
               </div>

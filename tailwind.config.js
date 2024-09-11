@@ -10,6 +10,13 @@ export default {
         'y-360': 'rotateY(360deg)',
       },
       // visibility: ['backface-hidden'],
+      colors: {
+        lime: {
+          primary: "#7ACC3E ",
+          secondary: "#81D742",
+        },
+        "ask-to-mentor-primary": "#124E66",
+      },
       screens: {
         "mobile-lg": { min: "425px" },
         "mobile-md": { min: "392px" },

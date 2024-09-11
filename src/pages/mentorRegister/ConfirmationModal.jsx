@@ -28,7 +28,7 @@ const ConfirmationModal = ({ onClose }) => {
           >
             No
           </button>
-          <Link to="/proceed-continue" className="w-1/2">
+          <Link to="/signup-manually" className="w-1/2">
             <button
               onClick={onClose}
               className="w-full px-3 sm:px-6 py-2 sm:py-3 md:py-4 bg-teal-500 rounded-full text-white text-center text-lg"

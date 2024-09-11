@@ -43,11 +43,11 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { href: "#explore", text: "Al Tutor" },
+    { href: "#explore", text: "Evaluate" },
     { href: "/evalaute", text: "Evaluate" },
     { href: "#blogs", text: "Blogs" },
-    { href: "#subscription", text: "Subscription" },
-    { href: "/contact-us", text: "Contact Us" },
+    { href: "#subscription", text: "About us" },
+    { href: "#contact-us", text: "Contact Us" },
   ];
   useEffect(() => {
     if (localStorage.getItem("loginType") == "Mentee") {
@@ -76,7 +76,6 @@ const Navbar = () => {
                 : "hover:bg-gradient-to-tr hover:from-pink-500 hover:to-blue-500"
                 }`}
               onClick={() => handleLinkClick(link.text)}
-              style={{ borderRadius: "5px" }}
             >
               {link.text}
             </Link>
