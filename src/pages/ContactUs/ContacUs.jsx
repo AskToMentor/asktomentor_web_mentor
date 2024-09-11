@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import guruji from "/src/assets/guruji.png";
-import insta from "/src/assets/ig.png";
-import whatsapp from "/src/assets/whatsapp.png";
-// import iconX from "/src/assets/x.png";
+import guruji from "/src/gif-assets/guruji.png";
+import insta from "/src/gif-assets/ig.png";
+import whatsapp from "/src/gif-assets/whatsapp.png";
 
 const ContacUs = () => {
     return (

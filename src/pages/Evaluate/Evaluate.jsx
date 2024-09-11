@@ -1,10 +1,10 @@
 import React from 'react'
 import CardItems from '../../common-components/cards/CardItems'
 import testss from "/src/assets/test1.jpg";
-import feedback from "/src/assets/feedback.png";
-import certificate from "/src/assets/test3.png";
-import certificate2 from "/src/assets/test_as.png";
-import quiz from "/src/assets/quiz.png";
+import feedback from "/src/gif-assets/feedback.png";
+import certificate from "/src/gif-assets/test3.png";
+import certificate2 from "/src/gif-assets/test_as.png";
+import quiz from "/src/gif-assets/quiz.png";
 
 const Evaluate = () => {
     return (
