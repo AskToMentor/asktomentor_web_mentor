@@ -44,7 +44,7 @@ const Navbar = () => {
 
   const navLinks = [
     { href: "#explore", text: "Al Tutor" },
-    { href: "/evalute", text: "Evaluate" },
+    { href: "/evalaute", text: "Evaluate" },
     { href: "#blogs", text: "Blogs" },
     { href: "#subscription", text: "Subscription" },
     { href: "/contact-us", text: "Contact Us" },
