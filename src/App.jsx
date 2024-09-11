@@ -8,6 +8,7 @@ import ImportComponent from "./pages/mentorRegister/AccountProceed";
 import ManuallySignUpForm from "./MentorDetails/SignupManually";
 import MentorLogin from "./pages/mentorRegister/MentorLogin";
 import { useEffect } from "react";
+import ContacUs from "./pages/ContactUs/ContacUs";
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,10 @@ function App() {
           <Route
             path="login"
             element={<ProtectedComponent Component={MentorLogin} />}
+          ></Route>
+          <Route
+            path="contact-us"
+            element={<ProtectedComponent Component={ContacUs} />}
           ></Route>
         </Routes>
       </Layout>

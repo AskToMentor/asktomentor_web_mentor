@@ -58,9 +58,8 @@ const ManuallySignUpForm = () => {
                     <div
                       className={`w-10 mobile-lg:w-16 h-1 mt-2 ${activeColor(
                         index + 1
-                      )} ${
-                        processSteps?.length == index + 1 ? "hidden" : "block"
-                      }`}
+                      )} ${processSteps?.length == index + 1 ? "hidden" : "block"
+                        }`}
                     ></div>
                   </div>
                 </div>
@@ -89,24 +88,29 @@ const ManuallySignUpForm = () => {
                   <p>{item}</p>
                 </div>
                 <div
-                  className={`w-1 h-12 ml-[10px] ${activeColor(index + 1)} ${
-                    processSteps?.length == index + 1 ? "hidden" : "block"
-                  }`}
+                  className={`w-1 h-12 ml-[10px] ${activeColor(index + 1)} ${processSteps?.length == index + 1 ? "hidden" : "block"
+                    }`}
                 ></div>
               </React.Fragment>
             ))}
           </div>
         </div>
-        <div className="w-full md:w-9/12 bg-[#2c2c2c] flex flex-col relative p-4">
+        <div className="w-full md:w-9/12 bg-[#2c2c2c] flex flex-col relative p-4 ps-[68px]">
           {step === 2 && (
             <div className="personal-info">
-              <div className="profile-image">
-                <img src="./profile-logo.png" alt="Profile" />
-                <p>Select profile image</p>
+              <div className="flex items-center justify-between gap-3">
+                <div className="form-group">
+                  <h1>Connect with us</h1>
+                  <p className="text-white">Share a it about your background and passion.</p>
+                </div>
+                <div className="profile-image ">
+                  <img src="./profile-logo.png" alt="Profile" />
+                  <p>Select profile image</p>
+                </div>
               </div>
               <div className="form-group">
                 <label>About yourself</label>
-                <textarea placeholder="Briefly about yourself                                                          0/256"></textarea>
+                <textarea placeholder="Briefly about yourself 0/256"></textarea>
               </div>
               <div className="form-group">
                 <label>Social media links</label>
