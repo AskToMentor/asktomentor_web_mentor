@@ -3,17 +3,12 @@
   box-sizing: border-box;
 }
 
-
-
 /* Why choose us custom css*/
 /* Reset and basic styles */
 
-
 /* Apply color theme */
 
-
 /* Container for the entire app */
-
 
 /* Heading styles */
 
@@ -27,7 +22,7 @@
 .whyus-features {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 100px;
   justify-content: center;
 }
 
@@ -38,18 +33,12 @@
   color: #fff; /* White text color */
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center; /* Center align items (image and text) */
   text-align: center; /* Center align text */
-}
-
-.whyus-feature:hover {
-  transform: translateY(-5px) scale(1.03); /* Zoom in slightly on hover */
-  box-shadow: 0 14px 18px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
 }
 
 .whyus-feature-icon {
@@ -67,7 +56,7 @@
   transition: transform 0.3s ease; /* Smooth transition for zoom effect */
   transform: scale(1.2); /* Zoom effect on image */
 }
-.whyus-feature-icon-img1{
+.whyus-feature-icon-img1 {
   max-width: 100%; /* Ensure image doesn't overflow */
   height: 200px !important; /* Maintain aspect ratio */
   max-height: 100%; /* Prevent image from stretching */
@@ -95,22 +84,161 @@
   color: #fff; /* White text color */
 }
 
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .whyus-features {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .whyus-feature {
-      width: 100%;
-      max-width: 350px;
-      margin-bottom: 20px;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 20px;
   }
 }
 
+.dashboard-home-content-font {
+  font-family: Roboto Serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: left;
+}
+.dashboard-asktomentor-font {
+  color: linear-gradient(90deg, #124e66 86.5%, #249ccc 100%) !important;
+  font-family: Roboto Serif;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 84.31px;
+}
+.common-font-style {
+  font-family: Roboto Serif;
+}
+.common-text-linear-gradient {
+  font-family: Roboto Serif;
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 74.94px;
+  text-align: left;
+  background: linear-gradient(
+    90deg,
+    #d3d9d5 0%,
+    #124e66 35%
+  ); /* Change colors as desired */
+  -webkit-background-clip: text; /* Chrome, Safari */
+  background-clip: text; /* Standard */
+  color: transparent;
+}
 
+.common-text-linear-gradient-how-it-works {
+  font-family: Roboto Serif;
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 74.94px;
+  text-align: left;
+  background: linear-gradient(
+    90deg,
+    #d3d9d5 0%,
+    #124e66 50%
+  ); /* Change colors as desired */
+  -webkit-background-clip: text; /* Chrome, Safari */
+  background-clip: text; /* Standard */
+  color: transparent;
+}
+.namaste-learner-gradient {
+  background: linear-gradient(
+    91.92deg,
+    #1d3541 1.62%,
+    #354d57 51.95%,
+    #597179 78.01%,
+    #748d92 101.81%
+  );
+}
+.namaste-image {
+  mix-blend-mode: multiply;
+}
+@media screen and (min-width: 768px) {
+  .common-text-linear-gradient {
+    font-family: Roboto Serif;
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 74.94px;
+    text-align: left;
+    background: linear-gradient(
+      90deg,
+      #d3d9d5 0%,
+      #124e66 35%
+    ); /* Change colors as desired */
+    -webkit-background-clip: text; /* Chrome, Safari */
+    background-clip: text; /* Standard */
+    color: transparent;
+  }
+}
+@media screen and (min-width: 355px) {
+  .common-text-linear-gradient {
+    font-family: Roboto Serif;
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 54.94px;
+    text-align: left;
+    background: linear-gradient(
+      90deg,
+      #d3d9d5 0%,
+      #124e66 35%
+    ); /* Change colors as desired */
+    -webkit-background-clip: text; /* Chrome, Safari */
+    background-clip: text; /* Standard */
+    color: transparent;
+  }
+  .whyus-feature {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 355px) and (max-width: 550px) {
+  .dashboard-home-content-font {
+    font-family: Roboto Serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: left;
+  }
+  .dashboard-asktomentor-font {
+    color: linear-gradient(90deg, #124e66 86.5%, #249ccc 100%) !important;
+    font-family: Roboto Serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 84.31px;
+  }
+}
 
-
-
+.header-hight-light {
+  display: inline-block;
+  border: none;
+  border-radius: 5px; /* Optional: to round the corners */
+  color: white; /* Text color */
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer; /* Change cursor to pointer */
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #3e5efed6,
+    #ff00c8,
+    #ff0000
+  );
+  background-size: 600% 600%; /* This creates a larger background for smooth transitions */
+  animation: gradientAnimation 5s ease-in-out infinite;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
