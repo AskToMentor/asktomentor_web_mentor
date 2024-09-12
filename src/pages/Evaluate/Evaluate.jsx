@@ -7,14 +7,17 @@ import certificate2 from "/src/gif-assets/test_as.png";
 import quiz from "/src/gif-assets/quiz.png";
 
 const Evaluate = () => {
-    return (
-        <div className="flex h-full  justify-center items-center max-w-[1100px] w-full flex-wrap lg:gap-6 gap-4 mx-auto lg:p-10 p-6" >
-            <CardItems image={quiz} title={`Skill-Specific Quiz`} backContent={`Back content`} />
-            <CardItems image={testss} title={`Diagnostic Assessment`} backContent={`Back content`} />
-            <CardItems image={feedback} title={`Scenario-Based Exam`} backContent={`Back content`} />
-            <CardItems image={certificate} title={`Problem-Solving Exercise`} backContent={`Back content`} />
-            <CardItems image={certificate2} title={`Adaptive Testing`} backContent={`Back content`} />
+    return (<>
+        <div className=' h-full w-full'>
+            <div className="flex h-full overflow-y-auto justify-center items-center max-w-[1100px] w-full flex-wrap lg:gap-6 gap-4 mx-auto lg:p-10 p-6" >
+                <CardItems image={quiz} title={`Skill-Specific Quiz`} link={`/skill-specific-quiz`} />
+                <CardItems image={testss} title={`Diagnostic Assessment`} link={``} />
+                <CardItems image={feedback} title={`Scenario-Based Exam`} link={`/scenario-based`} />
+                <CardItems image={certificate} title={`Problem-Solving Exercise`} link={``} />
+                <CardItems image={certificate2} title={`Adaptive Testing`} link={`/generate-quiz`} />
+            </div>
         </div>
+    </>
     )
 }
 

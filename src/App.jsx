@@ -10,6 +10,12 @@ import MentorLogin from "./pages/mentorRegister/MentorLogin";
 import { useEffect } from "react";
 import ContacUs from "./pages/ContactUs/ContacUs";
 import Evaluate from "./pages/Evaluate/Evaluate";
+import Aboutus from "./pages/AboutUs/Aboutus";
+import Blogs from "./pages/Blogs/Blogs";
+import SpecificQuiz from "./common-components/quizForm/SpecificQuiz";
+import SenarioBasedForm from "./common-components/quizForm/SenarioBasedForm";
+import QuestionSheet from "./common-components/quizForm/QuestionSheet";
+import GenerateQuiz from "./common-components/quizForm/GenerateQuiz";
 
 function App() {
   useEffect(() => {
@@ -31,27 +37,51 @@ function App() {
           <Route
             path="mentor-signup"
             element={<ProtectedComponent Component={MentorRegister} />}
-          ></Route>
+          />
           <Route
             path="proceed-continue"
             element={<ProtectedComponent Component={ImportComponent} />}
-          ></Route>
+          />
           <Route
             path="signup-manually"
             element={<ProtectedComponent Component={ManuallySignUpForm} />}
-          ></Route>
+          />
           <Route
             path="login"
             element={<ProtectedComponent Component={MentorLogin} />}
-          ></Route>
+          />
           <Route
             path="contact-us"
             element={<ProtectedComponent Component={ContacUs} />}
-          ></Route>
+          />
           <Route
             path="evalaute"
             element={<ProtectedComponent Component={Evaluate} />}
-          ></Route>
+          />
+          <Route
+            path="about-us"
+            element={<ProtectedComponent Component={Aboutus} />}
+          />
+          <Route
+            path="blogs"
+            element={<ProtectedComponent Component={Blogs} />}
+          />
+          <Route
+            path="skill-specific-quiz"
+            element={<ProtectedComponent Component={SpecificQuiz} />}
+          />
+          <Route
+            path="scenario-based"
+            element={<ProtectedComponent Component={SenarioBasedForm} />}
+          />
+          <Route
+            path="question-sheet"
+            element={<ProtectedComponent Component={QuestionSheet} />}
+          />
+          <Route
+            path="generate-quiz"
+            element={<ProtectedComponent Component={GenerateQuiz} />}
+          />
         </Routes>
       </Layout>
     </div>

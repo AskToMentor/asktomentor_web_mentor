@@ -43,11 +43,10 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { href: "#explore", text: "Evaluate" },
     { href: "/evalaute", text: "Evaluate" },
-    { href: "#blogs", text: "Blogs" },
-    { href: "#subscription", text: "About us" },
-    { href: "#contact-us", text: "Contact Us" },
+    { href: "/blogs", text: "Blogs" },
+    { href: "/about-us", text: "About us" },
+    { href: "/contact-us", text: "Contact Us" },
   ];
   useEffect(() => {
     if (localStorage.getItem("loginType") == "Mentee") {
@@ -68,12 +67,12 @@ const Navbar = () => {
       </Link>
       <ul className="hidden lg:flex lg:space-x-2 xl:space-x-8">
         {navLinks.map((link) => (
-          <li key={link.text}>
+          <li key={link.text} className="px-4 lg:px-6 py-3">
             <Link
               to={link.href}
-              className={`text-white px-4 lg:px-6 py-3 transition-all duration-300 ${activeLink === link.text
+              className={`text-white px-3  py-3 rounded-lg transition-all duration-300 ${activeLink === link.text
                 ? "bg-gradient-to-tr from-pink-500 to-blue-500"
-                : "hover:bg-gradient-to-tr hover:from-pink-500 hover:to-blue-500"
+                : "hover:bg-gradient-to-tr hover:from-pink-500 hover:to-blue-500 hover:rounded-lg"
                 }`}
               onClick={() => handleLinkClick(link.text)}
             >

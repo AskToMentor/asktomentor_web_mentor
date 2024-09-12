@@ -11,7 +11,7 @@ const protectedComponent = (props) => {
   //   }
   // }, []);
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden bg-[#212a31]">
       <Component />
     </div>
   );
