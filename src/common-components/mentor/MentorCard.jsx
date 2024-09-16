@@ -14,9 +14,9 @@ const MentorCard = ({ name, description, videoPlaceholder,position }) => {
     //     </p>
     //   </div>
     // </div>
-    <div className="h-[390px] bg-rose-400 relative rounded-lg">
-      <div className="h-[40%] bg-[#748D92]"></div>
-      <div className="bg-white text-black h-[60%] items-center flex flex-col">
+    <div className="h-[390px] bg-rose-400 relative mt-1 rounded-lg">
+      <div className="h-[40%] bg-[#748D92] rounded-t-lg "></div>
+      <div className="bg-white text-black h-[60%] items-center flex flex-col rounded-b-lg">
         <span className="w-[85%] mx-auto flex justify-center flex-col items-center absolute top-7 ">
           <img
             className=" h-[180px]  rounded-lg"
