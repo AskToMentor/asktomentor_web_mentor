@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      rotate: {
+        'y-360': 'rotateY(360deg)',
+      },
+      // visibility: ['backface-hidden'],
       colors: {
         lime: {
           primary: "#7ACC3E ",
@@ -24,5 +28,10 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [function ({ addUtilities }) {
+    addUtilities({
+      '.rotate-y-360': { transform: 'rotateY(360deg)' },
+    }, ['responsive', 'hover'])
+  }],
 };
+

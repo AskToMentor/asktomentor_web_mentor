@@ -1,5 +1,6 @@
-import React from "react";
-import Image1 from "../../assets/guruji_img2-removebg.png";
+import React, { useEffect } from "react";
+// import Image1 from "../../assets/guru_image.png";
+import Image1 from "../../assets/guru_image-removebg.png";
 import Mentor from "../../common-components/mentor/Mentors";
 import Involved from "../../common-components/mentor/Involved";
 import Working from "../../common-components/mentor/Working";
@@ -19,12 +20,12 @@ const Dashboard = () => {
   return (
     <div className="overflow-y-auto h-full w-full">
       {/* Header Section */}
-      <div className="px-4 md:px-5 w-full xl:w-[85%] lg:h-[400px] mt-5 mx-auto grid grid-cols-1 lg:grid-cols-2 items-center">
-        <div className="flex justify-end h-full pt-5">
-          <div className="text-white text-left w-full h-full pt-10">
-            <h1 className="dashboard-home-content-font">
+      <div className="w-full h-fit lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center">
+        <div className="flex justify-center h-full pl-10 sm:pt-12 lg:pt-28">
+          <div className="text-white text-left w-full pt-10">
+            <h1 className="dashboard-home-content-font text-wrap">
               Welcome To
-              <p className="text-[#124E66] dashboard-asktomentor-font">
+              <p className="text-[#124E66] text-wrap dashboard-asktomentor-font">
                 AskToMentor
               </p>
             </h1>
@@ -55,7 +56,7 @@ const Dashboard = () => {
               <li>Participate in interactive sessions and webinars</li>
               <li>Connect with a community of learners</li>
             </ul> */}
-            <button className="bg-[#124E66] hover:bg-[#0F3A4D] text-white py-2 px-4 rounded mt-4">
+            <button className="bg-[#124E66] hover:bg-[#0F3A4D] text-white py-2 px-4 rounded mt-8">
               <Link to="/login" className="text-white text-base">
                 {getLoginType == "Mentee" ? "Join as Mentee" : "Join as Mentor"}{" "}
               </Link>
@@ -63,8 +64,12 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Right Section */}
-        <div className="flex w-full items-center justify-center mb-4">
-          <img src={Image1} alt="Icon" className=" h-[400px] sm:h-[600px] md:mt-10" />
+        <div className="flex h-[400px] sm:h-full w-full items-center justify-center sm:justify-end">
+          <img
+            src={Image1}
+            alt="Icon"
+            className="h-[600px] fle justify-center items-center sm:h-[600px] lg:h-[1000px] mt-10 sm:mt-0 mr-16 sm:mr-0"
+          />
         </div>
       </div>
       <div className="px-2 sm:px-4 md:px-8 lg:px-14">
@@ -103,8 +108,9 @@ const Dashboard = () => {
         />
       </div>
       <div className="px-2 sm:px-4 md:px-8 lg:px-14">
-        <NamasteLeaner/>
+        <NamasteLeaner />
       </div>
+      
     </div>
   );
 };

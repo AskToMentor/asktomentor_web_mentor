@@ -5,10 +5,10 @@ const Layout = ({ children }) => {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden">
       <div className="main-content flex flex-col w-full h-screen overflow-hidden">
-        <div className="h-[12%] sm:h-[10%]">
+        <div className="h-[12%] md:h-[10%] desktop-lg:h-[12%]">
           <Navbar />
         </div>
-        <div className="w-full h-[88%] sm:h-[90%] overflow-hidden flex pb-2">
+        <div className="w-full h-[88%] md:h-[90%] desktop-lg:h-[88%] overflow-hidden flex pb-2">
           {children}
         </div>
       </div>

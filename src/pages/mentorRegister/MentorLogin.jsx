@@ -3,18 +3,15 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GetLoginType } from "../../utility/GetLoginType";
+import { MentorSignIn } from "../../service/MentorSignUpSignIn";
+import ShowSucessmessages from "../../alert-messages/ShowSucessmessages";
 
 const MentorLogin = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    termsAccepted: false,
   });
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -38,10 +35,42 @@ const MentorLogin = () => {
       termsAccepted: false,
     });
   };
+  const mentorLoginFunction = async () => {
+    const { email, password } = formData;
+    if (!email) {
+      ShowErrorMessages("Please fill the email");
+      return;
+    } else if (!password) {
+      ShowErrorMessages("Please fill the password");
+      return;
+    } else {
+      const payload = {
+        loginId: email,
+        password: password,
+        role: 1,
+      };
+      const response = await MentorSignIn(payload);
+      console.log("response is....", response);
+      if (response?.success) {
+        const token = response?.data?.token;
+        if (token) {
+          localStorage.setItem("token", token);
+        }
+        ShowSucessmessages(response?.message);
+        // setFormData({
+        //   ...formData,
+        //   name: "",
+        //   rating: "",
+        //   reviews: "",
+        // });
+        // window.location.reload();
+      }
+    }
+  };
 
   return (
     <div className="h-full overflow-y-auto">
-      <div className="bg-gray-900 mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[5rem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[25%] mx-auto font-sans">
+      <div className="login-container mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[5rem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[25%] mx-auto font-sans">
         <div className="flex flex-col gap-4">
           <div className="text-[19px] font-bold text-left max-w-2xl flex flex-col gap-2 ">
             {getLoginType == "Mentee"
@@ -56,28 +85,17 @@ const MentorLogin = () => {
             {/* <p className="text-[17px] font-semibold">Email or username</p> */}
             <input
               type="text"
-              name="firstName"
+              name="email"
               placeholder="Email"
-              value={formData.firstName}
+              value={formData.email}
               onChange={(e) =>
-                setFormData({ ...formData, firstName: e.target.value })
+                setFormData({ ...formData, email: e.target.value })
               }
               className="w-full p-2 md:p-3 bg-gray-800 rounded text-[16px] md:text-lg h-11 sm:h-12"
             />
           </div>
           <div className="flex flex-col gap-2">
-            {/* <p className="text-[17px] font-semibold">Password</p> */}
-            {/* <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
-            }
-            className="w-full p-2 md:p-3 bg-gray-800 rounded text-[16px] md:text-lg"
-          /> */}
-            <div className="relative bg-gray-800 rounded flex px-2 items-center h-11 sm:h-12">
+            <div className="relative bg-gray-800 rounded flex px-2 items-center gap-2 h-11 sm:h-12">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -103,14 +121,19 @@ const MentorLogin = () => {
           </div>
 
           <div className="mt-1 sm:mt-4">
-            <button className="bg-[#124E66] w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold">
-              Log in
+            <button
+              className="bg-[#124E66] w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold shadow-lg z-50"
+              onClick={() => {
+                mentorLoginFunction();
+              }}
+            >
+              Login
             </button>
           </div>
           <div className="mt-1 sm:mt-4">
-            <button className="border-[2px] gap-3 bg-[#124E66] w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold">
-              <FcGoogle />
-              Log in with google
+            <button className="border-[2px] gap-3 bg-white text-black w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold">
+              <FcGoogle className="text-[25px]" />
+              Login with google
             </button>
           </div>
           <div className="w-full flex flex-col gap-3">
