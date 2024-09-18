@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import skill from '/src/gif-assets/skills.png';
 
 const SenarioBasedForm = () => {
     // State to store form data
@@ -91,13 +90,6 @@ const SenarioBasedForm = () => {
                         </form>
                     </div>
                     <div className='lg:w-1/3 w-full lg:pl-8 flex items-center justify-center mt-8 lg:mt-0'>
-                        <img
-                            alt="Quiz Image"
-                            src={skill}
-                            className='rounded-lg'
-                            width={300}
-                            height={200}
-                        />
                     </div>
                 </div>
             </div>

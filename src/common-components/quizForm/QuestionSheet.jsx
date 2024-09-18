@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axiosInstance from '../../interceptor/interceptor'
+import axiosInstance from '../../interceptor/interceptor';
 const QuestionSheet = () => {
     const [questions, setQuestions] = useState([
         {
@@ -126,7 +126,7 @@ const QuestionSheet = () => {
                     </div>
                 </form>
 
-
+                    
             </div>
         </div>
     );
