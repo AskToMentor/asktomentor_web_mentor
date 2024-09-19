@@ -16,12 +16,15 @@ import SpecificQuiz from "./common-components/quizForm/SpecificQuiz";
 import SenarioBasedForm from "./common-components/quizForm/SenarioBasedForm";
 import QuestionSheet from "./common-components/quizForm/QuestionSheet";
 import GenerateQuiz from "./common-components/quizForm/GenerateQuiz";
+import UserProfile from "./pages/Profile/UserProfile";
+import TermsandCondition from "./pages/Policy/TermsandCondition";
+import PrivacyandPolicy from "./pages/Policy/PrivacyandPolicy";
 
 function App() {
   useEffect(() => {
     if (!localStorage.getItem("loginType")) {
       localStorage.setItem("loginType", "Mentor");
-      window.location.reload()
+      window.location.reload();
     } else {
     }
   }, []);
@@ -81,6 +84,18 @@ function App() {
           <Route
             path="generate-quiz"
             element={<ProtectedComponent Component={GenerateQuiz} />}
+          />
+          <Route
+            path="mentor-profile"
+            element={<ProtectedComponent Component={UserProfile} />}
+          />
+          <Route
+            path="terms-conditions"
+            element={<ProtectedComponent Component={TermsandCondition} />}
+          />
+          <Route
+            path="privacy-policy"
+            element={<ProtectedComponent Component={PrivacyandPolicy} />}
           />
         </Routes>
       </Layout>

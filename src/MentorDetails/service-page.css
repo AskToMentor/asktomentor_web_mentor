@@ -70,9 +70,11 @@
     
   }
   .time-pick{
-    background-color: #FFFFFF;
+    background-color: #616161;
+    ;
     color: black;
     width: 200px;
+    height: 36px;
     
   }
   .side-card{

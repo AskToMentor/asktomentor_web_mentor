@@ -37,7 +37,7 @@ const MentorRegister = () => {
 
   return (
     <div className="h-full overflow-y-auto">
-      <div className="login-container mb-10 mt-[1rem] sm:mt-[3rem] md:mt-[2rem] p-4 md:p-5 rounded-lg text-white w-[35%] mx-auto font-sans">
+      <div className="login-container mb-10 mt-[1rem] sm:mt-[3rem] md:mt-[2rem] p-4 md:p-5 rounded-lg text-white w-[95%] mobile-lg:w-[80%] sm:w-[60%] md:w-[60%] lg:w-[55%] xl:w-[35%] mx-auto font-sans">
         <span className="text-lg">User Information</span>
         <input
           type="text"

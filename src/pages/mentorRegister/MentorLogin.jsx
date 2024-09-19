@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GetLoginType } from "../../utility/GetLoginType";
 import { MentorSignIn } from "../../service/MentorSignUpSignIn";
@@ -56,7 +56,8 @@ const MentorLogin = () => {
         if (token) {
           localStorage.setItem("token", token);
         }
-        ShowSucessmessages(response?.message);
+        ShowSucessmessages("You have successfully logged in");
+        navigate("/mentor-profile");
         // setFormData({
         //   ...formData,
         //   name: "",
@@ -70,7 +71,7 @@ const MentorLogin = () => {
 
   return (
     <div className="h-full overflow-y-auto">
-      <div className="login-container mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[5rem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[25%] mx-auto font-sans">
+      <div className="login-container mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[5rem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[95%] mobile-lg:w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[25%] mx-auto font-sans">
         <div className="flex flex-col gap-4">
           <div className="text-[19px] font-bold text-left max-w-2xl flex flex-col gap-2 ">
             {getLoginType == "Mentee"
@@ -91,11 +92,11 @@ const MentorLogin = () => {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              className="w-full p-2 md:p-3 bg-gray-800 rounded text-[16px] md:text-lg h-11 sm:h-12"
+              className="w-full p-2 md:p-3 bg-gray-800 rounded text-[16px] md:text-lg h-11 sm:h-14"
             />
           </div>
-          <div className="flex flex-col gap-2">
-            <div className="relative bg-gray-800 rounded flex px-2 items-center gap-2 h-11 sm:h-12">
+          <div className="flex flex-col gap-2 mt-3">
+            <div className="relative bg-gray-800 rounded flex px-2 items-center gap-2 h-11 sm:h-14">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -119,7 +120,10 @@ const MentorLogin = () => {
               </button>
             </div>
           </div>
-
+          <div className="flex flex-row  font-medium gap-3">
+            <p className=" text-[17px]">Forgot password ?</p>
+            <p className=" text-[17px]">Restore it</p>
+          </div>
           <div className="mt-1 sm:mt-4">
             <button
               className="bg-[#124E66] w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold shadow-lg z-50"
@@ -136,22 +140,32 @@ const MentorLogin = () => {
               Login with google
             </button>
           </div>
-          <div className="w-full flex flex-col gap-3">
-            <p className="underline text-[17px] font-semibold ">
-              Forgot password
-            </p>
-            <span className="flex gap-6">
-              <p className="underline cursor-pointer text-[17px] font-semibold">
+          <div className="w-full flex flex-col gap-3 mt-2">
+            <span className="flex gap-3">
+              <p className="cursor-pointer text-[17px] font-medium">
                 {" "}
                 Do not have an account?{" "}
               </p>
               <p
-                className="cursor-pointer text-[17px] font-semibold"
+                className="cursor-pointer text-[17px] font-medium"
                 onClick={() => {
                   navigate("/mentor-signup");
                 }}
               >
                 Sign up
+              </p>
+            </span>
+          </div>
+          <div className="w-full flex flex-col gap-3">
+            <span className="flex gap-3">
+              <p className=" text-[14px] font-light">
+                {" "}
+                The site is protected by reCAPTCHA and the Google{" "}
+                <Link to="/privacy-policy"
+                >
+                  Privacy and Policy
+                </Link>{" "}
+                and <Link to="/terms-conditions">Terms and Service</Link> apply
               </p>
             </span>
           </div>

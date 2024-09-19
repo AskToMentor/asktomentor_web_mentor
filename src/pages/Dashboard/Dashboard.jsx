@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 // import Image1 from "../../assets/guru_image.png";
-import Image1 from "../../assets/guru_image-removebg.png";
+import Image1 from "../../assets/guru_image-removebg_edited.png";
 import Mentor from "../../common-components/mentor/Mentors";
 import Involved from "../../common-components/mentor/Involved";
 import Working from "../../common-components/mentor/Working";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GetLoginType } from "../../utility/GetLoginType";
 import HowWorks from "../../common-components/mentor/HowWorks";
 import StepInvolved from "../../common-components/mentor/StepInvolved";
@@ -16,11 +16,11 @@ import NamasteLeaner from "../../common-components/mentor/NamasteLeaner";
 
 const Dashboard = () => {
   const getLoginType = GetLoginType();
-  console.log("getLoginType", getLoginType);
+  const navigate = useNavigate();
   return (
     <div className="overflow-y-auto h-full w-full">
       {/* Header Section */}
-      <div className="w-full h-fit lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center">
+      <div className="w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center">
         <div className="flex justify-center h-full pl-10 sm:pt-12 lg:pt-28">
           <div className="text-white text-left w-full pt-10">
             <h1 className="dashboard-home-content-font text-wrap">
@@ -56,19 +56,22 @@ const Dashboard = () => {
               <li>Participate in interactive sessions and webinars</li>
               <li>Connect with a community of learners</li>
             </ul> */}
-            <button className="bg-[#124E66] hover:bg-[#0F3A4D] text-white py-2 px-4 rounded mt-8">
-              <Link to="/login" className="text-white text-base">
-                {getLoginType == "Mentee" ? "Join as Mentee" : "Join as Mentor"}{" "}
-              </Link>
+            <button
+              className="bg-[#124E66] text-white hover:!text-white py-2 px-4 rounded mt-8"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              {getLoginType == "Mentee" ? "Join as Mentee" : "Join as Mentor"}{" "}
             </button>
           </div>
         </div>
         {/* Right Section */}
-        <div className="flex h-[400px] sm:h-full w-full items-center justify-center sm:justify-end">
+        <div className="flex h-full w-full items-center justify-center sm:justify-end">
           <img
             src={Image1}
             alt="Icon"
-            className="h-[600px] fle justify-center items-center sm:h-[600px] lg:h-[1000px] mt-10 sm:mt-0 mr-16 sm:mr-0"
+            className="h-[600px] fle justify-center items-center sm:h-[550px] lg:h-[650px] mt-10 sm:mt-16"
           />
         </div>
       </div>
@@ -110,7 +113,6 @@ const Dashboard = () => {
       <div className="px-2 sm:px-4 md:px-8 lg:px-14">
         <NamasteLeaner />
       </div>
-      
     </div>
   );
 };

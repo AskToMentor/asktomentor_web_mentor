@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import startImage from "../../assets/img2.jpeg";
+import FinishImage from "../../../public/hank hand.gif";
 
-const MentorSlides = () => {
+
+const MentorSlides = ({ nextStep }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
-    <div className="flex flex-col gap-5 bg-[#1E3944] rounded-lg p-10 mt-4">
-      <div className="flex justify-between gap-16">
+    <div className="flex flex-col gap-5 login-container justify-center items-center rounded-lg p-10 mt-4">
+      {/* <div className="flex justify-between gap-16">
         <div className="flex flex-col gap-1 w-full">
           <p className="text-[16px] font-medium">First Name</p>
           <input
@@ -82,7 +85,18 @@ const MentorSlides = () => {
           </div>
         </div>
       </div>
-      <div></div>
+      <div></div> */}
+      <div>
+        <img src={FinishImage} className="w-[300px] rounded-lg h-[250px]" />
+      </div>
+      <div className="flex flex-col items-center gap-2 justify-center">
+        <button
+          className="bg-ask-to-mentor-primary w-[200px] rounded-3xl shadow-lg border-[1px] border-white"
+          onClick={nextStep}
+        >
+          Start
+        </button>
+      </div>
     </div>
   );
 };

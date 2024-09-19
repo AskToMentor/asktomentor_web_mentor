@@ -284,3 +284,15 @@
 .login-container{
   background: linear-gradient(109.46deg, rgba(50, 55, 61, 0.93) 20.67%, rgba(33, 89, 112, 0.74) 90.16%);
 }
+.swal-custom-btn {
+  background-color: 124E66 !important;
+  color: white !important;
+  border: none;
+  padding: 10px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.swal-custom-image{
+  border-radius: 8px;
+}

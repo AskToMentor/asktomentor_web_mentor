@@ -16,14 +16,12 @@ const StepInvolved = () => {
               <Lottie animationData={animation3} />
             </div>
             <h3 className="text-xl font-semibold text-[24px] text-left mt-4 ">
-              Ask questions from mentors
+              Connect with Mentors
             </h3>
-            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5">
-                
-            </div>
+            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5"></div>
             <p className="text-gray-400 text-left text-[14px] mt-2">
-              Ask detailed questions and get personalized answers from our
-              mentors.
+              Choose from a variety of mentors specializing in different fields
+              of expertise
             </p>
           </div>
 
@@ -34,9 +32,7 @@ const StepInvolved = () => {
             <h3 className="text-xl font-semibold text-[24px] text-left mt-4">
               Ask questions from mentors
             </h3>
-            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5">
-                
-            </div>
+            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5"></div>
             <p className="text-gray-400 text-left mt-5">
               Ask detailed questions and get personalized answers from our
               mentors.
@@ -49,9 +45,7 @@ const StepInvolved = () => {
             <h3 className="text-xl font-semibold text-[24px] text-left mt-4">
               Personalized Guidance
             </h3>
-            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5">
-                
-            </div>
+            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5"></div>
             <p className="text-gray-400 text-left mt-5">
               Receive tailored advice and strategies to overcome your learning
               challenges.
@@ -64,9 +58,7 @@ const StepInvolved = () => {
             <h3 className="text-xl font-semibold text-[24px] text-left mt-4">
               Access Learning Resource
             </h3>
-            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5">
-                
-            </div>
+            <div className="h-[5px] w-[50%] border-[#748D9299] border-b-[2px] my-5"></div>
             <p className="text-gray-400 text-left mt-5">
               Explore blogs, articles, and educational content curated by our
               mentors.

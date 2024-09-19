@@ -4,7 +4,7 @@ import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Navbar = () => {
+const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
   const [activeLink, setActiveLink] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -56,7 +56,7 @@ const Navbar = () => {
   }, [localStorage.getItem("loginType")]);
 
   return (
-    <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold shadow-lg z-[10000] w-full namaste-learner-gradient">
+    <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold shadow-lg  w-full namaste-learner-gradient relative">
       <Link to="/" className="text-white text-base">
         <div className="logo">
           <img
@@ -76,7 +76,11 @@ const Navbar = () => {
                   activeLink === link.text
                     ? "bg-gradient-to-tr from-pink-500 to-blue-500"
                     : "hover:text-black"
-                } ${index == 0 ? "header-hight-light text-[18px] font-bold" : " text-[18px] font-bold"}`}
+                } ${
+                  index == 0
+                    ? "header-hight-light text-[18px] font-bold"
+                    : " text-[18px] font-bold"
+                }`}
                 onClick={() => handleLinkClick(link.text)}
               >
                 {link.text}
@@ -145,17 +149,22 @@ const Navbar = () => {
             Mentee
           </button>
         </div>
-        <div className="hidden sm:block">
+        <div
+          className="block cursor-pointer"
+          onClick={() => {
+            setIsSideBarOpen(!isSideBarOpen);
+          }}
+        >
+          <GiHamburgerMenu className="text-[25px]" />
+        </div>
+        {/* <div className="hidden sm:block">
           <button
             className={`font-bold text-[16px] bg-white text-black shadow-xl border-white border-[1px] rounded-full flex items-center px-10 h-8 sm:h-9  transition-all duration-300`}
             onClick={() => handleLinkClick("Login")}
           >
             Login
           </button>
-        </div>
-      </div>
-      <div className="block lg:hidden">
-        <GiHamburgerMenu className="text-[25px]" />
+        </div> */}
       </div>
     </nav>
   );

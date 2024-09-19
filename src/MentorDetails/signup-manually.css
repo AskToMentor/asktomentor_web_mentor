@@ -107,20 +107,19 @@
   
   .profile-image {
     text-align: center;
-    margin-bottom: 30px;
   }
   
   .profile-image img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: #5B636A;
     object-fit: cover;
     margin-bottom: 10px;
   }
   
   .profile-image p {
-    color: #00c896;
+    color: white;
     cursor: pointer;
   }
   
@@ -134,26 +133,6 @@
     margin-bottom: 10px;
     color: #ccc;
     font-weight: bold;
-  }
-  
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    padding: 12px;
-    border-radius: 5px;
-    background-color: #333;
-    border: 1px solid #444;
-    color: #fff;
-    font-size: 16px;
-    resize: none;
-    margin-bottom: 10px;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    outline: none;
-    border-color: #00c896;
   }
   
   .services-step h2 {
@@ -277,13 +256,7 @@
     background-color: #555;
     color: #fff;
   }
-  
-  .form-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-  }
-  
+    
   .nav-button {
     background-color: #00c896;
     border: none;

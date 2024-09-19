@@ -7,12 +7,15 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Finish from "./finish";
 import AppServices from "./appservices";
 import MentorSlides from "../common-components/mentor-sliders/MentorSlides";
+import { IoIosArrowDropleft } from "react-icons/io";
+import { IoIosArrowDropright } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
-const ManuallySignUpForm = () => {
+const ManuallySignUpForm = ({}) => {
   const [step, setStep] = useState(1);
-
-  const nextStep = () => setStep((prev) => Math.min(prev + 1, 5));
-  const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+  const navigate = useNavigate();
+  const nextStep = () => setStep(step + 1);
+  const prevStep = () => setStep(step - 1);
   const activeColor = (index) =>
     step >= index ? "bg-ask-to-mentor-primary" : "bg-gray-300";
   const processSteps = [
@@ -25,25 +28,8 @@ const ManuallySignUpForm = () => {
   console.log("step", step);
   return (
     <div className="h-full overflow-y-auto">
-      <div className="mb-16 lg:mb-0 flex flex-col md:flex-row p-3 lg:p-0 w-full lg:w-[90%] max-w-[1200px] bg-[#1a1a1a] overflow-hidden text-white min-h-[500px] shadow-[0_5px_15px_rgba(0,0,0,0.5)] mx-auto lg:my-[50px] rounded-[10px]">
-        <div className="sidebar pt-[3rem] flex flex-col items-center md:items-start md:flex-row justify-center w-full md:w-[25%] bg-[#252525] ">
-          {/* <ul>
-       <li className={step === 1 ? "active" : step > 1 ? "completed" : ""}>
-         Start
-       </li>
-       <li className={step === 2 ? "active" : step > 2 ? "completed" : ""}>
-         Personal info
-       </li>
-       <li className={step === 3 ? "active" : step > 3 ? "completed" : ""}>
-         Skills
-       </li>
-       <li className={step === 4 ? "active" : step > 4 ? "completed" : ""}>
-         Services
-       </li>
-       <li className={step === 5 ? "active" : step > 5 ? "completed" : ""}>
-         Finish
-       </li>
-     </ul> */}
+      <div className="mb-16 lg:mb-0 flex flex-col md:flex-row p-3 lg:p-0 w-full lg:w-[90%] max-w-[1200px] bg-[#212a31] overflow-hidden text-white min-h-[500px] shadow-[0_5px_15px_rgba(0,0,0,0.5)] mx-auto lg:my-[50px] rounded-[10px]">
+        <div className="sidebar pt-[3rem] flex flex-col items-center md:items-start md:flex-row justify-center w-full md:w-[25%]  ">
           <div className="flex md:hidden items-start flex-row">
             {processSteps?.map((item, index) => (
               <React.Fragment key={index}>
@@ -59,8 +45,9 @@ const ManuallySignUpForm = () => {
                     <div
                       className={`w-10 mobile-lg:w-16 h-1 mt-2 ${activeColor(
                         index + 1
-                      )} ${processSteps?.length == index + 1 ? "hidden" : "block"
-                        }`}
+                      )} ${
+                        processSteps?.length == index + 1 ? "hidden" : "block"
+                      }`}
                     ></div>
                   </div>
                 </div>
@@ -82,86 +69,120 @@ const ManuallySignUpForm = () => {
               <React.Fragment key={index}>
                 <div className={`w-fit gap-4 h-fit flex`}>
                   <span
-                    className={`w-6 h-6 rounded-full ${activeColor(
+                    className={`w-8 h-8  flex justify-center  items-center rounded-full  ${activeColor(
                       index + 1
                     )} `}
-                  ></span>
+                  >
+                    {index + 1}
+                  </span>
                   <p>{item}</p>
                 </div>
                 <div
-                  className={`w-1 h-12 ml-[10px] ${activeColor(index + 1)} ${processSteps?.length == index + 1 ? "hidden" : "block"
-                    }`}
+                  className={`h-16 border-dashed border-[1px] ml-[15px] ${activeColor(
+                    index + 1
+                  )} ${processSteps?.length == index + 1 ? "hidden" : "block"}`}
                 ></div>
               </React.Fragment>
             ))}
           </div>
         </div>
-        <div className="w-full md:w-9/12 bg-[#2c2c2c] flex flex-col relative p-4">
-          <div className="flex justify-between">
-            <div>
-              <p className="text-[25px] font-semibold">Let's get started!</p>
-              <p>Just enter your basic details to create your account</p>
+        <div className="w-full md:w-9/12 bg-[#212a3] flex flex-col relative p-4">
+          {step === 1 && (
+            <div className="flex justify-between">
+              <div>
+                <p className="text-[25px] font-semibold">Let's get started!</p>
+                <p>Just enter your basic details to create your account</p>
+              </div>
+              <div>
+                <button className="bg-ask-to-mentor-primary text-white py-3 w-fit rounded-full  mx-auto block">
+                  Import from LinkedIn
+                </button>
+              </div>
             </div>
-            <div>
-              <button className="bg-ask-to-mentor-primary text-white py-3 w-fit rounded-full  mx-auto block">
-                Import from LinkedIn
-              </button>
-            </div>
-          </div>
-          {step === 1 && <MentorSlides />}
+          )}
+
+          {step === 1 && <MentorSlides nextStep={nextStep} />}
           {step === 2 && (
-            <div className="personal-info">
+            <div className="personal-info login-container rounded-[10px] p-3 px-16 pb-10">
               <div className="flex items-center justify-between gap-3">
                 <div className="form-group">
-                  <h1>Connect with us</h1>
-                  <p className="text-white">Share a it about your background and passion.</p>
+                  <h1 className="text-[32px] font-semibold">Connect with us</h1>
+                  <p className="text-white text-[16px] font-normal leading-[27.24px]">
+                    Share a bit about your background and passions.
+                  </p>
                 </div>
-                <div className="profile-image ">
-                  <img src="./profile-logo.png" alt="Profile" />
-                  <p>Select profile image</p>
+                <div className="profile-image text-white flex justify-center items-end flex-col">
+                  {/* <input type="file" className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] rounded-full"/> */}
+                  <div className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] flex justify-end rounded-full border-[2px] border-[#748D92]"></div>
+                  <p>Add profile picture </p>
                 </div>
               </div>
               <div className="form-group">
                 <label>About yourself</label>
-                <textarea placeholder="Briefly about yourself 0/256"></textarea>
+                <textarea
+                  placeholder="Tell us about yourself, your interest, your experiences"
+                  className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
+                ></textarea>
               </div>
-              <div className="form-group">
+              <div>
                 <label>Social media links</label>
-                <input
-                  type="text"
-                  placeholder="Facebook                                                                                                                                            Optional"
-                />
-                <input
-                  type="text"
-                  placeholder="Instagram                                                                                                                                           Optional"
-                />
-                <input
-                  type="text"
-                  placeholder="LinkedIn                                                                                                                                              Optional"
-                />
-              </div>
-              <div className="form-group">
-                <label>Referral code</label>
-                <input type="text" placeholder="Enter referral code...." />
+                <div className="flex flex-col gap-6 mt-2">
+                  <input
+                    type="text"
+                    placeholder="Enter your Facebook ID"
+                    className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Enter your Instagram ID"
+                    className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Enter your Instagram ID"
+                    className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
+                  />
+                </div>
               </div>
             </div>
           )}
 
           {step === 3 && <Skills />}
-          {step === 4 && <AppServices />}
-          {step === 5 && <Finish />}
-
-          <div className="form-navigation">
-            {step > 1 && (
-              <button className="backbutton" onClick={prevStep}>
-                <ArrowBackIosIcon />
-              </button>
+          {(step === 4 || step === 5 || step === 6 || step === 7) && (
+            <AppServices nextStep={nextStep} prevStep={prevStep} step={step} />
+          )}
+          {step === 8 && <Finish />}
+          <div className="flex justify-between mt-8">
+            {step < 8 && (
+              <div>
+                <button
+                  className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
+                  onClick={() => {
+                    navigate("/mentor-profile");
+                  }}
+                >
+                  Skip
+                </button>
+              </div>
             )}
-            {step < 5 && (
-              <button className="backbutton" onClick={nextStep}>
-                <ArrowForwardIosIcon />
-              </button>
-            )}
+            <div className="flex gap-5 ">
+              {step > 1 && step < 8 && (
+                <button
+                  className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
+                  onClick={prevStep}
+                >
+                  <IoIosArrowDropleft className="text-[28px]" />
+                </button>
+              )}
+              {step < 8 && step > 1 && (
+                <button
+                  className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
+                  onClick={nextStep}
+                >
+                  <IoIosArrowDropright className="text-[28px]" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
