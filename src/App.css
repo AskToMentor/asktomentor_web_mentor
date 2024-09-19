@@ -284,15 +284,39 @@
 .login-container{
   background: linear-gradient(109.46deg, rgba(50, 55, 61, 0.93) 20.67%, rgba(33, 89, 112, 0.74) 90.16%);
 }
-.swal-custom-btn {
-  background-color: 124E66 !important;
-  color: white !important;
-  border: none;
-  padding: 10px 24px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
+/* Custom CSS */
+.swal-custom-popup {
+  width: 350px; /* Set the desired width */
+  height: 300px;
+  padding: 4px; /* Add padding for better spacing */
+  border-radius: 10px; /* Optional: Customize border radius */
 }
-.swal-custom-image{
-  border-radius: 8px;
+
+.swal-content {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+.swal-custom-image {
+  width: 100%; /* Adjust image width to fit the container */
+  max-width: 100%; /* Ensure the image doesn't overflow */
+  height: 200px; /* Maintain aspect ratio */
+}
+
+.swal-button-container {
+  display: flex;
+  justify-content: center; /* Center the button */
+}
+
+.swal-custom-btn {
+  background-color: #212a31; /* Customize the button color */
+  color: white; /* Button text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Button padding */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+.swal2-confirm{
+  background-color: #212a31 !important;
 }

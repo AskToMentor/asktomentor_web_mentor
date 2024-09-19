@@ -10,33 +10,7 @@ import Swal from "sweetalert2";
 const ConfirmationModal = ({ onClose, payload }) => {
   const navigate = useNavigate();
   const mentorRegisterFunction = async () => {
-    onClose()
-    Swal.fire({
-      imageUrl: FinishImage,
-      imageHeight: 300,
-      imageWidth: 450,
-      imageAlt: "Registration Completed",
-      background:
-        "#124E66",
-      customClass: {
-        confirmButton: "swal-custom-btn", // Add a custom class for the button
-        image: "swal-custom-image",
-      },
-      buttonsStyling: false, // Disable the default styling to apply custom styles
-      allowOutsideClick: false,
-      showClass: {
-        popup: "animate__animated animate__zoomIn", // Zoom-in animation when the alert appears
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOut", // Fade-out animation when the alert closes
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/signup-manually");
-        // You can log any value or perform any action here
-      }
-    });
-    return;
+    onClose();
     const {
       firstName,
       lastName,
@@ -78,28 +52,26 @@ const ConfirmationModal = ({ onClose, payload }) => {
       console.log("response is....", response);
       if (response?.success) {
         Swal.fire({
-          imageUrl: FinishImage,
-          imageHeight: 300,
-          imageWidth: 450,
-          imageAlt: "Registration Completed",
-          background:
-            "linear-gradient(109.46deg, rgba(50, 55, 61, 0.93) 20.67%, rgba(33, 89, 112, 0.74) 90.16%)",
+          html: `
+            <div class="swal-content">
+              <img src="${FinishImage}" alt="Registration Completed" class="swal-custom-image" />
+            </div>
+          `,
+          background: "#124E66",
           customClass: {
-            confirmButton: "swal-custom-btn", // Add a custom class for the button
-            image: "swal-custom-image",
+            popup: "swal-custom-popup", // Custom class for the popup
+            closeButton: "swal-close-button",
           },
-          buttonsStyling: false, // Disable the default styling to apply custom styles
           allowOutsideClick: false,
           showClass: {
-            popup: "animate__animated animate__zoomIn", // Zoom-in animation when the alert appears
+            popup: "animate__animated animate__zoomIn",
           },
           hideClass: {
-            popup: "animate__animated animate__fadeOut", // Fade-out animation when the alert closes
+            popup: "animate__animated animate__fadeOut",
           },
         }).then((result) => {
           if (result.isConfirmed) {
             navigate("/signup-manually");
-            // You can log any value or perform any action here
           }
         });
       }
