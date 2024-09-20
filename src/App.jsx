@@ -19,6 +19,7 @@ import GenerateQuiz from "./common-components/quizForm/GenerateQuiz";
 import UserProfile from "./pages/Profile/UserProfile";
 import TermsandCondition from "./pages/Policy/TermsandCondition";
 import PrivacyandPolicy from "./pages/Policy/PrivacyandPolicy";
+import MentorSettings from "./pages/Settings/MentorSettings";
 
 function App() {
   useEffect(() => {
@@ -96,6 +97,10 @@ function App() {
           <Route
             path="privacy-policy"
             element={<ProtectedComponent Component={PrivacyandPolicy} />}
+          />
+           <Route
+            path="setting"
+            element={<ProtectedComponent Component={MentorSettings} />}
           />
         </Routes>
       </Layout>

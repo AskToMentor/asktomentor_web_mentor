@@ -1,9 +1,9 @@
 import React from "react";
 // import guide1 from "../../assets/guide1.png";
-import guide1 from "../../assets/brightMe (1).png";
-import guide2 from "../../assets/expert_insights.png";
-import guide3 from "../../assets/earn_bright.png"
-import guide4 from "../../assets/Professional_mentoring.png"
+import guide1 from "../../assets/Frame 32.png";
+import guide2 from "../../assets/Frame 846.png";
+import guide3 from "../../assets/Frame 848.png"
+import guide4 from "../../assets/Frame 849.png"
 const Guide = () => {
   const guide_data = [
     {
@@ -36,12 +36,12 @@ const Guide = () => {
       <h1 className="common-text-linear-gradient font-semibold">
         Are You A Guide?
       </h1>
-      <p className="text-[20px] text-whiten common-font-style">
+      <p className="text-[20px] text-white common-font-style">
         As a mentor on our platform, you can
       </p>
       <div className="grid grid-cols-1 tablet-sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-7 mt-10">
         {guide_data?.map((data, index) => (
-          <div className="h-[300px] w-full">
+          <div className="h-[320px] w-full">
             <img src={data?.image} className="h-full w-full rounded-[10px]" />
             {/* <div className="flex flex-col gap-2">
               <p className="text-[26px] leading-[30px] font-medium">

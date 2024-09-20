@@ -56,15 +56,8 @@ const MentorLogin = () => {
         if (token) {
           localStorage.setItem("token", token);
         }
-        ShowSucessmessages("You have successfully logged in");
+        // ShowSucessmessages("You have successfully logged in");
         navigate("/mentor-profile");
-        // setFormData({
-        //   ...formData,
-        //   name: "",
-        //   rating: "",
-        //   reviews: "",
-        // });
-        // window.location.reload();
       }
     }
   };

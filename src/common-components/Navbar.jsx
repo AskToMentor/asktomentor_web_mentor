@@ -54,7 +54,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
       setIsChecked(true);
     }
   }, [localStorage.getItem("loginType")]);
-
+  const isLoggedIn = localStorage.getItem("token") ? true : false;
   return (
     <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold shadow-lg  w-full namaste-learner-gradient relative">
       <Link to="/" className="text-white text-base">
@@ -89,7 +89,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
           ))}
         </ul>
       </div>
-      <div className="flex gap-10 items-center">
+      <div className="flex gap-10 sm:gap-20 items-center">
         {/* <label className="themeSwitcherTwo relative inline-flex cursor-pointer select-none items-center">
       <ul className="hidden lg:flex lg:space-x-2 xl:space-x-8">
         {navLinks.map((link) => (
@@ -149,14 +149,26 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
             Mentee
           </button>
         </div>
-        <div
-          className="block cursor-pointer"
-          onClick={() => {
-            setIsSideBarOpen(!isSideBarOpen);
-          }}
-        >
-          <GiHamburgerMenu className="text-[25px]" />
-        </div>
+        {isLoggedIn ? (
+          <div
+            className="bg-[#124E66] h-12 w-[50px] cursor-pointer rounded-full flex justify-center items-center"
+            onClick={() => {
+              setIsSideBarOpen(!isSideBarOpen);
+            }}
+          >
+            <p className="text-[21px]">FA</p>
+          </div>
+        ) : (
+          <div
+            className="block cursor-pointer"
+            onClick={() => {
+              setIsSideBarOpen(!isSideBarOpen);
+            }}
+          >
+            <GiHamburgerMenu className="text-[25px]" />
+          </div>
+        )}
+
         {/* <div className="hidden sm:block">
           <button
             className={`font-bold text-[16px] bg-white text-black shadow-xl border-white border-[1px] rounded-full flex items-center px-10 h-8 sm:h-9  transition-all duration-300`}
