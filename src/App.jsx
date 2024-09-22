@@ -16,6 +16,9 @@ import SpecificQuiz from "./common-components/quizForm/SpecificQuiz";
 import SenarioBasedForm from "./common-components/quizForm/SenarioBasedForm";
 import QuestionSheet from "./common-components/quizForm/QuestionSheet";
 import GenerateQuiz from "./common-components/quizForm/GenerateQuiz";
+import DisplaySKillQuiz from "./common-components/quizForm/Display_Skillquiz";
+import Adaptive_questions from "./common-components/quizForm/Adaptive_questions";
+
 
 function App() {
   useEffect(() => {
@@ -79,8 +82,19 @@ function App() {
             element={<ProtectedComponent Component={QuestionSheet} />}
           />
           <Route
+            path="Skill_quiz_questions"
+            element={<ProtectedComponent Component={DisplaySKillQuiz} />}
+          />
+          <Route
+            path="Adaptive_questions"
+            element={<ProtectedComponent Component={
+              Adaptive_questions} />}
+          />
+          
+<Route
             path="generate-quiz"
-            element={<ProtectedComponent Component={GenerateQuiz} />}
+            element={<ProtectedComponent Component={
+              GenerateQuiz} />}
           />
         </Routes>
       </Layout>

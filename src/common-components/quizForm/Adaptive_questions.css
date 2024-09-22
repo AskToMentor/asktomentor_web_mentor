@@ -1,0 +1,40 @@
+.quiz-body {
+    background-color: #2F3B44;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 10px; /* Space between options */
+    margin-top: 10px;
+}
+
+.option {
+    background-color: #3A4D5A; /* Slightly lighter background */
+    border: 2px solid white; /* White outline */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.option:hover {
+    background-color: #4A6071; /* Darker on hover */
+}
+
+.submit-button {
+    margin-top: 20px;
+    background-color: #124E66;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #212a31; /* Darker on hover */
+}

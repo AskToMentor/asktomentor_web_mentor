@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const CardItems = (props) => {
     return (
-        <div className='flex items-center justify-center  flex-col rounded-2xl p-[40px] m-0 bg-[#24343d] sm:max-w-[300px] max-w-full w-full  hover:rotate-y-360 transition duration-1000 ' >
+        <div className='flex items-center justify-center  flex-col rounded-2xl p-[30px] m-0 bg-[#24343d] sm:max-w-[300px] max-w-full w-full  hover:rotate-y-360 transition duration-1000 ' >
             <picture className='rounded-md'>
                 <img src={props.image} alt='image' height={'60px'} width={'100px'} />
             </picture>
