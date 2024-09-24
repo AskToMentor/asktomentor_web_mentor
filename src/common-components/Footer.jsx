@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import Logo from "../assets/logo.png";
+import socials from "../assets/footer-socials.svg";
 
 
 const Footer = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
             </div>
             <div className="socials">
                 <h3>Follow Us</h3>
-                <img src="assets/footer-socials.svg" alt="Social Icons" />
+                <img src={socials} alt="Social Icons" />
             </div>
         </div>
         <div className="footer-section">

@@ -321,16 +321,5 @@
   background-color: #212a31 !important;
 }
 
-.blog-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 60px; /* Adjust as needed */
-  font-weight: 700; /* Bolder text */
-  line-height: 65px; /* Adjust line-height for spacing */
-  text-transform: capitalize;
-  background: linear-gradient(90deg, #D3D9D5 0%, #124E66 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 15px; /* Space below the title */
-  text-align: left; /* Ensure text starts from the beginning */
-}
+
 
