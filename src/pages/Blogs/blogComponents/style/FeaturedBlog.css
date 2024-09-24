@@ -1,0 +1,80 @@
+.featured-blog-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(138,164,171,0.27) 0%);
+    border-radius: 26px;
+    overflow: hidden;
+    box-sizing: border-box;
+    justify-content: space-between;
+  }
+  
+  .blog-image {
+    width: 607px;
+    height: 431px;
+    border-radius: 20px;
+  }
+  
+  .blog-content {
+    margin-left: 44px;
+    color: #ffffff;
+  }
+  
+  .blog-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33.48px;
+    margin: 0;
+  }
+  
+  .blog-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 33.48px;
+    margin: 10px 0;
+  }
+  
+  .blog-description {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: justify;
+    margin: 20px 0;
+  }
+  
+  .author-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .author-info img {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+  }
+  
+  .author-details {
+    margin-left: 10px;
+  }
+  
+  .author-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 33.48px;
+  }
+  
+  .publish-date {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 33.48px;
+    color: #ffffff;
+  }
+  

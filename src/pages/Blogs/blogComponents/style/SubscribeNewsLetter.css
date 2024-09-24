@@ -1,0 +1,98 @@
+.subscription-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .newsletter-bg {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .subscription-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+  }
+  
+  .subscription-content > p {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .email-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-background {
+    position: absolute;
+    width: 100%;
+    height: 68px;
+    border-radius: 8px;
+  }
+  
+  .email-input {
+    width: 100%;
+    height: 68px;
+    padding: 0 160px 0 20px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    z-index: 1;
+  }
+  
+  .subscribe-button {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 0 30px;
+    background: transparent;
+    z-index: 2;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button-background {
+    position: absolute;
+    width: 144.86px;
+    height: 58.78px;
+    border-radius: 8px;
+  }
+  

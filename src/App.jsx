@@ -12,6 +12,7 @@ import ContacUs from "./pages/ContactUs/ContacUs";
 import Evaluate from "./pages/Evaluate/Evaluate";
 import Aboutus from "./pages/AboutUs/Aboutus";
 import Blogs from "./pages/Blogs/Blogs";
+import BlogDetails from "./pages/Blogs/BlogDetails";
 import SpecificQuiz from "./common-components/quizForm/SpecificQuiz";
 import SenarioBasedForm from "./common-components/quizForm/SenarioBasedForm";
 import QuestionSheet from "./common-components/quizForm/QuestionSheet";
@@ -20,6 +21,8 @@ import UserProfile from "./pages/Profile/UserProfile";
 import TermsandCondition from "./pages/Policy/TermsandCondition";
 import PrivacyandPolicy from "./pages/Policy/PrivacyandPolicy";
 import MentorSettings from "./pages/Settings/MentorSettings";
+import Footer from "./common-components/Footer";
+
 
 function App() {
   useEffect(() => {
@@ -71,6 +74,10 @@ function App() {
             element={<ProtectedComponent Component={Blogs} />}
           />
           <Route
+            path="blog-details"
+            element={<ProtectedComponent Component={BlogDetails} />}
+          />
+          <Route
             path="skill-specific-quiz"
             element={<ProtectedComponent Component={SpecificQuiz} />}
           />
@@ -104,6 +111,7 @@ function App() {
           />
         </Routes>
       </Layout>
+      <Footer />
     </div>
   );
 }

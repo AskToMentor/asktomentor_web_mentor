@@ -1,0 +1,78 @@
+.join-community-container {
+    width: 100%;
+    max-width: 1299px;
+    height: 410px;
+    margin: 0 auto;
+    background: linear-gradient(91.92deg, rgba(29,53,65,1) 1.62%, rgba(53,77,87,1) 51.95%, rgba(89,113,121,1) 78.01%, rgba(116,141,146,1) 101.81%);
+    border-radius: 20px;
+    display: flex;
+    /* justify-content: flex-end; */
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .join-community-content {
+    max-width: 513px;
+    color: #000000;
+  }
+  
+  .join-community-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.25px;
+    line-height: 28.13px;
+    margin-bottom: 40px;
+  }
+  
+  .buttons-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .try-yourself-button,
+  .get-started-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 29px;
+    font-family: 'Aeonik', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26.4px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .try-yourself-button {
+    background-color: rgba(1, 1, 1, 0.25);
+    color: white;
+  }
+  
+  .get-started-button {
+    background-color: #010101;
+    color: white;
+  }
+  
+  .get-started-button img {
+    margin-left: 10px;
+  }
+  
+  /* .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .logo-image {
+    width: 100%;
+    max-width: 292px;
+    height: auto;
+  } */
+  
