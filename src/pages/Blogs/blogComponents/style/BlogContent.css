@@ -62,62 +62,72 @@
 .author-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  align-items: center;
   gap: 20px;
+  align-items: center;
   margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(29,53,65,1) 0%, rgba(53,77,87,1) 50%, rgba(89,113,121,1) 100%);
+  border-radius: 20px;
+  color: white;
 }
 
 .author-column-4 {
   grid-column: span 4;
+  display: flex;
+  justify-content: center;
 }
 
 .author-column-8 {
   grid-column: span 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .author-image {
   max-width: 100%;
   border-radius: 50%;
+  height: auto;
 }
 
 .author-details {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .author-name {
   font-size: 24px;
   font-weight: 600;
-  color: white;
-}
-
-.author-details p {
-  color: #ffffffcc;
-  font-size: 16px;
-  margin: 10px 0;
 }
 
 .social-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 }
 
 .social-icons {
-  width: 120px;
+  width: 100px;
 }
 
 .more-by-author {
+  text-decoration: none;
   color: #ffffff;
-  text-decoration: underline;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 @media (max-width: 768px) {
-  .blog-content-container {
-    grid-template-columns: repeat(1, 1fr);
+  .blog-content-container, .author-container {
+    grid-template-columns: 1fr;
   }
 
-  .author-container {
-    grid-template-columns: repeat(1, 1fr);
+  .author-column-4, .author-column-8 {
+    grid-column: span 12;
+    text-align: center;
+  }
+
+  .author-image {
+    margin-bottom: 20px;
   }
 }
