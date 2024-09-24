@@ -90,10 +90,10 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
     {
       id: 8,
       label: "Other",
-    }
+    },
   ];
   return (
-    <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold w-full relative">
+    <nav className="px-2 md:px-5 h-[100px] fixed flex justify-between items-center font-semibold w-full  z-50 bg-[#212a31]">
       <Link to="/" className="text-white text-base">
         <div className="logo">
           <img
@@ -153,7 +153,9 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                               Select Category
                             </option>
                             {mentorFilter?.map((data) => (
-                              <option value={data?.label} className="py-2">{data?.label}</option>
+                              <option value={data?.label} className="py-2">
+                                {data?.label}
+                              </option>
                             ))}
                           </select>
                         </div>
@@ -244,7 +246,9 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                               Select service type
                             </option>
                             {mentorServiceType?.map((data) => (
-                              <option value={data?.label} className="py-2">{data?.label}</option>
+                              <option value={data?.label} className="py-2">
+                                {data?.label}
+                              </option>
                             ))}
                           </select>
                         </div>

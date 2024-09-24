@@ -31,7 +31,7 @@ const ManuallySignUpForm = ({}) => {
   ];
   console.log("step", step);
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full mb-20">
       <div className="mb-16 lg:mb-0 flex flex-col md:flex-row p-3 lg:p-0 w-full lg:w-[90%] max-w-[1200px] bg-[#212a31] overflow-hidden text-white min-h-[500px] shadow-[0_5px_15px_rgba(0,0,0,0.5)] mx-auto lg:my-[50px] rounded-[10px]">
         <div className="sidebar pt-[3rem] flex flex-col items-center md:items-start md:flex-row justify-center w-full md:w-[25%]  ">
           <div className="flex md:hidden items-start flex-row">
