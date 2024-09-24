@@ -40,13 +40,15 @@ const GeneralSettings = () => {
             </select>
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 w-full">
           <p className="text-[16px] font-semibold">
             For whom you’lll be provide this service?
           </p>
-          <div className="flex flex-row gap-4 items-center mt-4">
-            <input type="checkbox" className="h-[20px] w-[20px] pt-4" />
-            <p className="text-[15px] font-light">P2P(person to person)</p>
+          <div className="flex flex-row gap-4 items-center mt-4 w-full">
+            <div className="w-[35%] flex flex-row gap-3">
+              <input type="checkbox" className="h-[20px] w-[20px] pt-4" />
+              <p className="text-[15px] font-light">P2P(person to person)</p>
+            </div>
             <div className="flex">
               <div className="bg-ask-to-mentor-primary flex h-12 flex-row rounded-l-lg items-center px-2">
                 <input
@@ -61,9 +63,11 @@ const GeneralSettings = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row gap-4 items-center mt-4">
-            <input type="checkbox" className="h-[20px] w-[20px]" />
-            <p className="text-[15px] font-light"> P2B(person to Business)</p>
+          <div className="w-full flex flex-row gap-4 items-center mt-4">
+            <div className="w-[35%] flex flex-row gap-3">
+              <input type="checkbox" className="h-[20px] w-[20px]" />
+              <p className="text-[15px] font-light"> P2B(person to Business)</p>
+            </div>
             <div className="flex">
               <div className="bg-ask-to-mentor-primary flex h-12 flex-row rounded-l-lg items-center px-2">
                 <input

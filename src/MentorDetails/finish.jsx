@@ -14,7 +14,7 @@ const Finish = () => {
         <button
           className="bg-ask-to-mentor-primary w-[150px] mt-4"
           onClick={() => {
-            navigate("/mentor-profile");
+            navigate("/login");
           }}
         >
           Start

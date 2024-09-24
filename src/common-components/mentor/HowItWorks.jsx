@@ -22,14 +22,14 @@ const HowItWorks = () => {
             </div>
           </div>
           <div className="flex flex-row mt-4">
-            <div className="flex flex-col gap-4">
-              <p className="text-[24px] font-bold">Explore And Select Mentor</p>
-              <p className="text-[16px] font-medium">
+            <div className="flex flex-col gap-4 !text-white">
+              <p className="text-[24px] font-bold !text-white">Explore And Select Mentor</p>
+              <p className="text-[16px] font-medium !text-white">
                 help you to build website company that is modern, user friendly,
                 good CEO, and Clean design
               </p>
               <div className="flex flex-row gap-4">
-                <p className="underline">Start with us</p>
+                <p className="underline !text-white">Start with us</p>
                 <p>
                   <MdArrowOutward
                     className={`text-[#D3D9D5 font-normal text-[22px]`}
@@ -49,13 +49,13 @@ const HowItWorks = () => {
             </div>
           </div>
           <div className="flex flex-row mt-4">
-            <div className="flex flex-col gap-4">
-              <p className="text-[24px] font-bold">Payment Based On Solution</p>
-              <p className="text-[16px] font-medium">
+            <div className="flex flex-col gap-4 !text-white">
+              <p className="text-[24px] font-bold !text-white">Payment Based On Solution</p>
+              <p className="text-[16px] font-medium !text-white">
                 help you to build website company that is modern, user friendly,
                 good CEO, and Clean design
               </p>
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-row gap-4 !text-white">
                 <p className="underline">Start with us</p>
                 <p>
                   <MdArrowOutward
@@ -76,14 +76,14 @@ const HowItWorks = () => {
             <div className="bg-[#D3D9D5] h-[65px] w-[65px] rounded-full p-2"></div>
           </div>
           <div className="flex flex-row mt-4">
-            <div className="flex flex-col gap-4">
-              <p className="text-[24px] font-bold">Schedule Your Meet</p>
-              <p className="text-[16px] font-medium">
+            <div className="flex flex-col gap-4 !text-white">
+              <p className="text-[24px] font-bold !text-white">Schedule Your Meet</p>
+              <p className="text-[16px] font-medium !text-white">
                 help you to build website company that is modern, user friendly,
                 good CEO, and Clean design
               </p>
               <div className="flex flex-row gap-4">
-                <p className="underline">Start with us</p>
+                <p className="underline !text-white">Start with us</p>
                 <p>
                   <MdArrowOutward
                     className={`text-[#D3D9D5 font-normal text-[22px]`}
@@ -103,16 +103,16 @@ const HowItWorks = () => {
             </div>
           </div>
           <div className="flex flex-row mt-4">
-            <div className="flex flex-col gap-4">
-              <p className="text-[24px] font-bold">
+            <div className="flex flex-col gap-4 !text-white">
+              <p className="text-[24px] font-bold !text-white">
                 Select plan on requirement basis
               </p>
-              <p className="text-[16px] font-medium">
+              <p className="text-[16px] font-medium !text-white">
                 help you to build website company that is modern, user friendly,
                 good CEO, and Clean design
               </p>
-              <div className="flex flex-row gap-4">
-                <p className="underline">Start with us</p>
+              <div className="flex flex-row gap-4 !text-white">
+                <p className="underline !text-white">Start with us</p>
                 <p>
                   <MdArrowOutward
                     className={`text-[#D3D9D5 font-normal text-[22px]`}

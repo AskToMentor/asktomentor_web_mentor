@@ -281,8 +281,12 @@
     background-position: 0% 0%;
   }
 }
-.login-container{
-  background: linear-gradient(109.46deg, rgba(50, 55, 61, 0.93) 20.67%, rgba(33, 89, 112, 0.74) 90.16%);
+.login-container {
+  background: linear-gradient(
+    109.46deg,
+    rgba(50, 55, 61, 0.93) 20.67%,
+    rgba(33, 89, 112, 0.74) 90.16%
+  );
 }
 /* Custom CSS */
 .swal-custom-popup {
@@ -317,6 +321,28 @@
   padding: 10px 20px; /* Button padding */
   cursor: pointer; /* Pointer cursor on hover */
 }
-.swal2-confirm{
+.swal2-confirm {
   background-color: #212a31 !important;
+}
+.mentor-navbar-color {
+  box-shadow: -4px 2px 10px 8px #274760;
+  border: 1.61px solid;
+  border-image-source: linear-gradient(
+    90.78deg,
+    rgba(39, 71, 96, 0.53) 8.06%,
+    rgba(48, 123, 196, 0.53) 73.25%
+  );
+  background: #1c1f28;
+  height: 65px;
+  border-radius: 8px;
+}
+
+.mentor-scroll-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar for IE and Edge */
+.mentor-scroll-container {
+  -ms-overflow-style: none;  /* Internet Explorer and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

@@ -6,6 +6,9 @@ import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import ShowSucessmessages from "./alert-messages/ShowSucessmessages";
 import { IoSettingsOutline } from "react-icons/io5";
+import MentorNavbar from "./common-components/MentorNavbar";
+import { PiExamLight } from "react-icons/pi";
+import { IoNewspaper } from "react-icons/io5";
 
 const Layout = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -44,10 +47,21 @@ const Layout = ({ children }) => {
     <div className="flex flex-col h-screen w-screen overflow-hidden">
       <div className="main-content flex flex-col w-full h-screen overflow-hidden">
         <div className="h-[12%] md:h-[10%] desktop-lg:h-[12%] relative">
-          <Navbar
+          {isLoggedIn ? (
+            <MentorNavbar
+              setIsSideBarOpen={setIsSideBarOpen}
+              isSideBarOpen={isSideBarOpen}
+            />
+          ) : (
+            <Navbar
+              setIsSideBarOpen={setIsSideBarOpen}
+              isSideBarOpen={isSideBarOpen}
+            />
+          )}
+          {/* <Navbar
             setIsSideBarOpen={setIsSideBarOpen}
             isSideBarOpen={isSideBarOpen}
-          />
+          /> */}
         </div>
         {isSideBarOpen && (
           <div
@@ -109,13 +123,37 @@ const Layout = ({ children }) => {
                   className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
-                    navigate("/setting")
+                    navigate("/setting");
                   }}
                 >
                   <span>
                     <IoSettingsOutline className="text-[25px]" />
                   </span>
                   <p className="text-[16px] font-bold">Settings</p>
+                </div>
+                <div
+                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  onClick={() => {
+                    setIsSideBarOpen(false);
+                    navigate("/evalaute");
+                  }}
+                >
+                  <span>
+                    <PiExamLight className="text-[25px]" />
+                  </span>
+                  <p className="text-[16px] font-bold">Evaluate</p>
+                </div>
+                <div
+                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  onClick={() => {
+                    setIsSideBarOpen(false);
+                    navigate("/blogs");
+                  }}
+                >
+                  <span>
+                    <IoNewspaper className="text-[25px]" />
+                  </span>
+                  <p className="text-[16px] font-bold">Blogs</p>
                 </div>
                 <div
                   className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"

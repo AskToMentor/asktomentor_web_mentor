@@ -34,6 +34,12 @@ const Skills = () => {
       setSelectedSkills([...selectedSkills, skill]);
     }
   };
+  const removeSkills = (skill) => {
+    if (selectedSkills.includes(skill)) {
+      // Remove skill if it exists
+      setSelectedSkills(selectedSkills.filter((s) => s !== skill));
+    }
+  };
   console.log("searchLength", searchLength, filteredSkills);
 
   return (
@@ -75,7 +81,14 @@ const Skills = () => {
                   className="h-10 flex justify-center  gap-4 items-center px-6 text-sm rounded-[20px] bg-[#26404E] cursor-pointer border-[1px] border-[#748D92]"
                 >
                   <p> {skill}</p>
-                  <p>X</p>
+                  <p
+                    onClick={() => {
+                      removeSkills(skill);
+                    }}
+                    className="p-2"
+                  >
+                    X
+                  </p>
                 </div>
               ))
             ) : (

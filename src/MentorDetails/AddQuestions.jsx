@@ -10,40 +10,48 @@ const AddQuestions = () => {
     setIsQuestionVisible((prevState) => !prevState);
   };
   const [totalQuestion, setTotalQuestion] = useState(0);
-  console.log("totalQuestion", totalQuestion);
+  const [questionArray, setQuestionArray] = useState([]);
+  console.log("totalQuestion", questionArray);
   return (
-    <div className=" h-[500px] flex flex-row w-full gap-3">
-      <div className="h-full  rounded-lg login-container p-4 w-[75%]">
-        <div className="h-[80%]">
+    <div className=" h-[500px] overflow-hidden flex flex-row w-full gap-3">
+      <div className="h-full  rounded-lg login-container p-4 w-[75%] overflow-y-auto">
+        <div>
           <p className="text-[18px] font-medium">
             Setup Preparing Questionaire
           </p>
-          {/* {isQuestionVisible && (
-            <div className="mt-2">
-              <div className="flex flex-col gap-2">
-                <p>Question 1</p>
-                <textarea
-                  placeholder="Descriptions"
-                  className="bg-[#FFFFFF36] w-full border-white text-[14px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
-                ></textarea>{" "}
+        </div>
+        {totalQuestion == 0 && (
+          <div className="flex justify-center h-[20%] items-center flex-col">
+            <div
+              className="w-fit justify-center items-center flex flex-col"
+              onClick={() => {
+                setTotalQuestion(totalQuestion + 1);
+              }}
+            >
+              <div className="bg-inherit border-[1px] border-white rounded-full h-[40px] w-[40px] flex justify-center items-center">
+                <IoMdAdd className="text-white text-[20px]" />
               </div>
-              <div className="flex justify-end items-end mt-3">
-                <div className=" flex flex-row gap-3 items-center">
-                  <input type="checkbox" className="h-[20px] w-[20px] pt-4" />
-                  <p className="text-[15px] font-light">Required</p>
-                </div>
-              </div>
+              <p className="button-text">Add Question</p>
             </div>
-          )} */}
-          <div className="overflow-y-auto">
+          </div>
+        )}
+
+        <div className="h-[100%] overflow-y-auto flex flex-col justify-between">
+          <div className="">
             {totalQuestion > 0 &&
               new Array(totalQuestion)?.fill(1)?.map((data, index) => (
                 <div className="mt-2">
                   <div className="flex flex-col gap-2">
-                    <p>Question 1</p>
+                    <p>Question {index+1}</p>
                     <textarea
                       placeholder="Descriptions"
                       className="bg-[#FFFFFF36] w-full border-white text-[14px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
+                      value={questionArray[index] || ""}
+                      onChange={(e) => {
+                        const newQuestions = [...questionArray];
+                        newQuestions[index] = e.target.value; // Update the specific index
+                        setQuestionArray(newQuestions); // Update state with the new array
+                      }}
                     ></textarea>{" "}
                   </div>
                   <div className="flex justify-end items-end mt-3">
@@ -58,18 +66,20 @@ const AddQuestions = () => {
                 </div>
               ))}
           </div>
-        </div>
-        <div className="flex justify-center h-[20%] items-center flex-col">
-          <div
-            className="w-fit justify-center items-center flex flex-col"
-            onClick={() => {
-              setTotalQuestion(totalQuestion + 1);
-            }}
-          >
-            <div className="bg-inherit border-[1px] border-white rounded-full h-[40px] w-[40px] flex justify-center items-center">
-              <IoMdAdd className="text-white text-[20px]" />
+          <div className="flex justify-center items-center pb-3 flex-col">
+            <div
+              className="w-fit justify-center items-center flex flex-col"
+              onClick={() => {
+                if (totalQuestion == questionArray?.length) {
+                  setTotalQuestion(totalQuestion + 1);
+                }
+              }}
+            >
+              <div className="bg-inherit border-[1px] border-white rounded-full h-[40px] w-[40px] flex justify-center items-center">
+                <IoMdAdd className="text-white text-[20px]" />
+              </div>
+              <p className="button-text">Add Question</p>
             </div>
-            <p className="button-text">Add Question</p>
           </div>
         </div>
       </div>

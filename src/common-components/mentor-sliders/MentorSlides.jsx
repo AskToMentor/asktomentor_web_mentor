@@ -87,16 +87,16 @@ const MentorSlides = ({ nextStep }) => {
       </div>
       <div></div> */}
       <div>
-        <img src={FinishImage} className="w-[300px] rounded-lg h-[250px]" />
+        <img src={FinishImage} className="w-[300px] rounded-lg h-[300px]" />
       </div>
-      <div className="flex flex-col items-center gap-2 justify-center">
+      {/* <div className="flex flex-col items-center gap-2 justify-center">
         <button
           className="bg-ask-to-mentor-primary w-[200px] rounded-3xl shadow-lg border-[1px] border-white"
           onClick={nextStep}
         >
           Start
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

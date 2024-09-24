@@ -20,6 +20,7 @@ import UserProfile from "./pages/Profile/UserProfile";
 import TermsandCondition from "./pages/Policy/TermsandCondition";
 import PrivacyandPolicy from "./pages/Policy/PrivacyandPolicy";
 import MentorSettings from "./pages/Settings/MentorSettings";
+import MentorProfile from "./pages/MentorPanel/MentorProfile";
 
 function App() {
   useEffect(() => {
@@ -101,6 +102,10 @@ function App() {
            <Route
             path="setting"
             element={<ProtectedComponent Component={MentorSettings} />}
+          />
+           <Route
+            path="mentor-panel"
+            element={<ProtectedComponent Component={MentorProfile} />}
           />
         </Routes>
       </Layout>

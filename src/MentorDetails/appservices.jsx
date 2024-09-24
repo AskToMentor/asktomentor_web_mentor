@@ -8,11 +8,31 @@ import AddQuestions from "./AddQuestions";
 // import AddQuestions from './AddQuestion';
 
 const steps = [
-  "Add Service",
-  "General Setting",
-  "Add Question",
-  "Service Page",
+  {
+    id: 1,
+    label: "Add Service",
+    value: "a",
+  },
+  {
+    id: 2,
+    label: "General Setting",
+    value: "b",
+  },
+  {
+    id: 3,
+    label: "Add Question",
+    value: "c",
+  },
+  {
+    id: 4,
+    label: "Service Page",
+    value: "d",
+  },
 ];
+// "Add Service",
+//   "General Setting",
+//   "Add Question",
+//   "Service Page",
 
 const AppServices = ({ nextStep, prevStep, step }) => {
   console.log("step...", step);
@@ -70,7 +90,7 @@ const AppServices = ({ nextStep, prevStep, step }) => {
                       index + 4
                     )} `}
                   >
-                    {index + 1}
+                    {item?.value}
                   </span>
                 </div>
                 <div

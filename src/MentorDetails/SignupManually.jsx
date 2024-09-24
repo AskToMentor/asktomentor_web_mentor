@@ -10,6 +10,10 @@ import MentorSlides from "../common-components/mentor-sliders/MentorSlides";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { IoLogoLinkedin } from "react-icons/io";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 
 const ManuallySignUpForm = ({}) => {
   const [step, setStep] = useState(1);
@@ -94,8 +98,9 @@ const ManuallySignUpForm = ({}) => {
                 <p>Just enter your basic details to create your account</p>
               </div>
               <div>
-                <button className="bg-ask-to-mentor-primary text-white py-3 w-fit rounded-full  mx-auto block">
-                  Import from LinkedIn
+                <button className="bg-ask-to-mentor-primary text-white py-2 w-fit rounded-full gap-2 flex flex-row items-center justify-center mx-auto">
+                  <IoLogoLinkedin className="text-[35px] " /> Import from
+                  LinkedIn
                 </button>
               </div>
             </div>
@@ -127,21 +132,36 @@ const ManuallySignUpForm = ({}) => {
               <div>
                 <label>Social media links</label>
                 <div className="flex flex-col gap-6 mt-2">
-                  <input
-                    type="text"
-                    placeholder="Enter your Facebook ID"
-                    className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Enter your Instagram ID"
-                    className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Enter your Instagram ID"
-                    className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
-                  />
+                  <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
+                    <span className="px-2">
+                      <FaFacebookSquare className="text-[30px]" />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Facebook ID"
+                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                    />
+                  </div>
+                  <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
+                    <span className="px-2">
+                      <FaInstagramSquare className="text-[30px]" />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Instagram ID"
+                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                    />
+                  </div>
+                  <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
+                    <span className="px-2">
+                      <FaSquareXTwitter className="text-[30px]" />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="X ID"
+                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -166,6 +186,14 @@ const ManuallySignUpForm = ({}) => {
               </div>
             )}
             <div className="flex gap-5 ">
+              {step == 1 && (
+                <button
+                  className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
+                  onClick={nextStep}
+                >
+                  Start
+                </button>
+              )}
               {step > 1 && step < 8 && (
                 <button
                   className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
