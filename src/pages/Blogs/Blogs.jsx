@@ -13,15 +13,15 @@ const Blogs = () => {
     <>
       <div className="overflow-y-auto h-full w-full">
         {/* Header Section */}
-        <div className="w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center">
-          <div className="flex justify-center h-full pl-10 sm:pt-12 lg:pt-28">
-            <div className="text-white text-left w-full pt-10">
-              <h1 className="common-text-linear-gradient font-medium italic text-wrap">
-                <strong className="dashboard-asktomentor-font text-[#124E66]">Empower Your Learning Journey</strong>
-              </h1>
-              <small className="font-medium text-wrap">Unlock the potential within you with mentorship stories, tips, and guidance from experienced professionals.</small>
-            </div>
+        <div className="w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center px-10 my-8">
+          <div className="text-white text-left w-full pt-10 px-10">
+            <h1 className="common-text-linear-gradient italic px-20 text-7xl leading-tight">
+              <b className="block">Empower Your</b>
+              <b className="block">Learning Journey</b>
+            </h1>
+            <p className="font-medium text-wrap">Unlock the potential within you with mentorship stories, tips, and guidance from experienced professionals.</p>
           </div>
+
           {/* Right Section */}
           <div className="flex h-full w-full items-center justify-center sm:justify-end bg-transparent">
             <img
