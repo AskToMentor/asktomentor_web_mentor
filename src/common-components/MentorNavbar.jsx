@@ -24,6 +24,74 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
     second_filter: false,
     third_filter: false,
   });
+  const mentorFilter = [
+    {
+      id: 2,
+      label: "Account & Consulting",
+    },
+    {
+      id: 3,
+      label: "Admin Support",
+    },
+    {
+      id: 4,
+      label: "Customer Service",
+    },
+    {
+      id: 5,
+      label: "Data science & Analytics",
+    },
+    {
+      id: 6,
+      label: "Design & Creative",
+    },
+    {
+      id: 7,
+      label: "Engineering & Architecture",
+    },
+    {
+      id: 8,
+      label: "IT & networking",
+    },
+    {
+      id: 9,
+      label: "Legal",
+    },
+    {
+      id: 10,
+      label: "Sales & marketing",
+    },
+  ];
+  const mentorServiceType = [
+    {
+      id: 2,
+      label: "Career Coaching",
+    },
+    {
+      id: 3,
+      label: "Personal Coaching",
+    },
+    {
+      id: 4,
+      label: "1 to 1",
+    },
+    {
+      id: 5,
+      label: "Review and Feedback",
+    },
+    {
+      id: 6,
+      label: "Analytics and Planning",
+    },
+    {
+      id: 7,
+      label: "Testing",
+    },
+    {
+      id: 8,
+      label: "Other",
+    }
+  ];
   return (
     <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold w-full relative">
       <Link to="/" className="text-white text-base">
@@ -79,14 +147,14 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                           <select
                             id="gender"
                             name="gender"
-                            className="bg-[#FFFFFF36] h-9 text-[14px] w-full rounded-lg"
+                            className="bg-[#FFFFFF36] h-9 text-[14px] w-full rounded-lg focus:outline-none"
                           >
                             <option value="none" selected>
                               Select Category
                             </option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">other</option>
+                            {mentorFilter?.map((data) => (
+                              <option value={data?.label} className="py-2">{data?.label}</option>
+                            ))}
                           </select>
                         </div>
                         <div className="flex flex-col gap-2">
@@ -170,14 +238,14 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                           <select
                             id="gender"
                             name="gender"
-                            className="bg-[#FFFFFF36] h-9 text-[14px] w-full rounded-lg"
+                            className="bg-[#FFFFFF36] h-9 text-[14px] w-full rounded-lg focus:outline-none"
                           >
                             <option value="none" selected>
                               Select service type
                             </option>
-                            <option value="test1">test1</option>
-                            <option value="test2">test2</option>
-                            <option value="test3">test3</option>
+                            {mentorServiceType?.map((data) => (
+                              <option value={data?.label} className="py-2">{data?.label}</option>
+                            ))}
                           </select>
                         </div>
                         <div className="flex flex-col gap-1">
@@ -187,7 +255,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                           <select
                             id="gender"
                             name="gender"
-                            className="bg-[#FFFFFF36] h-9 text-[14px] w-full rounded-lg"
+                            className="bg-[#FFFFFF36] h-9 text-[14px] w-full rounded-lg focus:outline-none"
                           >
                             <option value="none" selected>
                               Select Language
