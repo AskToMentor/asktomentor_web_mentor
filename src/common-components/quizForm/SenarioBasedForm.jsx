@@ -128,7 +128,7 @@ const SenarioBasedForm = () => {
                                 <h3 className='text-lg font-bold mb-2'>FAQ:</h3>
                                 <ul className='list-disc pl-5 space-y-2'>
                                     <li>
-                                        <a href="http://www.guruji.com" className='text-blue-400 underline'>How to choose API keys</a>
+                                        <a href="/" className='text-blue-400 underline'>How to choose API keys</a>
                                     </li>
                                 </ul>
                             </div>

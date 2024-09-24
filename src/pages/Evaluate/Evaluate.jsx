@@ -8,8 +8,8 @@ import quiz from "/src/gif-assets/quiz.png";
 
 const Evaluate = () => {
     return (
-        <div className='h-full w-full'>
-            <div className="flex h-full justify-center  max-w-[1100px] w-full overflow-y-auto mx-auto p-6 hide-scrollbar">
+        <div className='h-screen w-full overflow-y-auto'>
+            <div className="flex h-full justify-center max-w-[1100px] w-full mx-auto p-6">
                 <div className="flex flex-wrap justify-center gap-6">
                     <CardItems image={quiz} title={`Skill-Specific Quiz`} link={`/skill-specific-quiz`} />
                     <CardItems image={testss} title={`Diagnostic Assessment`} link={``} />

@@ -1,0 +1,43 @@
+.btn-4 {
+    border: 1px solid;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .btn-4 span {
+    z-index: 20;
+  }
+  
+  .btn-4:after {
+    background: #fff;
+    content: "";
+    height: 155px;
+    left: -75px;
+    
+  box-shadow: 0 0 20px 5px #fff;
+    opacity: 0.2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: -10;
+    animation: move 3s linear infinite; /* Continuous rotation effect */
+  }
+  
+  @keyframes move {
+    0% {
+      left: -75px;
+    }
+    100% {
+      left: 120%;
+    }
+  }
+  
+  .btn-4:hover:after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    
+  box-shadow: 0 0 20px 5px #fff;
+  }
+  

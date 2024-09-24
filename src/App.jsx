@@ -19,6 +19,7 @@ import GenerateQuiz from "./common-components/quizForm/GenerateQuiz";
 import DisplaySKillQuiz from "./common-components/quizForm/Display_Skillquiz";
 import Adaptive_questions from "./common-components/quizForm/Adaptive_questions";
 
+import howtogenerateapi from "./pages/apigenerate/howtogenerateapi";
 
 function App() {
   useEffect(() => {
@@ -89,6 +90,11 @@ function App() {
             path="Adaptive_questions"
             element={<ProtectedComponent Component={
               Adaptive_questions} />}
+          />
+                    <Route
+            path="howtogenerateapi"
+            element={<ProtectedComponent Component={
+              howtogenerateapi} />}
           />
           
 <Route
