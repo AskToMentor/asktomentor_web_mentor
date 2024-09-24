@@ -300,8 +300,14 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
         </div>
         {pathname != "/" && (
           <>
-            <div>
-              <FaCalendarDays className="text-white text-[28px]" />
+            <div onClick={() => {
+                navigate("/calender");
+              }}
+            >
+              <FaCalendarDays className={`${
+                  pathname == "/calender" ? "text-[#124E66]" : "text-white"
+                } text-[28px]`} 
+              />
             </div>
             <div>
               <IoMdNotificationsOutline className="text-white text-[35px]" />
