@@ -178,7 +178,7 @@ const ManuallySignUpForm = ({}) => {
                 <button
                   className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
                   onClick={() => {
-                    navigate("/mentor-profile");
+                    navigate("/login");
                   }}
                 >
                   Skip

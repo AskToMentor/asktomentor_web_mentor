@@ -304,14 +304,30 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
         </div>
         {pathname != "/" && (
           <>
-            <div>
-              <FaCalendarDays className="text-white text-[28px]" />
+            <div
+              onClick={() => {
+                navigate("/calender");
+              }}
+            >
+              <FaCalendarDays
+                className={`${
+                  pathname == "/calender" ? "text-[#124E66]" : "text-white"
+                } text-[30px] cursor-pointer `}
+              />
             </div>
             <div>
               <IoMdNotificationsOutline className="text-white text-[35px]" />
             </div>
-            <div>
-              <PiChatTeardropText className="text-white text-[35px]" />
+            <div
+              onClick={() => {
+                navigate("/chat");
+              }}
+            >
+              <PiChatTeardropText
+                className={`${
+                  pathname == "/chat" ? "text-[#124E66]" : "text-white"
+                } text-[35px] cursor-pointer `}
+              />
             </div>
           </>
         )}
