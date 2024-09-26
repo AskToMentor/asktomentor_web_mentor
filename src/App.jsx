@@ -21,7 +21,8 @@ import TermsandCondition from "./pages/Policy/TermsandCondition";
 import PrivacyandPolicy from "./pages/Policy/PrivacyandPolicy";
 import MentorSettings from "./pages/Settings/MentorSettings";
 import MentorProfile from "./pages/MentorPanel/MentorProfile";
-import Calender from "./pages/Calender/Calender";
+import Chat from "./pages/Chat/Chat";
+import Calendar from "./pages/Calender/Calender";
 
 function App() {
   useEffect(() => {
@@ -33,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden h-full">
+    <div className="">
       <Layout>
         <Routes>
           <Route
@@ -100,17 +101,21 @@ function App() {
             path="privacy-policy"
             element={<ProtectedComponent Component={PrivacyandPolicy} />}
           />
-           <Route
+          <Route
             path="setting"
             element={<ProtectedComponent Component={MentorSettings} />}
           />
-           <Route
+          <Route
             path="mentor-panel"
             element={<ProtectedComponent Component={MentorProfile} />}
           />
           <Route
+            path="chat"
+            element={<ProtectedComponent Component={Chat} />}
+          />
+          <Route
             path="calender"
-            element={<ProtectedComponent Component={ Calender } />}
+            element={<ProtectedComponent Component={Calendar} />}
           />
         </Routes>
       </Layout>

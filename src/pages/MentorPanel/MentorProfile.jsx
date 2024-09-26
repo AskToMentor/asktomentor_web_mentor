@@ -175,6 +175,26 @@ const MentorProfile = () => {
     {
       id: 10,
       label: "Sales & marketing",
+    },
+    {
+      id: 6,
+      label: "Design & Creative",
+    },
+    {
+      id: 7,
+      label: "Engineering & Architecture",
+    },
+    {
+      id: 8,
+      label: "IT & networking",
+    },
+    {
+      id: 9,
+      label: "Legal",
+    },
+    {
+      id: 10,
+      label: "Sales & marketing",
     }
   ];
   return (

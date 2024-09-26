@@ -18,7 +18,7 @@ const Dashboard = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
   return (
-    <div className="overflow-y-auto h-full w-full">
+    <div className="h-full overflow-y-auto">
       {/* Header Section */}
       <div className="w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center">
         <div className="flex justify-center h-full pl-10 sm:pt-12 lg:pt-28">
@@ -71,7 +71,7 @@ const Dashboard = () => {
           <img
             src={Image1}
             alt="Icon"
-            className="h-[600px] fle justify-center items-center sm:h-[550px] lg:h-[650px] mt-10 sm:mt-16"
+            className="h-[600px] fle justify-center items-center sm:h-[550px] lg:h-[650px] "
           />
         </div>
       </div>

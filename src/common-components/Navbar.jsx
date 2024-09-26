@@ -56,7 +56,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
   }, [localStorage.getItem("loginType")]);
   const isLoggedIn = localStorage.getItem("token") ? true : false;
   return (
-    <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold shadow-lg  w-full namaste-learner-gradient relative">
+    <nav className="px-2 md:px-5 h-[100px] flex justify-between items-center font-semibold z-50 shadow-lg fixed w-full namaste-learner-gradient">
       <Link to="/" className="text-white text-base">
         <div className="logo">
           <img
