@@ -346,3 +346,40 @@
   -ms-overflow-style: none;  /* Internet Explorer and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.blog-text-linear-gradient {
+  font-family: Roboto Serif;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 94.94px;
+  text-align: left;
+  background: linear-gradient(
+    90deg,
+    #d3d9d5 0%,
+    #124e66 35%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (min-width: 640px) {
+  .blog-text-linear-gradient {
+    font-size: 80px;
+    line-height: 94.94px;
+  }
+}
+
+@media (min-width: 768px) {
+  .blog-text-linear-gradient {
+    font-size: 90px;
+    line-height: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-text-linear-gradient {
+    font-size: 100px;
+    line-height: 110px;
+  }
+}
