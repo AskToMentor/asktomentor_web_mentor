@@ -12,6 +12,7 @@ import ContacUs from "./pages/ContactUs/ContacUs";
 import Evaluate from "./pages/Evaluate/Evaluate";
 import Aboutus from "./pages/AboutUs/Aboutus";
 import Blogs from "./pages/Blogs/Blogs";
+import BlogDetails from "./pages/Blogs/BlogDetails";
 import SpecificQuiz from "./common-components/quizForm/SpecificQuiz";
 import SenarioBasedForm from "./common-components/quizForm/SenarioBasedForm";
 import QuestionSheet from "./common-components/quizForm/QuestionSheet";
@@ -72,6 +73,10 @@ function App() {
           <Route
             path="blogs"
             element={<ProtectedComponent Component={Blogs} />}
+          />
+          <Route
+            path="blog-details"
+            element={<ProtectedComponent Component={BlogDetails} />}
           />
           <Route
             path="skill-specific-quiz"
