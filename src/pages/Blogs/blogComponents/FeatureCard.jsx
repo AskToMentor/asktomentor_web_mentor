@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import './style/FeatureCard.css';
+
 import chevronIcon from '../assets/icon-ionicons-outline-chevron-forward-outline.svg';
 import dotIcon from '../assets/ellipse-109.svg';
 
 const FeatureCard = ({ date, author, title, content, imgSrc }) => {
     return (
-        <div className="flex flex-col justify-between bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 ease-in-out hover:translate-y-[-5px] w-[998px] h-[395px] opacity-0">
+        
+        <div className="flex flex-col justify-between bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img src={imgSrc} className="w-full h-[200px] object-cover border-b-2 border-gray-600" alt={title} />
             <div className="p-4">
                 <div className="flex items-center gap-2 text-gray-400 text-sm">

@@ -6,14 +6,11 @@ const FeaturedBlog = () => {
   return (
     <div className="mt-5 mb-10">
       <div className="w-full flex flex-col md:flex-row gap-5 mt-10">
-        <div 
-          className="flex flex-col bg-[#2F3943] w-[1250px] h-[551px] p-8 rounded-tl-[26px] rounded-br-none"
-        >
-          <div className="w-full h-full flex items-center justify-between p-5 bg-gradient-to-b from-[#8AA4AB44] to-transparent rounded-tl-[26px]">
+          <div className="w-full h-full flex items-center justify-between p-10 bg-[#2F3943] rounded-[26px]">
             {/* Blog Image */}
             <img 
               src={blogImage} 
-              className="w-[607px] h-[431px] rounded-[20px] flex-shrink-0 mr-10" 
+              className="w-[607px] h-[431px] rounded-[20px] mr-10" 
               alt="Blog" 
             />
             {/* Blog Content */}
@@ -38,7 +35,6 @@ const FeaturedBlog = () => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );
