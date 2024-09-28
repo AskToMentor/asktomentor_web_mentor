@@ -162,6 +162,16 @@ const ManuallySignUpForm = ({}) => {
                       className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
                     />
                   </div>
+                  <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
+                    <span className="px-2">
+                      <IoLogoLinkedin className="text-[30px]" />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Linkedin ID"
+                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -13,6 +13,7 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaChevronLeft } from "react-icons/fa";
+import { FaTools } from "react-icons/fa";
 
 const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
     },
   ];
   return (
-    <nav className="px-2 md:px-5 h-[100px] fixed flex justify-between items-center font-semibold w-full  z-50 bg-[#212a31]">
+    <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold  w-full relative">
       <Link to="/" className="text-white text-base">
         <div className="logo">
           <img
@@ -327,6 +328,17 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                 className={`${
                   pathname == "/chat" ? "text-[#124E66]" : "text-white"
                 } text-[35px] cursor-pointer `}
+              />
+            </div>
+            <div
+              onClick={() => {
+                navigate("/tools");
+              }}
+            >
+              <FaTools
+                className={`${
+                  pathname == "/tools" ? "text-[#124E66]" : "text-white"
+                } text-[25px] cursor-pointer `}
               />
             </div>
           </>

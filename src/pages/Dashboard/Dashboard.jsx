@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 // import Image1 from "../../assets/guru_image.png";
 import Image1 from "../../assets/guru_image-removebg_edited.png";
 import Mentor from "../../common-components/mentor/Mentors";
-import Involved from "../../common-components/mentor/Involved";
-import Working from "../../common-components/mentor/Working";
 import { Link, useNavigate } from "react-router-dom";
 import { GetLoginType } from "../../utility/GetLoginType";
 import HowWorks from "../../common-components/mentor/HowWorks";
@@ -13,10 +11,13 @@ import MostPopular from "../../common-components/mentor/MostPopular";
 import HowItWorks from "../../common-components/mentor/HowItWorks";
 import TestiMonal from "../../assets/testomonal-banner-hd.png";
 import NamasteLeaner from "../../common-components/mentor/NamasteLeaner";
+import Footer from "../../common-components/Footer";
+import { PiHandsPrayingDuotone } from "react-icons/pi";
 
 const Dashboard = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("token") ? true : false;
   return (
     <div className="h-full overflow-y-auto">
       {/* Header Section */}
@@ -33,8 +34,7 @@ const Dashboard = () => {
               Where Curiosity Meets Knowledge
             </pre>
             <p className="font-medium italic text-[18px] leading-[30px]">
-              Share your knowledge, guide others, and help shape the future of
-              learners. As a mentor on our platform, you can!
+              Empower mind. Share your insights. Share the Future. Become a mentor and inspire the next generation today.
             </p>
             {/* <p className="text-lg mb-2 text-white italic">
               <span className="gradient-text1 text-xl">{"{ "}</span>
@@ -56,14 +56,24 @@ const Dashboard = () => {
               <li>Participate in interactive sessions and webinars</li>
               <li>Connect with a community of learners</li>
             </ul> */}
-            <button
-              className="bg-[#124E66] text-white hover:!text-white py-2 px-4 rounded mt-8"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              {getLoginType == "Mentee" ? "Join as Mentee" : "Join as Mentor"}{" "}
-            </button>
+            {!isLoggedIn && (
+              <button
+                className="bg-[#124E66] text-white hover:!text-white py-3 px-4 rounded mt-8"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                {getLoginType == "Mentee" ? "Join as Mentee" : "Join as Mentor"}{" "}
+              </button>
+            )}
+            {isLoggedIn && (
+              <div className="bg-[#124E66] w-fit flex  items-center gap-2 px-4 py-[10px] rounded-full mt-8">
+                <p className="text-[25px] text-white tracking-wide	">FA</p>
+                <span>
+                  <PiHandsPrayingDuotone className="text-white text-[30px]" />
+                </span>
+              </div>
+            )}
           </div>
         </div>
         {/* Right Section */}
@@ -112,6 +122,9 @@ const Dashboard = () => {
       </div>
       <div className="px-2 sm:px-4 md:px-8 lg:px-14">
         <NamasteLeaner />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

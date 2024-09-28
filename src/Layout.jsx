@@ -9,8 +9,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import MentorNavbar from "./common-components/MentorNavbar";
 import { PiExamLight } from "react-icons/pi";
 import { IoNewspaper } from "react-icons/io5";
-import Footer from "./common-components/Footer";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import { TbPremiumRights } from "react-icons/tb";
+
 
 const Layout = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -46,9 +46,9 @@ const Layout = ({ children }) => {
   console.log("isLoggedIn", isLoggedIn);
 
   return (
-    <div className="h-screen w-screen">
-      <div className="flex h-full flex-col justify-between ">
-        <div className="relative">
+    <div className="flex flex-col h-screen w-screen overflow-hidden">
+      <div className="main-content flex flex-col w-full h-screen overflow-hidden">
+        <div className="h-[12%] md:h-[10%] desktop-lg:h-[12%] relative">
           {isLoggedIn ? (
             <MentorNavbar
               setIsSideBarOpen={setIsSideBarOpen}
@@ -149,6 +149,18 @@ const Layout = ({ children }) => {
                   className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
+                    navigate("/subscription");
+                  }}
+                >
+                  <span>
+                    <TbPremiumRights className="text-[25px]" />
+                  </span>
+                  <p className="text-[16px] font-bold">Subscription</p>
+                </div>
+                <div
+                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  onClick={() => {
+                    setIsSideBarOpen(false);
                     navigate("/blogs");
                   }}
                 >
@@ -175,10 +187,10 @@ const Layout = ({ children }) => {
             )}
           </div>
         )}
-        <div className="h-full w-full mt-[100px] ">{children}</div>
-        {/* <div className="">
-        <Footer />
-        </div> */}
+
+        <div className="w-full h-[88%] md:h-[90%] desktop-lg:h-[88%] overflow-hidden flex pb-2">
+          {children}
+        </div>
       </div>
     </div>
   );

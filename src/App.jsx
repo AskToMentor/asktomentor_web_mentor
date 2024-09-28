@@ -23,6 +23,8 @@ import MentorSettings from "./pages/Settings/MentorSettings";
 import MentorProfile from "./pages/MentorPanel/MentorProfile";
 import Chat from "./pages/Chat/Chat";
 import Calendar from "./pages/Calender/Calender";
+import Tools from "./pages/Tools/Tools";
+import Subscriptions from "./pages/Subscriptions/Subscriptions";
 
 function App() {
   useEffect(() => {
@@ -116,6 +118,14 @@ function App() {
           <Route
             path="calender"
             element={<ProtectedComponent Component={Calendar} />}
+          />
+          <Route
+            path="tools"
+            element={<ProtectedComponent Component={Tools} />}
+          />
+          <Route
+            path="subscription"
+            element={<ProtectedComponent Component={Subscriptions} />}
           />
         </Routes>
       </Layout>

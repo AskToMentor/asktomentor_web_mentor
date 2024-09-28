@@ -5,7 +5,7 @@ import socials from "../assets/footer-socials.svg";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer px-2 sm:px-4 md:px-8 lg:px-14">
       <div className="footer-sections">
         <div className="footer-section">
           <div className="logo-container ">
@@ -52,7 +52,7 @@ const Footer = () => {
           <p>Kankarbagh Main Rd, Kumhar Toli, Ghrounda, Patna, Bihar 800020</p>
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className="footer-bottom p-10 ">
         <p>© AskToMentor 2024 All rights reserved.</p>
       </div>
     </footer>
