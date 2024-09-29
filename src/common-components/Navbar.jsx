@@ -67,27 +67,26 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
         </div>
       </Link>
       <div className="flex flex-row items-center">
-        <ul className="hidden lg:flex xl:space-x-4">
-          {navLinks.map((link, index) => (
-            <li key={link.text} className="px-4 lg:px-6 py-3">
-              <a
-                href={link.href}
-                className={` text-white h-11  px-3 flex justify-center items-center rounded-lg transition-all duration-300 ${
-                  activeLink === link.text
-                    ? "bg-gradient-to-tr from-pink-500 to-blue-500"
-                    : "hover:text-black"
-                } ${
-                  index == 0
-                    ? "header-hight-light text-[18px] font-bold"
-                    : " text-[18px] font-bold"
-                }`}
-                onClick={() => handleLinkClick(link.text)}
-              >
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <ul className="hidden lg:flex xl:space-x-4">
+  {navLinks.map((link, index) => (
+    <li key={link.text} className="px-4 lg:px-6 py-3">
+      <a
+        href={link.href}
+        className={`h-11 px-3 flex justify-center items-center rounded-lg transition-all duration-300 ${
+          link.text === "Evaluate"
+            ? "bg-transparent hover:bg-red-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+            : activeLink === link.text
+            ? "bg-gradient-to-tr from-pink-500 to-red-500 text-white"
+            : "hover:text-black text-white"
+        } ${index === 0 ? "header-hight-light text-[18px] font-bold" : "text-[18px] font-bold"}`}
+        onClick={() => handleLinkClick(link.text)}
+      >
+        {link.text}
+      </a>
+    </li>
+  ))}
+</ul>
+
       </div>
       <div className="flex gap-10 sm:gap-20 items-center">
         {/* <label className="themeSwitcherTwo relative inline-flex cursor-pointer select-none items-center">
