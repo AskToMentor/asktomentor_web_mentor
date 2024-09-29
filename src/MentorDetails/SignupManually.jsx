@@ -30,6 +30,17 @@ const ManuallySignUpForm = ({}) => {
     "Finish",
   ];
   console.log("step", step);
+  const [image, setImage] = useState(null);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <div className="h-full mb-20">
       <div className="mb-16 lg:mb-0 flex flex-col md:flex-row p-3 lg:p-0 w-full lg:w-[90%] max-w-[1200px] bg-[#212a31] overflow-hidden text-white min-h-[500px] shadow-[0_5px_15px_rgba(0,0,0,0.5)] mx-auto lg:my-[50px] rounded-[10px]">
@@ -116,10 +127,39 @@ const ManuallySignUpForm = ({}) => {
                     Share a bit about your background and passions.
                   </p>
                 </div>
-                <div className="profile-image text-white flex justify-center items-end flex-col">
-                  {/* <input type="file" className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] rounded-full"/> */}
-                  <div className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] flex justify-end rounded-full border-[2px] border-[#748D92]"></div>
+                <div className="profile-image text-white flex justify-center items-center flex-col">
+                  {/* <div className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] flex justify-end rounded-full border-[2px] border-[#748D92]"></div>
                   <p>Add profile picture </p>
+                  <input
+                    type="file"
+                    className="text-[#5B636A]  z-50 rounded-full"
+                    placeholder="Upload"
+                  /> */}
+                  {image ? (
+                    <div className="mt-4 w-24 h-24 rounded-full overflow-hidden border-[2px] border-[#748D92]">
+                      <img
+                        src={image}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] flex justify-end rounded-full border-[2px] border-[#748D92]"></div>
+                  )}
+                  <label
+                    htmlFor="file-upload"
+                    className="text-white cursor-pointer"
+                  >
+                    Add profile picture
+                  </label>
+
+                  <input
+                    type="file"
+                    id="file-upload"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="hidden" // Hide the file input
+                  />
                 </div>
               </div>
               <div className="form-group">

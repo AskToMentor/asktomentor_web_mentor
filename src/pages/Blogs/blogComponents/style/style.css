@@ -1,0 +1,39 @@
+.blog-details {
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.blog-title {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 700;
+  line-height: 65px;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.author-info img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-image, .additional-image {
+  width: 100%;
+  max-width: 914px;
+  margin: 20px 0;
+}

@@ -5,7 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { GetLoginType } from "../../utility/GetLoginType";
 import { MentorSignIn } from "../../service/MentorSignUpSignIn";
 import ShowSucessmessages from "../../alert-messages/ShowSucessmessages";
-
+import { auth, provider } from '../../utility/firebase';
+import { signInWithPopup } from 'firebase/auth';
+import axios from 'axios';
 const MentorLogin = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
@@ -61,6 +63,18 @@ const MentorLogin = () => {
       }
     }
   };
+  const handleLogin = async () => {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const idToken = await result.user.getIdToken();
+        console.log("ID Token",idToken)
+        // const response = await axios.post('http://localhost:5000/api/login', { idToken });
+        setUser(response.data.user);
+    } catch (error) {
+        console.error('Error during login:', error);
+    }
+};
+
 
   return (
     <div className="h-full overflow-y-auto">
@@ -128,7 +142,10 @@ const MentorLogin = () => {
             </button>
           </div>
           <div className="mt-1 sm:mt-4">
-            <button className="border-[2px] gap-3 bg-white text-black w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold">
+            <button className="border-[2px] gap-3 bg-white text-black w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold"
+            onClick={handleLogin}
+            type="button"
+            >
               <FcGoogle className="text-[25px]" />
               Login with google
             </button>

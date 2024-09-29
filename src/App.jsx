@@ -25,6 +25,7 @@ import Chat from "./pages/Chat/Chat";
 import Calendar from "./pages/Calender/Calender";
 import Tools from "./pages/Tools/Tools";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
+import BlogDetails from "./pages/Blogs/BlogDetails";
 
 function App() {
   useEffect(() => {
@@ -126,6 +127,10 @@ function App() {
           <Route
             path="subscription"
             element={<ProtectedComponent Component={Subscriptions} />}
+          />
+           <Route
+            path="blog-details"
+            element={<ProtectedComponent Component={BlogDetails} />}
           />
         </Routes>
       </Layout>

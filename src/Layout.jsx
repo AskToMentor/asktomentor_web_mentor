@@ -10,8 +10,7 @@ import MentorNavbar from "./common-components/MentorNavbar";
 import { PiExamLight } from "react-icons/pi";
 import { IoNewspaper } from "react-icons/io5";
 import { TbPremiumRights } from "react-icons/tb";
-
-
+import { GoHome } from "react-icons/go";
 const Layout = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const navigate = useNavigate();
@@ -48,7 +47,7 @@ const Layout = ({ children }) => {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden">
       <div className="main-content flex flex-col w-full h-screen overflow-hidden">
-        <div className="h-[12%] md:h-[10%] desktop-lg:h-[12%] relative">
+        <div className="h-[12%] md:h-[10%] desktop-lg:h-[12%] relative w-full">
           {isLoggedIn ? (
             <MentorNavbar
               setIsSideBarOpen={setIsSideBarOpen}
@@ -109,6 +108,18 @@ const Layout = ({ children }) => {
             )}
             {isLoggedIn && (
               <div className="flex flex-col gap-2 mt-2">
+                <div
+                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  onClick={() => {
+                    setIsSideBarOpen(false);
+                    navigate("/mentor-panel");
+                  }}
+                >
+                  <span>
+                    <GoHome className="text-[25px]" />
+                  </span>
+                  <p className="text-[16px] font-bold">Home</p>
+                </div>
                 <div
                   className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {

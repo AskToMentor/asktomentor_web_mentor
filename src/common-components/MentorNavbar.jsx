@@ -292,19 +292,19 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
       )}
 
       <div className="flex items-center gap-3">
-        <div
-          onClick={() => {
-            navigate("/mentor-panel");
-          }}
-        >
-          <GoHome
-            className={`${
-              pathname == "/mentor-panel" ? "text-[#124E66]" : "text-white"
-            } text-[35px] cursor-pointer `}
-          />
-        </div>
         {pathname != "/" && (
           <>
+            <div
+              onClick={() => {
+                navigate("/mentor-panel");
+              }}
+            >
+              <GoHome
+                className={`${
+                  pathname == "/mentor-panel" ? "text-[#124E66]" : "text-white"
+                } text-[35px] cursor-pointer `}
+              />
+            </div>
             <div
               onClick={() => {
                 navigate("/calender");

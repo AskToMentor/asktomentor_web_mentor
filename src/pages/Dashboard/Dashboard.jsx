@@ -68,7 +68,7 @@ const Dashboard = () => {
             )}
             {isLoggedIn && (
               <div className="bg-[#124E66] w-fit flex  items-center gap-2 px-4 py-[10px] rounded-full mt-8">
-                <p className="text-[25px] text-white tracking-wide	">FA</p>
+                <p className="text-[20px] text-white font-semibold tracking-wide	">Welcome Faisal Ahmed</p>
                 <span>
                   <PiHandsPrayingDuotone className="text-white text-[30px]" />
                 </span>
