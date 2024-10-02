@@ -86,7 +86,17 @@ const SenarioBasedForm = () => {
                                     placeholder="Enter your API Key"
                                     required
                                 />
+
                             </div>
+                            
+                            <div className='w-full max-w-[300px] mx-auto'>
+                            <input
+            type='file'
+            className='w-full py-2 px-4 rounded-md border border-gray-600 bg-gray-700 text-white placeholder-gray-400'
+            onChange={(e) => setFile(e.target.files[0])}
+            accept='.pdf,.doc,.docx,.txt' // Adjust accepted file types as needed
+        />
+        </div>
                             <div className='w-full max-w-[300px] mx-auto'>
                                 <button
                                     type="submit"

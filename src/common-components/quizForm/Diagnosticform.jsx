@@ -83,6 +83,12 @@ const DiagnosticQuizGenerator = () => {
                     onChange={(e) => setDifficulty(e.target.value)}
                     required
                 />
+                        <input
+            type='file'
+            className='w-full p-2 mb-4 rounded-md border border-gray-600 bg-gray-700 text-white placeholder-gray-400'
+            onChange={(e) => setFile(e.target.files[0])}
+            accept='.pdf,.doc,.docx,.txt' // Adjust accepted file types as needed
+        />
 
                 <button
                     type='submit'
