@@ -13,7 +13,7 @@ const Blogs = () => {
   return (
     <div className="overflow-y-auto h-full w-full">
       {/* Header Section */}
-      <div className="w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-20 items-center px-2 sm:px-4 md:px-8 lg:px-14 mb-8">
+      <div className=" namaste-learner-gradient w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-20 items-center px-2 sm:px-4 md:px-8 lg:px-14 mb-8">
         {/* Left Section - Heading */}
         <div className="text-left w-full pt-10 ">
           <h1 className="dashboard-home-content-font text-wrap">
@@ -30,7 +30,7 @@ const Blogs = () => {
         </div>
 
         {/* Right Section */}
-        <div className="flex h-full w-full items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center ">
           <img
             src={heroImage}
             alt="Hero Image"

@@ -18,10 +18,16 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Popup from "./summery";
 import { useState } from "react";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import { saveMentorQuestionArray } from "../service/SignUpProcess";
+import ShowSucessmessages from "../alert-messages/ShowSucessmessages";
+import Loader from "../Loader/Loader";
+import ShowErrorMessages from "../alert-messages/ShowErrorMessages";
 
-const ServicePage = () => {
+const ServicePage = ({ step, generalSettingsId, setStep }) => {
   const [checked, setChecked] = React.useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -32,100 +38,397 @@ const ServicePage = () => {
     setIsPopupOpen(false);
   };
 
+  // New Logic
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  const [allDaysChecked, setAllDaysChecked] = useState(false);
+  const [selectedDays, setSelectedDays] = useState({
+    Monday: false,
+    Tuesday: false,
+    Wednesday: false,
+    Thursday: false,
+    Friday: false,
+    Saturday: false,
+    Sunday: false,
+  });
+
+  // For global time ranges (All Days)
+  const [globalTimeRanges, setGlobalTimeRanges] = useState([
+    { start: "", end: "" },
+  ]);
+
+  // For individual day-specific time ranges
+  const [timeForDays, setTimeForDays] = useState({
+    Monday: [{ start: "", end: "" }],
+    Tuesday: [{ start: "", end: "" }],
+    Wednesday: [{ start: "", end: "" }],
+    Thursday: [{ start: "", end: "" }],
+    Friday: [{ start: "", end: "" }],
+    Saturday: [{ start: "", end: "" }],
+    Sunday: [{ start: "", end: "" }],
+  });
+
+  const handleAllDaysChange = (e) => {
+    const checked = e.target.checked;
+    setAllDaysChecked(checked);
+
+    // Check or uncheck all individual days
+    const updatedDays = Object?.keys(selectedDays)?.reduce((acc, day) => {
+      acc[day] = checked;
+      return acc;
+    }, {});
+
+    setSelectedDays(updatedDays);
+
+    // Set the same time for all days if checked
+    if (checked) {
+      const updatedTimeForDays = Object?.keys(timeForDays)?.reduce(
+        (acc, day) => {
+          acc[day] = globalTimeRanges;
+          return acc;
+        },
+        {}
+      );
+      setTimeForDays(updatedTimeForDays);
+    } else {
+      // Reset times if unchecked
+      const resetTimeForDays = Object?.keys(timeForDays)?.reduce((acc, day) => {
+        acc[day] = [{ start: "", end: "" }];
+        return acc;
+      }, {});
+      setTimeForDays(resetTimeForDays);
+    }
+  };
+
+  const handleDayChange = (day) => {
+    setSelectedDays((prev) => ({
+      ...prev,
+      [day]: !prev[day],
+    }));
+  };
+
+  // Function to add another time range globally (All Days)
+  const addGlobalTimeRange = () => {
+    setGlobalTimeRanges([...globalTimeRanges, { start: "", end: "" }]);
+  };
+
+  // Function to add another time range for individual day
+  const addDayTimeRange = (day) => {
+    setTimeForDays((prev) => ({
+      ...prev,
+      [day]: [...prev[day], { start: "", end: "" }],
+    }));
+  };
+
+  // Handle individual time change for both global and specific days
+  const handleGlobalTimeChange = (index, type, value) => {
+    const updatedTimeRanges = globalTimeRanges?.map((time, i) =>
+      i === index ? { ...time, [type]: value } : time
+    );
+    setGlobalTimeRanges(updatedTimeRanges);
+
+    // If "All Days" is checked, propagate time change to all days
+    if (allDaysChecked) {
+      const updatedTimeForDays = Object?.keys(timeForDays)?.reduce(
+        (acc, day) => {
+          acc[day] = updatedTimeRanges;
+          return acc;
+        },
+        {}
+      );
+      setTimeForDays(updatedTimeForDays);
+    }
+  };
+
+  const handleDayTimeChange = (day, index, type, value) => {
+    const updatedTimeRanges = timeForDays[day]?.map((time, i) =>
+      i === index ? { ...time, [type]: value } : time
+    );
+    setTimeForDays((prev) => ({
+      ...prev,
+      [day]: updatedTimeRanges,
+    }));
+  };
+  console.log("timeForDays", timeForDays);
+  const nextStep = () => setStep(step + 1);
+  const prevStep = () => setStep(step - 1);
+  // Validation function to check if any time is filled
+  const isTimeFilled = () => {
+    // Check global time ranges (All Days)
+    const globalTimeFilled = globalTimeRanges.some(
+      (range) => range.start && range.end
+    );
+
+    // Check individual day-specific time ranges
+    const dayTimeFilled = Object.values(timeForDays).some((dayRanges) =>
+      dayRanges.some((range) => range.start && range.end)
+    );
+
+    return globalTimeFilled || dayTimeFilled;
+  };
+  const saveFormData = async () => {
+    const keys = Object.keys(timeForDays);
+    let finalArray = [];
+    for (let key of keys) {
+      const timeSlots = timeForDays[key]
+        ?.filter((slot) => slot.start && slot.end)
+        ?.map((slot) => ({
+          startTime: slot.start,
+          endTime: slot.end,
+        }));
+
+      if (timeSlots.length > 0) {
+        finalArray.push({
+          day: key,
+          timeSlots: timeSlots,
+        });
+      }
+    }
+    if (isTimeFilled()) {
+      try {
+        setLoading(true);
+        const payload = {
+          settingId: generalSettingsId,
+          availability: JSON.stringify(finalArray),
+        };
+        console.log("payload", payload);
+        const response = await saveMentorQuestionArray(payload);
+        if (response?.success) {
+          setStep(step + 1);
+          ShowSucessmessages("Time slots added successfully");
+        }
+        console.log("response is....", response);
+      } catch (error) {
+        console.log("error is", error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      ShowErrorMessages("Please fill the time slots");
+    }
+    console.log("finalArray", finalArray);
+  };
   return (
-    <div className="flex flex-row w-full gap-3">
-      {/* Main Content */}
-      <div className="login-container w-[75%] rounded-lg p-4 px-8">
-        <p className="text-[18px] font-medium">
-          Setup Preparing Questionnaires
-        </p>
-        <p className="text-[15px] font-normal mt-2">
-          When will you provide your services?*
-        </p>
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex flex-row gap-3 items-center justify-between">
-            <input type="checkbox" className="h-[20px] w-[20px] pt-4" />
-            <p className="text-[15px] font-light">All Days</p>
+    <div className="flex flex-col w-full h-full">
+      {loading && Loader(loading)}
+      <div className="flex flex-row w-full gap-3  h-full">
+        {/* Main Content */}
+        <div className="login-container w-[75%] rounded-lg p-4 px-8 h-full">
+          <p className="text-[18px] font-medium">
+            Setup Preparing Questionnaires
+          </p>
+          <p className="text-[15px] font-normal mt-2">
+            When will you provide your services?*
+          </p>
+
+          {/* All Days Checkbox */}
+          <div className="flex justify-between items-center mt-4">
+            <div className="flex flex-row gap-3 items-center justify-between">
+              <label className="custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="hidden-checkbox h-[20px] w-[20px] "
+                  checked={allDaysChecked}
+                  onChange={handleAllDaysChange}
+                />
+                <span className="custom-checkbox-box"></span>
+              </label>
+              <p className="text-[15px] font-light">All Days</p>
+            </div>
+
+            {/* Global Time Inputs */}
+            <div className="flex flex-row gap-4">
+              <div className="flex flex-col gap-4 ">
+                {globalTimeRanges.map((time, index) => (
+                  <div className="flex flex-row gap-4 items-center" key={index}>
+                    <input
+                      type="time"
+                      placeholder="hh:mm"
+                      className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                      value={time.start}
+                      onChange={(e) =>
+                        handleGlobalTimeChange(index, "start", e.target.value)
+                      }
+                      disabled={!allDaysChecked}
+                    />
+                    <input
+                      type="time"
+                      placeholder="hh:mm"
+                      className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                      value={time.end}
+                      onChange={(e) =>
+                        handleGlobalTimeChange(index, "end", e.target.value)
+                      }
+                      disabled={!allDaysChecked}
+                    />
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={addGlobalTimeRange}
+                className="border-[1px] border-white shadow-xl h-9 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
+                disabled={globalTimeRanges.some(
+                  (time) => time.start === "" || time.end === ""
+                )}
+              >
+                +
+              </button>
+            </div>
           </div>
-          <div className="flex flex-row gap-4">
-            <input
-              type="time"
-              placeholder="hh:mm"
-              className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
-            />
-            <input
-              type="time"
-              placeholder="hh:mm"
-              className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
-            />
+
+          {/* Days List */}
+          <div className="grid grid-cols-1 gap-6 mt-6">
+            {daysOfWeek.map((day) => (
+              <div className="flex justify-between items-center" key={day}>
+                <div className="flex flex-row gap-3 items-center">
+                  <label className="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="hidden-checkbox h-[20px] w-[20px]"
+                      checked={selectedDays[day]}
+                      onChange={() => handleDayChange(day)}
+                    />
+                    <span className="custom-checkbox-box"></span>
+                  </label>
+
+                  <p className="text-[15px] font-light">{day}</p>
+                </div>
+
+                {/* Individual Time Inputs */}
+                <div className="flex flex-row gap-4">
+                  <div className="flex flex-col gap-4 ">
+                    {timeForDays[day].map((time, index) => (
+                      <div
+                        className="flex flex-row gap-4 items-center"
+                        key={index}
+                      >
+                        <input
+                          type="time"
+                          placeholder="hh:mm"
+                          className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                          value={time.start}
+                          onChange={(e) =>
+                            handleDayTimeChange(
+                              day,
+                              index,
+                              "start",
+                              e.target.value
+                            )
+                          }
+                          disabled={!selectedDays[day]}
+                        />
+                        <input
+                          type="time"
+                          placeholder="hh:mm"
+                          className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                          value={time.end}
+                          onChange={(e) =>
+                            handleDayTimeChange(
+                              day,
+                              index,
+                              "end",
+                              e.target.value
+                            )
+                          }
+                          disabled={!selectedDays[day]}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => addDayTimeRange(day)}
+                    className="border-[1px] border-white shadow-xl h-9 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
+                    disabled={
+                      timeForDays[day].some(
+                        (time) => time.start === "" || time.end === ""
+                      ) || !selectedDays[day]
+                    }
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* Days List */}
-        <div className="grid grid-cols-1 gap-6 mt-6">
-          {[
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ].map((day) => (
-            <div className="flex justify-between items-center">
-              <div className=" flex flex-row gap-3 items-center">
-                <input type="checkbox" className="h-[20px] w-[20px] pt-4" />
-                <p className="text-[15px] font-light">{day}</p>
-              </div>
-
-              <div className="flex flex-row gap-4">
-                <input
-                  type="time"
-                  placeholder="hh:mm"
-                  className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
-                />
-                <input
-                  type="time"
-                  placeholder="hh:mm"
-                  className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
-                />
-              </div>
-            </div>
-          ))}
+        <div className="w-[25%] bg-[#1A3B4A] rounded-lg h-fit p-3">
+          <p className="text-[16px] font-medium">Service Setting</p>
+          <div className="flex flex-col gap-[2px] mt-3">
+            <span>
+              <p className="text-[#748D92] text-[15px] font-normal">Name:</p>
+              <p></p>
+            </span>
+            <span>
+              <p className="text-[#748D92] text-[15px] font-normal">
+                Subcategory:
+              </p>
+              <p></p>
+            </span>
+            <span>
+              <p className="text-[#748D92] text-[15px] font-normal">
+                {" "}
+                Customer Type:
+              </p>
+              <p></p>
+            </span>
+          </div>
+          <div className="flex flex-col gap-[2px] mt-3">
+            <span>
+              <p className="text-[#748D92] text-[15px] font-normal">
+                Pricing :
+              </p>
+              <p></p>
+            </span>
+            <span className="flex justify-between">
+              <p className="text-[#748D92] text-[15px] font-normal">
+                Date & Time:
+              </p>
+              <p className="text-white text-[15px] font-medium">All Days</p>
+            </span>
+          </div>
         </div>
       </div>
-      <div className="w-[25%] bg-[#1A3B4A] rounded-lg h-fit p-3">
-        <p className="text-[16px] font-medium">Service Setting</p>
-        <div className="flex flex-col gap-[2px] mt-3">
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">Name:</p>
-            <p></p>
-          </span>
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">
-              Subcategory:
-            </p>
-            <p></p>
-          </span>
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">
-              {" "}
-              Customer Type:
-            </p>
-            <p></p>
-          </span>
-        </div>
-        <div className="flex flex-col gap-[2px] mt-3">
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">Pricing :</p>
-            <p></p>
-          </span>
-          <span className="flex justify-between">
-            <p className="text-[#748D92] text-[15px] font-normal">
-              Date & Time:
-            </p>
-            <p className="text-white text-[15px] font-medium">All Days</p>
-          </span>
+      <div className="flex justify-between mt-8">
+        {step < 8 && (
+          <div>
+            <button
+              className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Skip
+            </button>
+          </div>
+        )}
+        <div className="flex gap-5 ">
+          <button
+            className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
+            onClick={prevStep}
+          >
+            <IoIosArrowDropleft className="text-[28px]" />
+          </button>
+
+          <button
+            className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
+            onClick={() => {
+              // if (step == 2 || step == 3 || step == 5 || step == 6) {
+              saveFormData();
+              // } else {
+              // nextStep();
+              // }
+            }}
+          >
+            <IoIosArrowDropright className="text-[28px]" />
+          </button>
         </div>
       </div>
     </div>

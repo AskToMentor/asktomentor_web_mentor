@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import bannerImage from "../../assets/account_department.png";
@@ -195,12 +195,41 @@ const MentorProfile = () => {
     {
       id: 10,
       label: "Sales & marketing",
-    }
+    },
   ];
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    let scrollPosition = 0;
+    const scrollSpeed = 2; // Adjust this value for faster/slower scrolling
+
+    const scrollInterval = setInterval(() => {
+      if (scrollContainer) {
+        scrollPosition += scrollSpeed;
+        scrollContainer.scrollLeft = scrollPosition;
+
+        // Stop scrolling when reaching the end of the container
+        if (
+          scrollPosition >=
+          scrollContainer.scrollWidth - scrollContainer.clientWidth
+        ) {
+          scrollPosition = 0; // Reset to start when the end is reached
+        }
+      }
+    }, 70); // Adjust this interval for smoother/faster scrolling
+
+    return () => {
+      clearInterval(scrollInterval); // Cleanup when the component unmounts
+    };
+  }, []);
   return (
     <div className="p-10 overflow-y-auto h-full">
       <div className="overflow-hidden max-w-full flex flex-col">
-        <div className="flex flex-row gap-4 overflow-y-hidden overflow-x-auto mt-10 mentor-scroll-container">
+        <div
+          className="flex flex-row gap-4 overflow-y-hidden overflow-x-auto mt-10 mentor-scroll-container"
+          // ref={scrollContainerRef}
+        >
           {mentorFilter?.map((item) => (
             <div
               key={item?.label} // Add a key for better performance
@@ -213,7 +242,9 @@ const MentorProfile = () => {
                 setFilterValue(item?.label);
               }}
             >
-              <p className="rounded-xl flex justify-center items-center w-[150px] h-full ">{item?.label}</p>
+              <p className="rounded-xl flex justify-center items-center w-[150px] h-full ">
+                {item?.label}
+              </p>
             </div>
           ))}
         </div>

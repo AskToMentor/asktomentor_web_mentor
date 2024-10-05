@@ -4,17 +4,16 @@ import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import "../MentorDetails/addquestion.css";
 import { IoMdAdd } from "react-icons/io";
 
-const AddQuestions = () => {
+const AddQuestions = ({ setQuestionArray, questionArray }) => {
   const [isQuestionVisible, setIsQuestionVisible] = useState(false);
   const toggleQuestionVisibility = () => {
     setIsQuestionVisible((prevState) => !prevState);
   };
   const [totalQuestion, setTotalQuestion] = useState(0);
-  const [questionArray, setQuestionArray] = useState([]);
   console.log("totalQuestion", questionArray);
   return (
-    <div className=" h-[500px] overflow-hidden flex flex-row w-full gap-3">
-      <div className="h-full  rounded-lg login-container p-4 w-[75%] overflow-y-auto">
+    <div className="h-full min-h-[500px] overflow-hidden flex flex-row w-full gap-3">
+      <div className="h-full  rounded-lg login-container p-4 w-[75%]">
         <div>
           <p className="text-[18px] font-medium">
             Setup Preparing Questionaire
@@ -36,30 +35,48 @@ const AddQuestions = () => {
           </div>
         )}
 
-        <div className="h-[100%] overflow-y-auto flex flex-col justify-between">
+        <div className="h-[100%] flex flex-col justify-between">
           <div className="">
             {totalQuestion > 0 &&
               new Array(totalQuestion)?.fill(1)?.map((data, index) => (
                 <div className="mt-2">
                   <div className="flex flex-col gap-2">
-                    <p>Question {index+1}</p>
+                    <p>Question {index + 1}</p>
                     <textarea
                       placeholder="Descriptions"
                       className="bg-[#FFFFFF36] w-full border-white text-[14px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
-                      value={questionArray[index] || ""}
+                      value={questionArray[index]?.question || ""}
                       onChange={(e) => {
                         const newQuestions = [...questionArray];
-                        newQuestions[index] = e.target.value; // Update the specific index
-                        setQuestionArray(newQuestions); // Update state with the new array
+                        newQuestions[index] = {
+                          ...newQuestions[index],
+                          question: e.target.value,
+                          required: newQuestions[index]?.required || false, // Maintain previous required state
+                          fieldType: "TextArea",
+                          questionariesId: "765879",
+                        };
+                        setQuestionArray(newQuestions);
                       }}
                     ></textarea>{" "}
                   </div>
                   <div className="flex justify-end items-end mt-3">
                     <div className=" flex flex-row gap-3 items-center">
-                      <input
-                        type="checkbox"
-                        className="h-[20px] w-[20px] pt-4"
-                      />
+                      <label className="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="h-[20px] w-[20px] pt-4 hidden-checkbox"
+                          checked={questionArray[index]?.required || false}
+                          onChange={(e) => {
+                            const newQuestions = [...questionArray];
+                            newQuestions[index] = {
+                              ...newQuestions[index],
+                              required: e.target.checked,
+                            };
+                            setQuestionArray(newQuestions); // Update state with the new array
+                          }}
+                        />
+                        <span className="custom-checkbox-box"></span>
+                      </label>
                       <p className="text-[15px] font-light">Required</p>
                     </div>
                   </div>

@@ -34,7 +34,19 @@ const steps = [
 //   "Add Question",
 //   "Service Page",
 
-const AppServices = ({ nextStep, prevStep, step }) => {
+const AppServices = ({
+  nextStep,
+  prevStep,
+  step,
+  setStep,
+  setQuestionArray,
+  questionArray,
+  setGeneralSetting,
+  generalSetting,
+  setServices,
+  services,
+  generalSettingsId,
+}) => {
   console.log("step...", step);
   const [activeStep, setActiveStep] = React.useState(step);
   const getStepContent = (step) => {
@@ -42,11 +54,25 @@ const AppServices = ({ nextStep, prevStep, step }) => {
       case 4:
         return <AddService />;
       case 5:
-        return <GeneralSettings />;
+        return (
+          <GeneralSettings
+            setGeneralSetting={setGeneralSetting}
+            generalSetting={generalSetting}
+            setServices={setServices}
+            services={services}
+          />
+        );
       case 6:
-        return <AddQuestions />;
+        return (
+          <AddQuestions
+            setQuestionArray={setQuestionArray}
+            questionArray={questionArray}
+          />
+        );
       case 7:
-        return <ServicePage />;
+        return (
+          <ServicePage step={step} generalSettingsId={generalSettingsId} setStep={setStep}/>
+        );
       default:
         return <div>Unknown step</div>;
     }

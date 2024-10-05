@@ -51,6 +51,7 @@ const ConfirmationModal = ({ onClose, payload }) => {
       const response = await MentorSignUp(payload);
       console.log("response is....", response);
       if (response?.success) {
+        localStorage.setItem("registered_user_id", response?.data?.userId);
         Swal.fire({
           html: `
             <div class="swal-content">

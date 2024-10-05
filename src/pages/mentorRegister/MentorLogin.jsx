@@ -3,14 +3,19 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GetLoginType } from "../../utility/GetLoginType";
-import { MentorSignIn } from "../../service/MentorSignUpSignIn";
+import {
+  MentorGoogleSignIn,
+  MentorSignIn,
+} from "../../service/MentorSignUpSignIn";
 import ShowSucessmessages from "../../alert-messages/ShowSucessmessages";
-import { auth, provider } from '../../utility/firebase';
-import { signInWithPopup } from 'firebase/auth';
-import axios from 'axios';
+import { auth, provider } from "../../utility/firebase";
+import { signInWithPopup } from "firebase/auth";
+import axios from "axios";
+import Loader from "../../Loader/Loader";
 const MentorLogin = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -38,46 +43,71 @@ const MentorLogin = () => {
     });
   };
   const mentorLoginFunction = async () => {
-    const { email, password } = formData;
-    if (!email) {
-      ShowErrorMessages("Please fill the email");
-      return;
-    } else if (!password) {
-      ShowErrorMessages("Please fill the password");
-      return;
-    } else {
-      const payload = {
-        loginId: email,
-        password: password,
-        role: 1,
-      };
-      const response = await MentorSignIn(payload);
-      console.log("response is....", response);
-      if (response?.success) {
-        const token = response?.data?.token;
-        if (token) {
-          localStorage.setItem("token", token);
+    try {
+      const { email, password } = formData;
+      if (!email) {
+        ShowErrorMessages("Please fill the email");
+        return;
+      } else if (!password) {
+        ShowErrorMessages("Please fill the password");
+        return;
+      } else {
+        setLoading(true);
+        const payload = {
+          loginId: email,
+          password: password,
+          role: 1,
+        };
+        const response = await MentorSignIn(payload);
+        console.log("response is....", response);
+        if (response?.success) {
+          const token = response?.data?.token;
+          if (token) {
+            localStorage.setItem("token", token);
+          }
+          // ShowSucessmessages("You have successfully logged in");
+          navigate("/mentor-panel");
         }
-        // ShowSucessmessages("You have successfully logged in");
-        navigate("/mentor-panel");
       }
+    } catch (error) {
+      console.log("error is", error);
+    } finally {
+      setLoading(false);
     }
   };
   const handleLogin = async () => {
     try {
-        const result = await signInWithPopup(auth, provider);
-        const idToken = await result.user.getIdToken();
-        console.log("ID Token",idToken)
-        // const response = await axios.post('http://localhost:5000/api/login', { idToken });
-        setUser(response.data.user);
+      const result = await signInWithPopup(auth, provider);
+      const idToken = await result.user.getIdToken();
+      console.log("ID Token", idToken);
+      if (idToken) {
+        setLoading(true);
+        const payload = {
+          loginId: idToken,
+          role: 1,
+        };
+        const response = await MentorGoogleSignIn(payload);
+        console.log("response is....", response);
+        if (response?.success) {
+          const token = response?.data?.token;
+          if (token) {
+            localStorage.setItem("token", token);
+          }
+          // ShowSucessmessages("You have successfully logged in");
+          navigate("/mentor-panel");
+        }
+      }
     } catch (error) {
-        console.error('Error during login:', error);
+      console.error("Error during login:", error);
+    } finally {
+      setLoading(false);
     }
-};
-
+  };
 
   return (
     <div className="h-full overflow-y-auto">
+      {loading && Loader(loading)}
+
       <div className="login-container mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[5rem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[95%] mobile-lg:w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[25%] mx-auto font-sans">
         <div className="flex flex-col gap-4">
           <div className="text-[19px] font-bold text-left max-w-2xl flex flex-col gap-2 ">
@@ -142,9 +172,10 @@ const MentorLogin = () => {
             </button>
           </div>
           <div className="mt-1 sm:mt-4">
-            <button className="border-[2px] gap-3 bg-white text-black w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold"
-            onClick={handleLogin}
-            type="button"
+            <button
+              className="border-[2px] gap-3 bg-white text-black w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold"
+              onClick={handleLogin}
+              type="button"
             >
               <FcGoogle className="text-[25px]" />
               Login with google
@@ -168,14 +199,26 @@ const MentorLogin = () => {
           </div>
           <div className="w-full flex flex-col gap-3">
             <span className="flex gap-3">
-              <p className=" text-[14px] font-light">
+              <p className=" text-[14px] font-light flex flex-wrap gap-2">
                 {" "}
                 The site is protected by reCAPTCHA and the Google{" "}
-                <Link to="/privacy-policy"
-                >
-                  Privacy and Policy
-                </Link>{" "}
-                and <Link to="/terms-conditions">Terms and Service</Link> apply
+                <div className="flex items-center gap-2">
+                  <Link to="/privacy-policy">
+                    <p className="text-white text-[15px] font-semibold">
+                      Privacy and Policy
+                    </p>
+                  </Link>{" "}
+                  and{" "}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Link to="/terms-conditions">
+                    {" "}
+                    <p className="text-white text-[15px] font-semibold">
+                      Terms and Service
+                    </p>
+                  </Link>{" "}
+                  apply
+                </div>
               </p>
             </span>
           </div>

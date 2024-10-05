@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./skill.css";
 import SearchIcon from "@mui/icons-material/Search";
+import { getMentorSkillsData } from "../service/SignUpProcess";
 
-const Skills = () => {
+const Skills = ({ setSelectedSkillsID, selectedSkillsID }) => {
   const availableSkills = [
     "Machine Learning",
     "Autonomous driving",
@@ -18,13 +19,13 @@ const Skills = () => {
   const [filteredSkills, setFilteredSkills] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [searchLength, setSearchLength] = useState(0);
-
+  const [skillList, setSkillList] = useState();
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchLength(searchValue?.length);
     setFilteredSkills(
-      availableSkills.filter((skill) =>
-        skill.toLowerCase().includes(searchValue)
+      skillList?.filter((skill) =>
+        skill?.skillName?.toLowerCase()?.includes(searchValue)
       )
     );
   };
@@ -32,16 +33,27 @@ const Skills = () => {
   const addSkill = (skill) => {
     if (!selectedSkills.includes(skill)) {
       setSelectedSkills([...selectedSkills, skill]);
+      setSelectedSkillsID([...selectedSkillsID, skill?.skillId]);
     }
   };
   const removeSkills = (skill) => {
     if (selectedSkills.includes(skill)) {
       // Remove skill if it exists
       setSelectedSkills(selectedSkills.filter((s) => s !== skill));
+      setSelectedSkillsID(selectedSkillsID.filter((s) => s !== skill?.skillId));
     }
   };
   console.log("searchLength", searchLength, filteredSkills);
-
+  const getMentorSkills = async () => {
+    const response = await getMentorSkillsData();
+    console.log("response", response);
+    if (response?.success) {
+      setSkillList(response?.data);
+    }
+  };
+  useEffect(() => {
+    getMentorSkills();
+  }, []);
   return (
     <div className="flex flex-col md:flex-row justify-between login-container text-white min-h-[600px] p-[15px] px-7 rounded-lg">
       <div className="w-full md:w-[45%]">
@@ -58,13 +70,13 @@ const Skills = () => {
         </div>
         <div className="flex flex-wrap gap-2.5 mt-5">
           {searchLength > 0
-            ? filteredSkills.map((skill, index) => (
+            ? filteredSkills?.map((skill, index) => (
                 <div
                   key={index}
                   className="h-10 flex justify-center items-center px-6 text-sm rounded-[20px] bg-ask-to-mentor-primary cursor-pointer "
                   onClick={() => addSkill(skill)}
                 >
-                  {skill}
+                  {skill?.skillName}
                 </div>
               ))
             : ""}
@@ -80,7 +92,7 @@ const Skills = () => {
                   key={index}
                   className="h-10 flex justify-center  gap-4 items-center px-6 text-sm rounded-[20px] bg-[#26404E] cursor-pointer border-[1px] border-[#748D92]"
                 >
-                  <p> {skill}</p>
+                  <p> {skill?.skillName}</p>
                   <p
                     onClick={() => {
                       removeSkills(skill);

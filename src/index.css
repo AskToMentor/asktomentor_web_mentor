@@ -59,3 +59,67 @@ button {
     color: #747bff;
   }
 }
+
+/* Global custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: white #e0e0e0;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+}
+
+/* Check box css code */
+/* Hide the default checkbox */
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.custom-checkbox-box {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-color: #616161;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Add checkmark style when the checkbox is checked */
+.custom-checkbox input:checked + .custom-checkbox-box {
+  background-color: #124e66; /* Keep red background */
+}
+
+.custom-checkbox-box:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 8px;
+  top: 4px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Show the checkmark when the checkbox is checked */
+.custom-checkbox input:checked + .custom-checkbox-box:after {
+  display: block;
+}
+input {
+  caret-color: white; /* Sets the cursor color */
+}
