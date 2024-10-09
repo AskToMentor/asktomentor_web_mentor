@@ -290,8 +290,8 @@
 }
 /* Custom CSS */
 .swal-custom-popup {
-  width: 350px; /* Set the desired width */
-  height: 320px;
+  width: 260px; /* Set the desired width */
+  height: 230px;
   padding: 4px; /* Add padding for better spacing */
   border-radius: 10px; /* Optional: Customize border radius */
   overflow: hidden;
@@ -322,6 +322,15 @@
   border-radius: 5px; /* Rounded corners */
   padding: 10px 20px; /* Button padding */
   cursor: pointer; /* Pointer cursor on hover */
+}
+button.swal2-confirm.swal2-styled {
+  height: 35px;
+  width: 40px;
+  font-size: 13px;
+  padding-right: 30px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
 }
 .swal2-confirm {
   background-color: #212a31 !important;
@@ -385,6 +394,9 @@
 }
 
 .blog-image-color {
-  background: linear-gradient(90deg, #748d92 0%, #124E66 100%);
+  /* background: linear-gradient(90deg, #748d92 0%, #124E66 100%); */
+  background: radial-gradient(41.02% 41.02% at 52.61% 158.89%, #748D92 54.9%, #124E66 67.4%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  backdrop-filter: blur(454.1545104980469px)
+
 
 }

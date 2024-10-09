@@ -23,21 +23,26 @@ import { saveMentorQuestionArray } from "../service/SignUpProcess";
 import ShowSucessmessages from "../alert-messages/ShowSucessmessages";
 import Loader from "../Loader/Loader";
 import ShowErrorMessages from "../alert-messages/ShowErrorMessages";
+import { useNavigate } from "react-router-dom";
 
-const ServicePage = ({ step, generalSettingsId, setStep }) => {
-  const [checked, setChecked] = React.useState(true);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+const ServicePage = ({
+  step,
+  generalSettingsId,
+  setStep,
+  setTotalQuestion,
+  totalQuestion,
+  setAllDaysChecked,
+  allDaysChecked,
+  setSelectedDays,
+  selectedDays,
+  setGlobalTimeRanges,
+  globalTimeRanges,
+  setTimeForDays,
+  timeForDays,
+  setServiceSetting,
+  serviceSetting,
+}) => {
   const [loading, setLoading] = useState(false);
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-  };
-
   // New Logic
   const daysOfWeek = [
     "Monday",
@@ -48,33 +53,35 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
     "Saturday",
     "Sunday",
   ];
+  const navigate = useNavigate();
+  console.log("selectedDays", selectedDays);
 
-  const [allDaysChecked, setAllDaysChecked] = useState(false);
-  const [selectedDays, setSelectedDays] = useState({
-    Monday: false,
-    Tuesday: false,
-    Wednesday: false,
-    Thursday: false,
-    Friday: false,
-    Saturday: false,
-    Sunday: false,
-  });
+  // const [allDaysChecked, setAllDaysChecked] = useState(false);
+  // const [selectedDays, setSelectedDays] = useState({
+  //   Monday: false,
+  //   Tuesday: false,
+  //   Wednesday: false,
+  //   Thursday: false,
+  //   Friday: false,
+  //   Saturday: false,
+  //   Sunday: false,
+  // });
 
-  // For global time ranges (All Days)
-  const [globalTimeRanges, setGlobalTimeRanges] = useState([
-    { start: "", end: "" },
-  ]);
+  // // For global time ranges (All Days)
+  // const [globalTimeRanges, setGlobalTimeRanges] = useState([
+  //   { start: "", end: "" },
+  // ]);
 
-  // For individual day-specific time ranges
-  const [timeForDays, setTimeForDays] = useState({
-    Monday: [{ start: "", end: "" }],
-    Tuesday: [{ start: "", end: "" }],
-    Wednesday: [{ start: "", end: "" }],
-    Thursday: [{ start: "", end: "" }],
-    Friday: [{ start: "", end: "" }],
-    Saturday: [{ start: "", end: "" }],
-    Sunday: [{ start: "", end: "" }],
-  });
+  // // For individual day-specific time ranges
+  // const [timeForDays, setTimeForDays] = useState({
+  //   Monday: [{ start: "", end: "" }],
+  //   Tuesday: [{ start: "", end: "" }],
+  //   Wednesday: [{ start: "", end: "" }],
+  //   Thursday: [{ start: "", end: "" }],
+  //   Friday: [{ start: "", end: "" }],
+  //   Saturday: [{ start: "", end: "" }],
+  //   Sunday: [{ start: "", end: "" }],
+  // });
 
   const handleAllDaysChange = (e) => {
     const checked = e.target.checked;
@@ -163,13 +170,13 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
   // Validation function to check if any time is filled
   const isTimeFilled = () => {
     // Check global time ranges (All Days)
-    const globalTimeFilled = globalTimeRanges.some(
+    const globalTimeFilled = globalTimeRanges?.some(
       (range) => range.start && range.end
     );
 
     // Check individual day-specific time ranges
-    const dayTimeFilled = Object.values(timeForDays).some((dayRanges) =>
-      dayRanges.some((range) => range.start && range.end)
+    const dayTimeFilled = Object.values(timeForDays)?.some((dayRanges) =>
+      dayRanges?.some((range) => range.start && range.end)
     );
 
     return globalTimeFilled || dayTimeFilled;
@@ -216,16 +223,21 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
     }
     console.log("finalArray", finalArray);
   };
+  // Filtering only the days with value 'true'
+  const availableDays = Object?.entries(selectedDays)
+    .filter(([day, isAvailable]) => isAvailable) // Filter days where value is true
+    .map(([day]) => day); // Map to get the day names only
+
   return (
     <div className="flex flex-col w-full h-full">
       {loading && Loader(loading)}
       <div className="flex flex-row w-full gap-3  h-full">
         {/* Main Content */}
-        <div className="login-container w-[75%] rounded-lg p-4 px-8 h-full">
-          <p className="text-[18px] font-medium">
+        <div className="login-container w-[70%] rounded-lg p-4 px-8 h-full">
+          <p className="text-[16px] font-medium">
             Setup Preparing Questionnaires
           </p>
-          <p className="text-[15px] font-normal mt-2">
+          <p className="text-[13px] font-normal mt-2">
             When will you provide your services?*
           </p>
 
@@ -241,18 +253,18 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
                 />
                 <span className="custom-checkbox-box"></span>
               </label>
-              <p className="text-[15px] font-light">All Days</p>
+              <p className="text-[13px] font-light">All Days</p>
             </div>
 
             {/* Global Time Inputs */}
             <div className="flex flex-row gap-4">
               <div className="flex flex-col gap-4 ">
-                {globalTimeRanges.map((time, index) => (
+                {globalTimeRanges?.map((time, index) => (
                   <div className="flex flex-row gap-4 items-center" key={index}>
                     <input
                       type="time"
                       placeholder="hh:mm"
-                      className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                      className="h-8 bg-[#616161] rounded-lg text-[14px] px-2"
                       value={time.start}
                       onChange={(e) =>
                         handleGlobalTimeChange(index, "start", e.target.value)
@@ -262,7 +274,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
                     <input
                       type="time"
                       placeholder="hh:mm"
-                      className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                      className="h-8 bg-[#616161] rounded-lg text-[14px] px-2"
                       value={time.end}
                       onChange={(e) =>
                         handleGlobalTimeChange(index, "end", e.target.value)
@@ -275,7 +287,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
               <button
                 onClick={addGlobalTimeRange}
                 className="border-[1px] border-white shadow-xl h-9 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
-                disabled={globalTimeRanges.some(
+                disabled={globalTimeRanges?.some(
                   (time) => time.start === "" || time.end === ""
                 )}
               >
@@ -286,7 +298,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
 
           {/* Days List */}
           <div className="grid grid-cols-1 gap-6 mt-6">
-            {daysOfWeek.map((day) => (
+            {daysOfWeek?.map((day) => (
               <div className="flex justify-between items-center" key={day}>
                 <div className="flex flex-row gap-3 items-center">
                   <label className="custom-checkbox">
@@ -299,13 +311,13 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
                     <span className="custom-checkbox-box"></span>
                   </label>
 
-                  <p className="text-[15px] font-light">{day}</p>
+                  <p className="text-[13px] font-light">{day}</p>
                 </div>
 
                 {/* Individual Time Inputs */}
                 <div className="flex flex-row gap-4">
                   <div className="flex flex-col gap-4 ">
-                    {timeForDays[day].map((time, index) => (
+                    {timeForDays[day]?.map((time, index) => (
                       <div
                         className="flex flex-row gap-4 items-center"
                         key={index}
@@ -313,7 +325,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
                         <input
                           type="time"
                           placeholder="hh:mm"
-                          className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                          className="h-8 bg-[#616161] rounded-lg text-[13px] px-2"
                           value={time.start}
                           onChange={(e) =>
                             handleDayTimeChange(
@@ -328,7 +340,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
                         <input
                           type="time"
                           placeholder="hh:mm"
-                          className="h-9 bg-[#616161] rounded-lg text-[14px] px-2"
+                          className="h-8 bg-[#616161] rounded-lg text-[13px] px-2"
                           value={time.end}
                           onChange={(e) =>
                             handleDayTimeChange(
@@ -347,7 +359,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
                     onClick={() => addDayTimeRange(day)}
                     className="border-[1px] border-white shadow-xl h-9 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
                     disabled={
-                      timeForDays[day].some(
+                      timeForDays[day]?.some(
                         (time) => time.start === "" || time.end === ""
                       ) || !selectedDays[day]
                     }
@@ -359,39 +371,81 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
             ))}
           </div>
         </div>
-        <div className="w-[25%] bg-[#1A3B4A] rounded-lg h-fit p-3">
-          <p className="text-[16px] font-medium">Service Setting</p>
-          <div className="flex flex-col gap-[2px] mt-3">
-            <span>
-              <p className="text-[#748D92] text-[15px] font-normal">Name:</p>
-              <p></p>
+        <div className="w-[30%] bg-[#1A3B4A] rounded-lg h-fit p-3">
+          <p className="text-[15px] font-medium">Service Setting</p>
+          <div className="flex flex-col gap-[10px] mt-3 w-full">
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+                Name:
+              </p>
+              <p className="text-white text-[14px] font-normal">
+                {serviceSetting?.name}
+              </p>
             </span>
-            <span>
-              <p className="text-[#748D92] text-[15px] font-normal">
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
                 Subcategory:
               </p>
-              <p></p>
+              <p className="text-white text-[14px] font-normal">
+                {serviceSetting?.sub_category}
+              </p>
             </span>
-            <span>
-              <p className="text-[#748D92] text-[15px] font-normal">
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
                 {" "}
                 Customer Type:
               </p>
-              <p></p>
+              <span className="text-white text-[14px] font-normal flex flex-row gap-2">
+                <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
+                  {" "}
+                  {serviceSetting?.customer_type_1}
+                </p>
+                <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
+                  {serviceSetting?.customer_type_2}
+                </p>
+              </span>
             </span>
           </div>
-          <div className="flex flex-col gap-[2px] mt-3">
-            <span>
-              <p className="text-[#748D92] text-[15px] font-normal">
+          <div className="flex flex-col gap-[10px] mt-3 w-full">
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
                 Pricing :
               </p>
-              <p></p>
+              <span className="text-white text-[14px] font-normal flex flex-col gap-2">
+                <span
+                  className={`${
+                    serviceSetting?.pricing_1 ? "flex" : "hidden"
+                  } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
+                >
+                  {serviceSetting?.pricing_1}
+                  {serviceSetting?.customer_type_1 == "P2P" ? "/h P2P" : ""}
+                </span>
+                <span
+                  className={`${
+                    serviceSetting?.pricing_2 ? "flex" : "hidden"
+                  } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
+                >
+                  {serviceSetting?.pricing_2}
+                  {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""}
+                </span>
+                {/* // {serviceSetting?.pricing_1}
+                // {serviceSetting?.pricing_2} */}
+              </span>
             </span>
-            <span className="flex justify-between">
-              <p className="text-[#748D92] text-[15px] font-normal">
+            <span className="flex w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%] ">
                 Date & Time:
               </p>
-              <p className="text-white text-[15px] font-medium">All Days</p>
+              <p className="text-white text-[14px] font-medium ">
+                {availableDays.map((day, index) => (
+                  <li
+                    key={index}
+                    className="text-white text-[13px] font-normal"
+                  >
+                    {day}
+                  </li>
+                ))}
+              </p>
             </span>
           </div>
         </div>
@@ -402,7 +456,7 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
             <button
               className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
               onClick={() => {
-                navigate("/login");
+                navigate("/mentor-profile");
               }}
             >
               Skip
@@ -421,9 +475,9 @@ const ServicePage = ({ step, generalSettingsId, setStep }) => {
             className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
             onClick={() => {
               // if (step == 2 || step == 3 || step == 5 || step == 6) {
-              saveFormData();
+              // saveFormData();
               // } else {
-              // nextStep();
+              nextStep();
               // }
             }}
           >

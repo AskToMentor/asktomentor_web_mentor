@@ -75,15 +75,49 @@ const ManuallySignUpForm = ({}) => {
     subCategoryId: "",
   });
   const [selectedSkillsID, setSelectedSkillsID] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
   const [generalSettingsId, setGeneralSettingsId] = useState();
-  // const [services, setServices] = useState([
-  //   { type: "P2P(Person to Person)", selected: false, price: "" },
-  //   { type: "P2B(Person to Business)", selected: false, price: "" },
-  // ]);
-  // const [services, setServices] = useState({
-  //   P2P: { type: "", price: "" },
-  //   P2B: { type: "", price: "" },
-  // });
+  const [totalQuestion, setTotalQuestion] = useState(0);
+
+  // Time slots State:
+  // -------------------
+  const [allDaysChecked, setAllDaysChecked] = useState(false);
+  const [selectedDays, setSelectedDays] = useState({
+    Monday: false,
+    Tuesday: false,
+    Wednesday: false,
+    Thursday: false,
+    Friday: false,
+    Saturday: false,
+    Sunday: false,
+  });
+
+  // For global time ranges (All Days)
+  const [globalTimeRanges, setGlobalTimeRanges] = useState([
+    { start: "", end: "" },
+  ]);
+
+  // For individual day-specific time ranges
+  const [timeForDays, setTimeForDays] = useState({
+    Monday: [{ start: "", end: "" }],
+    Tuesday: [{ start: "", end: "" }],
+    Wednesday: [{ start: "", end: "" }],
+    Thursday: [{ start: "", end: "" }],
+    Friday: [{ start: "", end: "" }],
+    Saturday: [{ start: "", end: "" }],
+    Sunday: [{ start: "", end: "" }],
+  });
+  // Right side box data states
+  const [serviceSetting, setServiceSetting] = useState({
+    name: "",
+    sub_category: "",
+    customer_type_1: "",
+    customer_type_2: "",
+    pricing_1: "",
+    pricing_2: "",
+    date_time: "",
+  });
   const [services, setServices] = useState([]);
   const saveFormData = async () => {
     console.log("hello");
@@ -94,19 +128,20 @@ const ManuallySignUpForm = ({}) => {
         if (!personalInfoData?.about_yourself) {
           ShowErrorMessages("Please provide the description");
           return;
-        } else if (!personalInfoData?.facebook_id) {
-          ShowErrorMessages("Please provide the facebook profile");
-          return;
-        } else if (!personalInfoData?.instagram_id) {
-          ShowErrorMessages("Please provide the instagram profile");
-          return;
-        } else if (!personalInfoData?.twitter_id) {
-          ShowErrorMessages("Please provide the twitter profile");
-          return;
-        } else if (!personalInfoData?.linkedin_id) {
-          ShowErrorMessages("Please provide the linkedin profile");
-          return;
         }
+        //  else if (!personalInfoData?.facebook_id) {
+        //   ShowErrorMessages("Please provide the facebook profile");
+        //   return;
+        // } else if (!personalInfoData?.instagram_id) {
+        //   ShowErrorMessages("Please provide the instagram profile");
+        //   return;
+        // } else if (!personalInfoData?.twitter_id) {
+        //   ShowErrorMessages("Please provide the twitter profile");
+        //   return;
+        // } else if (!personalInfoData?.linkedin_id) {
+        //   ShowErrorMessages("Please provide the linkedin profile");
+        //   return;
+        // }
         setLoading(true);
         const payload = {
           selfIntroDesc: personalInfoData?.about_yourself,
@@ -120,14 +155,14 @@ const ManuallySignUpForm = ({}) => {
         if (response?.success) {
           ShowSucessmessages("Personal information added successfully");
           setStep(step + 1);
-          setPersonalInfoData({
-            ...personalInfoData,
-            about_yourself: "",
-            facebook_id: "",
-            instagram_id: "",
-            linkedin_id: "",
-            twitter_id: "",
-          });
+          // setPersonalInfoData({
+          //   ...personalInfoData,
+          //   about_yourself: "",
+          //   facebook_id: "",
+          //   instagram_id: "",
+          //   linkedin_id: "",
+          //   twitter_id: "",
+          // });
         }
         console.log("response is....", response);
       } catch (error) {
@@ -150,7 +185,7 @@ const ManuallySignUpForm = ({}) => {
         const response = await MentorPersonalInfo(payload);
         if (response?.success) {
           setStep(step + 1);
-          setSelectedSkillsID([]);
+          // setSelectedSkillsID([]);
           ShowSucessmessages("Skills added successfully");
         }
         console.log("response is....", response);
@@ -194,17 +229,17 @@ const ManuallySignUpForm = ({}) => {
         console.log("payload", payload);
         const response = await saveMentorQuestion(payload);
         if (response?.success) {
-          ShowSucessmessages("General setting information added successfully");
           setStep(step + 1);
+          ShowSucessmessages("General setting information added successfully");
           setGeneralSettingsId(response?.data?.settingId);
           setServices([]);
-          setGeneralSetting({
-            ...generalSetting,
-            categoryId: "",
-            coachingOfferingsId: "",
-            desc: "",
-            subCategoryId: "",
-          });
+          // setGeneralSetting({
+          //   ...generalSetting,
+          //   categoryId: "",
+          //   coachingOfferingsId: "",
+          //   desc: "",
+          //   subCategoryId: "",
+          // });
         }
       } catch (error) {
         console.log("error is", error);
@@ -220,10 +255,10 @@ const ManuallySignUpForm = ({}) => {
         };
         console.log("payload", payload);
         const response = await saveMentorQuestionArray(payload);
+        setStep(step + 1);
         if (response?.success) {
           ShowSucessmessages("Questions added successfully");
-          setStep(step + 1);
-          setQuestionArray([]);
+          // setQuestionArray([]);
         }
         console.log("response is....", response);
       } catch (error) {
@@ -233,11 +268,12 @@ const ManuallySignUpForm = ({}) => {
       }
     }
   };
+  console.log("selectedDays",selectedDays)
   return (
     <div className="h-full mb-20 overflow-y-auto">
       {loading && Loader(loading)}
-      <div className="mb-16 lg:mb-0 flex flex-col md:flex-row p-3 lg:p-0 w-full lg:w-[90%] max-w-[1200px] bg-[#212a31] text-white min-h-[500px] shadow-[0_5px_15px_rgba(0,0,0,0.5)] mx-auto lg:my-[50px] rounded-[10px]">
-        <div className="sidebar pt-[3rem] flex flex-col items-center md:items-start md:flex-row justify-center w-full md:w-[25%]  ">
+      <div className="mb-16 lg:mb-0 flex flex-col md:flex-row p-3 lg:p-0 w-full lg:w-[90%] max-w-[1300px] bg-[#212a31] text-white min-h-[500px] shadow-[0_5px_15px_rgba(0,0,0,0.5)] mx-auto lg:my-[50px] rounded-[10px]">
+        <div className="sidebar pt-[3rem] flex flex-col items-center md:items-start md:flex-row justify-center w-full md:w-[20%]  ">
           <div className="flex md:hidden items-start flex-row">
             {processSteps?.map((item, index) => (
               <React.Fragment key={index}>
@@ -294,7 +330,7 @@ const ManuallySignUpForm = ({}) => {
             ))}
           </div>
         </div>
-        <div className="w-full md:w-9/12 bg-[#212a3] flex flex-col relative p-4">
+        <div className="w-full md:w-[80%] bg-[#212a3] flex flex-col relative p-4">
           {step === 1 && (
             <div className="flex justify-between">
               <div>
@@ -367,6 +403,7 @@ const ManuallySignUpForm = ({}) => {
                       about_yourself: e.target.value,
                     });
                   }}
+                  value={personalInfoData?.about_yourself}
                 ></textarea>
               </div>
               <div>
@@ -386,6 +423,7 @@ const ManuallySignUpForm = ({}) => {
                           facebook_id: e.target.value,
                         });
                       }}
+                      value={personalInfoData?.facebook_id}
                     />
                   </div>
                   <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
@@ -402,6 +440,7 @@ const ManuallySignUpForm = ({}) => {
                           instagram_id: e.target.value,
                         });
                       }}
+                      value={personalInfoData?.instagram_id}
                     />
                   </div>
                   <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
@@ -418,6 +457,7 @@ const ManuallySignUpForm = ({}) => {
                           twitter_id: e.target.value,
                         });
                       }}
+                      value={personalInfoData?.twitter_id}
                     />
                   </div>
                   <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
@@ -434,6 +474,7 @@ const ManuallySignUpForm = ({}) => {
                           linkedin_id: e.target.value,
                         });
                       }}
+                      value={personalInfoData?.linkedin_id}
                     />
                   </div>
                 </div>
@@ -445,6 +486,8 @@ const ManuallySignUpForm = ({}) => {
             <Skills
               setSelectedSkillsID={setSelectedSkillsID}
               selectedSkillsID={selectedSkillsID}
+              setSelectedSkills={setSelectedSkills}
+              selectedSkills={selectedSkills}
             />
           )}
           {(step === 4 || step === 5 || step === 6 || step === 7) && (
@@ -460,6 +503,18 @@ const ManuallySignUpForm = ({}) => {
               setServices={setServices}
               services={services}
               generalSettingsId={generalSettingsId}
+              setTotalQuestion={setTotalQuestion}
+              totalQuestion={totalQuestion}
+              setAllDaysChecked={setAllDaysChecked}
+              allDaysChecked={allDaysChecked}
+              setSelectedDays={setSelectedDays}
+              selectedDays={selectedDays}
+              setGlobalTimeRanges={setGlobalTimeRanges}
+              globalTimeRanges={globalTimeRanges}
+              setTimeForDays={setTimeForDays}
+              timeForDays={timeForDays}
+              setServiceSetting={setServiceSetting}
+              serviceSetting={serviceSetting}
             />
           )}
           {step === 8 && <Finish />}
@@ -469,7 +524,7 @@ const ManuallySignUpForm = ({}) => {
                 <button
                   className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
                   onClick={() => {
-                    navigate("/login");
+                    navigate("/mentor-profile");
                   }}
                 >
                   Skip
@@ -502,6 +557,7 @@ const ManuallySignUpForm = ({}) => {
                   onClick={() => {
                     if (step == 2 || step == 3 || step == 5 || step == 6) {
                       saveFormData();
+                      // nextStep();
                     } else {
                       nextStep();
                     }

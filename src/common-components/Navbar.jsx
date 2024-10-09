@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import MentorMenteeSwitch from "./MentorMenteeSwitch";
 import Logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
   const [activeLink, setActiveLink] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     if (localStorage.getItem("loginType")) {
@@ -56,6 +57,13 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
     }
   }, [localStorage.getItem("loginType")]);
   const isLoggedIn = localStorage.getItem("token") ? true : false;
+  const handelCheckLoggedIn = (url) => {
+    if (url == "/evalaute" || url == "/subscription" || url == "/tools") {
+      navigate("/login");
+    } else {
+      navigate(url);
+    }
+  };
   return (
     <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold w-full  relative">
       <Link to="/" className="text-white text-base">
@@ -71,21 +79,42 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
         <ul className="hidden lg:flex xl:space-x-4">
           {navLinks.map((link, index) => (
             <li key={link.text} className="px-4 lg:px-6 py-3">
-              <a
-                href={link.href}
-                className={` text-white h-11  px-3 flex justify-center items-center rounded-lg transition-all duration-300 ${
-                  activeLink === link.text
-                    ? "bg-gradient-to-tr from-pink-500 to-blue-500"
-                    : "hover:text-black"
-                } ${
-                  index == 0
-                    ? "header-hight-light text-[18px] font-bold"
-                    : " text-[18px] font-bold"
-                }`}
-                onClick={() => handleLinkClick(link.text)}
-              >
-                {link.text}
-              </a>
+              {isLoggedIn ? (
+                <a
+                  href={link.href}
+                  className={` text-white h-11  px-3 flex justify-center items-center rounded-lg transition-all duration-300 ${
+                    activeLink === link.text
+                      ? "bg-gradient-to-tr from-pink-500 to-blue-500"
+                      : "hover:text-black"
+                  } ${
+                    index == 0
+                      ? "header-hight-light text-[15px] font-bold"
+                      : " text-[15px] font-bold"
+                  }`}
+                  onClick={() => handleLinkClick(link.text)}
+                >
+                  {link.text}
+                </a>
+              ) : (
+                <span
+                  // href={"/login"}
+                  className={` text-white h-11  px-3 flex justify-center items-center rounded-lg transition-all duration-300 ${
+                    activeLink === link.text
+                      ? "bg-gradient-to-tr from-pink-500 to-blue-500"
+                      : "hover:text-black"
+                  } ${
+                    index == 0
+                      ? "header-hight-light text-[15px] font-bold"
+                      : " text-[15px] font-bold"
+                  }`}
+                  onClick={() => {
+                    handelCheckLoggedIn(link?.href);
+                    handleLinkClick(link.text);
+                  }}
+                >
+                  {link.text}
+                </span>
+              )}
             </li>
           ))}
         </ul>
@@ -134,7 +163,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
           </label> */}
         <div className="h-9 flex flex-row bg-white rounded-lg">
           <button
-            className={`h-9 flex justify-center items-center ${
+            className={`h-9 text-[15px] flex justify-center items-center ${
               !isChecked ? "bg-[#124E66]" : "bg-white text-[#1E1E1E]"
             }`}
             onClick={handleCheckboxChange}
@@ -142,7 +171,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
             Mentor
           </button>
           <button
-            className={`h-9 flex justify-center items-center ${
+            className={`h-9 text-[15px] flex justify-center items-center ${
               isChecked ? "bg-[#124E66]" : "bg-white text-[#1E1E1E]"
             }`}
             onClick={handleCheckboxChange}
@@ -166,7 +195,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
               setIsSideBarOpen(!isSideBarOpen);
             }}
           >
-            <GiHamburgerMenu className="text-[25px]" />
+            <GiHamburgerMenu className="text-[25px] text-white" />
           </div>
         )}
 

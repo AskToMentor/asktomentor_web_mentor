@@ -3,7 +3,12 @@ import "./skill.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { getMentorSkillsData } from "../service/SignUpProcess";
 
-const Skills = ({ setSelectedSkillsID, selectedSkillsID }) => {
+const Skills = ({
+  setSelectedSkillsID,
+  selectedSkillsID,
+  setSelectedSkills,
+  selectedSkills,
+}) => {
   const availableSkills = [
     "Machine Learning",
     "Autonomous driving",
@@ -17,7 +22,6 @@ const Skills = ({ setSelectedSkillsID, selectedSkillsID }) => {
   ];
 
   const [filteredSkills, setFilteredSkills] = useState([]);
-  const [selectedSkills, setSelectedSkills] = useState([]);
   const [searchLength, setSearchLength] = useState(0);
   const [skillList, setSkillList] = useState();
   const handleSearch = (e) => {

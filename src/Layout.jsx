@@ -11,6 +11,7 @@ import { PiExamLight } from "react-icons/pi";
 import { IoNewspaper } from "react-icons/io5";
 import { TbPremiumRights } from "react-icons/tb";
 import { GoHome } from "react-icons/go";
+import { FaTools } from "react-icons/fa";
 const Layout = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   const navigate = useNavigate();
@@ -184,9 +185,22 @@ const Layout = ({ children }) => {
                   className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
+                    navigate("/tools");
+                  }}
+                >
+                  <FaTools
+                    className={`text-white`}
+                  />
+                   <p className="text-[16px] font-bold">Tools</p>
+                </div>
+                <div
+                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  onClick={() => {
+                    setIsSideBarOpen(false);
                     localStorage.removeItem("token");
+                    localStorage.clear();
                     ShowSucessmessages("You have successfully logged out");
-                    navigate("/");
+                    navigate("/login");
                   }}
                 >
                   <span>

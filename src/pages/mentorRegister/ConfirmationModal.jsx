@@ -80,7 +80,7 @@ const ConfirmationModal = ({ onClose, payload }) => {
   };
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center">
-      <div className="bg-gray-800 p-4 sm:p-8 md:p-12 rounded-lg text-center text-white w-[600px] relative h-fit">
+      <div className="bg-gray-800 p-4 rounded-lg text-center text-white w-[400px] relative h-fit">
         {/* Rounded Close Button */}
         <button
           onClick={onClose}
@@ -90,10 +90,8 @@ const ConfirmationModal = ({ onClose, payload }) => {
           <XMarkIcon className="h-5 w-5" />
         </button>
 
-        <h3 className=" text-2xl sm:text-3xl font-semibold">
-          Submit Sign Up ?
-        </h3>
-        <p className="mt-6 text-[14px] sm:text-lg">
+        <h3 className="text-[26px] font-semibold">Submit Sign Up ?</h3>
+        <p className="mt-6 text-[14px]">
           Pressing the "Continue" button confirms that your account will be
           created and will be ready to use. Other steps can be skipped if
           necessary. You will not be able to return to this step.
@@ -101,7 +99,7 @@ const ConfirmationModal = ({ onClose, payload }) => {
         <div className="mt-8 flex space-x-4">
           <button
             onClick={onClose}
-            className="w-1/2 px-3 sm:px-6 py-2 sm:py-3 md:py-3 bg-gray-900 text-white rounded-full text-center text-lg"
+            className="h-10 w-full bg-gray-900 text-[14px] rounded-full text-white text-center flex justify-center items-center"
           >
             No
           </button>
@@ -117,7 +115,7 @@ const ConfirmationModal = ({ onClose, payload }) => {
             onClick={() => {
               mentorRegisterFunction();
             }}
-            className="w-full px-3 sm:px-6 py-2 sm:py-3 md:py-3 bg-[#124E66] rounded-full text-white text-center text-lg"
+            className="w-full h-10 text-[14px] bg-[#124E66] rounded-full text-white text-center flex justify-center items-center"
           >
             Continue
           </button>

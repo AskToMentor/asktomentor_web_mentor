@@ -4,16 +4,22 @@ import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
 import "../MentorDetails/addquestion.css";
 import { IoMdAdd } from "react-icons/io";
 
-const AddQuestions = ({ setQuestionArray, questionArray }) => {
-  const [isQuestionVisible, setIsQuestionVisible] = useState(false);
-  const toggleQuestionVisibility = () => {
-    setIsQuestionVisible((prevState) => !prevState);
-  };
-  const [totalQuestion, setTotalQuestion] = useState(0);
-  console.log("totalQuestion", questionArray);
+const AddQuestions = ({
+  setQuestionArray,
+  questionArray,
+  setTotalQuestion,
+  totalQuestion,
+  setServiceSetting,
+  serviceSetting,
+  selectedDays,
+}) => {
+  console.log("totalQuestion", serviceSetting);
+  const availableDays = Object?.entries(selectedDays)
+    .filter(([day, isAvailable]) => isAvailable) // Filter days where value is true
+    .map(([day]) => day); // Map to get the day names only
   return (
     <div className="h-full min-h-[500px] overflow-hidden flex flex-row w-full gap-3">
-      <div className="h-full  rounded-lg login-container p-4 w-[75%]">
+      <div className="h-full  rounded-lg login-container p-4 w-[70%]">
         <div>
           <p className="text-[18px] font-medium">
             Setup Preparing Questionaire
@@ -100,40 +106,84 @@ const AddQuestions = ({ setQuestionArray, questionArray }) => {
           </div>
         </div>
       </div>
-      <div className="w-[25%] bg-[#1A3B4A] rounded-lg h-fit p-3">
-        <p className="text-[16px] font-medium">Service Setting</p>
-        <div className="flex flex-col gap-[2px] mt-3">
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">Name:</p>
-            <p></p>
-          </span>
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">
-              Subcategory:
-            </p>
-            <p></p>
-          </span>
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">
-              {" "}
-              Customer Type:
-            </p>
-            <p></p>
-          </span>
+      <div className="w-[30%] bg-[#1A3B4A] rounded-lg h-fit p-3">
+          <p className="text-[15px] font-medium">Service Setting</p>
+          <div className="flex flex-col gap-[10px] mt-3 w-full">
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+                Name:
+              </p>
+              <p className="text-white text-[14px] font-normal">
+                {serviceSetting?.name}
+              </p>
+            </span>
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+                Subcategory:
+              </p>
+              <p className="text-white text-[14px] font-normal">
+                {serviceSetting?.sub_category}
+              </p>
+            </span>
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+                {" "}
+                Customer Type:
+              </p>
+              <span className="text-white text-[14px] font-normal flex flex-row gap-2">
+                <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
+                  {" "}
+                  {serviceSetting?.customer_type_1}
+                </p>
+                <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
+                  {serviceSetting?.customer_type_2}
+                </p>
+              </span>
+            </span>
+          </div>
+          <div className="flex flex-col gap-[10px] mt-3 w-full">
+            <span className="flex flex-row gap-1 items-center w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+                Pricing :
+              </p>
+              <span className="text-white text-[14px] font-normal flex flex-col gap-2">
+                <span
+                  className={`${
+                    serviceSetting?.pricing_1 ? "flex" : "hidden"
+                  } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
+                >
+                  {serviceSetting?.pricing_1}
+                  {serviceSetting?.customer_type_1 == "P2P" ? "/h P2P" : ""}
+                </span>
+                <span
+                  className={`${
+                    serviceSetting?.pricing_2 ? "flex" : "hidden"
+                  } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
+                >
+                  {serviceSetting?.pricing_2}
+                  {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""}
+                </span>
+                {/* // {serviceSetting?.pricing_1}
+                // {serviceSetting?.pricing_2} */}
+              </span>
+            </span>
+            <span className="flex w-full">
+              <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%] ">
+                Date & Time:
+              </p>
+              <p className="text-white text-[14px] font-medium">
+                {availableDays.map((day, index) => (
+                  <li
+                    key={index}
+                    className="text-white text-[13px] font-normal"
+                  >
+                    {day}
+                  </li>
+                ))}
+              </p>
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col gap-[2px] mt-3">
-          <span>
-            <p className="text-[#748D92] text-[15px] font-normal">Pricing :</p>
-            <p></p>
-          </span>
-          <span className="flex justify-between">
-            <p className="text-[#748D92] text-[15px] font-normal">
-              Date & Time:
-            </p>
-            <p className="text-white text-[15px] font-medium">All Days</p>
-          </span>
-        </div>
-      </div>
     </div>
   );
 };

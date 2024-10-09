@@ -16,21 +16,21 @@ const Blogs = () => {
       <div className=" namaste-learner-gradient w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-20 items-center px-2 sm:px-4 md:px-8 lg:px-14 mb-8">
         {/* Left Section - Heading */}
         <div className="text-left w-full pt-10 ">
-          <h1 className="dashboard-home-content-font text-wrap">
+          <h1 className="dashboard-home-content-font text-wrap text-white">
             Empower Your
             <p className="text-[#124E66] text-wrap dashboard-asktomentor-font">
               Learning Journey
             </p>
           </h1>
           {/* Paragraph */}
-          <p className="font-medium italic text-[20px] leading-[30px] mt-4">
+          <p className="font-medium italic text-[20px] leading-[30px] mt-4 text-white">
             Unlock the potential within you with mentorship stories, tips, and
             guidance from experienced professionals.
           </p>
         </div>
 
         {/* Right Section */}
-        <div className="flex h-full w-full items-center justify-center ">
+        <div className="flex h-full w-full items-center justify-center  ">
           <img
             src={heroImage}
             alt="Hero Image"

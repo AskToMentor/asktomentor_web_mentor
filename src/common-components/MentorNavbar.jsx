@@ -14,12 +14,14 @@ import { GoHome } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
+import { getCurrentUserInformation } from "../utility/GetLoginType";
+import { IoOptionsOutline } from "react-icons/io5";
 
 const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   console.log("path", pathname);
-  const [isMentorSearchOpen, setIsMentorProfileOpen] = useState(false);
+  const [isMentorSearchOpen, setIsMentorProfileOpen] = useState(true);
   const [selectFilterDropdown, setSelectFilterDropdown] = useState({
     first_filter: false,
     second_filter: false,
@@ -93,6 +95,9 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
       label: "Other",
     },
   ];
+  const { firstName, lastName } = getCurrentUserInformation();
+  console.log("firstName", firstName, lastName);
+  console.log("pathname", pathname);
   return (
     <nav className="px-2 md:px-5 h-full flex justify-between items-center font-semibold  w-full relative">
       <Link to="/" className="text-white text-base">
@@ -104,12 +109,29 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
           />
         </div>
       </Link>
-      {pathname != "/" && (
+      {pathname != "/" && pathname != "/blogs" && pathname != "/tools" && pathname != "/evalaute" ? (
         <div>
           <div className="mentor-navbar-color p-2 flex flex-row items-center gap-5">
-            <div className="bg-[#1C1F28] border-blue-400 rounded-lg h-[30px] w-[40px] border-[1px] flex justify-center items-center">
-              <FaChevronLeft />
-            </div>
+            {isMentorSearchOpen ? (
+              <div
+                className="bg-[#1C1F28] border-blue-400 rounded-lg h-[30px] w-[40px] border-[1px] flex justify-center items-center cursor-pointer"
+                onClick={() => {
+                  setIsMentorProfileOpen(false);
+                }}
+              >
+                <IoOptionsOutline />
+              </div>
+            ) : (
+              <div
+                className="bg-[#1C1F28] border-blue-400 rounded-lg h-[30px] w-[40px] border-[1px] flex justify-center items-center cursor-pointer"
+                onClick={() => {
+                  setIsMentorProfileOpen(true);
+                }}
+              >
+                <FaChevronLeft />
+              </div>
+            )}
+
             {isMentorSearchOpen ? (
               <div className="h-full bg-[#2A2E36] flex flex-row gap-5 items-center rounded-lg px-4">
                 <span>
@@ -278,9 +300,9 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
 
             <div
               className="p-1 h-full px-4 flex items-center gap-3 bg-[#2A2E36] rounded-lg cursor-pointer"
-              onClick={() => {
-                setIsMentorProfileOpen(!isMentorSearchOpen);
-              }}
+              // onClick={() => {
+              //   setIsMentorProfileOpen(!isMentorSearchOpen);
+              // }}
             >
               <span>
                 <IoSearchOutline className="text-white text-[20px]" />
@@ -289,10 +311,12 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
             </div>
           </div>
         </div>
+      ) : (
+        ""
       )}
 
       <div className="flex items-center gap-3">
-        {pathname != "/" && (
+        {pathname != "/" && pathname != "/blogs" && pathname != "/tools" && pathname != "/evalaute"  && (
           <>
             <div
               onClick={() => {
@@ -330,7 +354,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                 } text-[35px] cursor-pointer `}
               />
             </div>
-            <div
+            {/* <div
               onClick={() => {
                 navigate("/tools");
               }}
@@ -340,17 +364,20 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                   pathname == "/tools" ? "text-[#124E66]" : "text-white"
                 } text-[25px] cursor-pointer `}
               />
-            </div>
+            </div> */}
           </>
         )}
 
         <div
-          className="bg-[#124E66] h-12 w-[50px] cursor-pointer rounded-full flex justify-center items-center"
+          className="bg-[#124E66] text-white h-12 w-[50px] cursor-pointer rounded-full flex justify-center items-center"
           onClick={() => {
             setIsSideBarOpen(!isSideBarOpen);
           }}
         >
-          <p className="text-[21px]">FA</p>
+          <p className="text-[21px]">
+            {firstName ? firstName[0] : ""}
+            {lastName ? lastName[0] : ""}
+          </p>
         </div>
       </div>
     </nav>

@@ -46,6 +46,18 @@ const AppServices = ({
   setServices,
   services,
   generalSettingsId,
+  setTotalQuestion,
+  totalQuestion,
+  setAllDaysChecked,
+  allDaysChecked,
+  setSelectedDays,
+  selectedDays,
+  setGlobalTimeRanges,
+  globalTimeRanges,
+  setTimeForDays,
+  timeForDays,
+  setServiceSetting,
+  serviceSetting,
 }) => {
   console.log("step...", step);
   const [activeStep, setActiveStep] = React.useState(step);
@@ -60,6 +72,9 @@ const AppServices = ({
             generalSetting={generalSetting}
             setServices={setServices}
             services={services}
+            setServiceSetting={setServiceSetting}
+            serviceSetting={serviceSetting}
+            selectedDays={selectedDays}
           />
         );
       case 6:
@@ -67,11 +82,30 @@ const AppServices = ({
           <AddQuestions
             setQuestionArray={setQuestionArray}
             questionArray={questionArray}
+            setTotalQuestion={setTotalQuestion}
+            totalQuestion={totalQuestion}
+            setServiceSetting={setServiceSetting}
+            serviceSetting={serviceSetting}
+            selectedDays={selectedDays}
           />
         );
       case 7:
         return (
-          <ServicePage step={step} generalSettingsId={generalSettingsId} setStep={setStep}/>
+          <ServicePage
+            step={step}
+            generalSettingsId={generalSettingsId}
+            setStep={setStep}
+            setAllDaysChecked={setAllDaysChecked}
+            allDaysChecked={allDaysChecked}
+            setSelectedDays={setSelectedDays}
+            selectedDays={selectedDays}
+            setGlobalTimeRanges={setGlobalTimeRanges}
+            globalTimeRanges={globalTimeRanges}
+            setTimeForDays={setTimeForDays}
+            timeForDays={timeForDays}
+            setServiceSetting={setServiceSetting}
+            serviceSetting={serviceSetting}
+          />
         );
       default:
         return <div>Unknown step</div>;

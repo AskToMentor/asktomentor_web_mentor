@@ -12,6 +12,7 @@ import { auth, provider } from "../../utility/firebase";
 import { signInWithPopup } from "firebase/auth";
 import axios from "axios";
 import Loader from "../../Loader/Loader";
+import { getCurrentUserInfo } from "../../service/SignUpProcess";
 const MentorLogin = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const MentorLogin = () => {
           if (token) {
             localStorage.setItem("token", token);
           }
+          getCurrentUserData();
           // ShowSucessmessages("You have successfully logged in");
           navigate("/mentor-panel");
         }
@@ -93,6 +95,7 @@ const MentorLogin = () => {
           if (token) {
             localStorage.setItem("token", token);
           }
+          getCurrentUserData();
           // ShowSucessmessages("You have successfully logged in");
           navigate("/mentor-panel");
         }
@@ -103,13 +106,30 @@ const MentorLogin = () => {
       setLoading(false);
     }
   };
+  const getCurrentUserData = async () => {
+    try {
+      setLoading(true);
+      const response = await getCurrentUserInfo();
+      console.log(".....", response);
+      if (response?.success) {
+        const data = response?.data;
+        console.log("response", response);
+        localStorage.setItem("currentUser", JSON.stringify(data));
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log("error is", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="h-full overflow-y-auto">
       {loading && Loader(loading)}
 
-      <div className="login-container mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[5rem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[95%] mobile-lg:w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[25%] mx-auto font-sans">
-        <div className="flex flex-col gap-4">
+      <div className="login-container mt-[1rem] mb-10 sm:mt-[3rem] md:mt-[2mrem] p-4 md:p-5 md:pt-5 overflow-y-auto rounded-lg text-white w-[95%] mobile-lg:w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[25%] mx-auto font-sans">
+        <div className="flex flex-col gap-1">
           <div className="text-[19px] font-bold text-left max-w-2xl flex flex-col gap-2 ">
             {getLoginType == "Mentee"
               ? "Sign In As Mentee"
@@ -118,7 +138,6 @@ const MentorLogin = () => {
               Welcome back! Please enter your details
             </p>
           </div>
-
           <div className="flex flex-col gap-2">
             {/* <p className="text-[17px] font-semibold">Email or username</p> */}
             <input
@@ -129,11 +148,11 @@ const MentorLogin = () => {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              className="w-full p-2 md:p-3 bg-gray-800 rounded text-[16px] md:text-lg h-11 sm:h-14"
+              className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
             />
           </div>
-          <div className="flex flex-col gap-2 mt-3">
-            <div className="relative bg-gray-800 rounded flex px-2 items-center gap-2 h-11 sm:h-14">
+          <div className="flex flex-col gap-0 mt-3">
+            <div className="relative bg-gray-800 rounded flex px-2 items-center gap-2 h-10">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -142,7 +161,7 @@ const MentorLogin = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-                className="w-full bg-gray-800 rounded text-[16px] md:text-lg focus:outline-none"
+                className="w-full bg-gray-800 rounded focus:outline-none text-[14px]"
               />
               <button
                 type="button"
@@ -150,20 +169,20 @@ const MentorLogin = () => {
                 className="p-0 m-0 h-fit bg-gray-800 focus:outline-none"
               >
                 {showPassword ? (
-                  <EyeSlashIcon className="h-6 w-6" />
+                  <EyeSlashIcon className="h-5 w-5 text-white" />
                 ) : (
-                  <EyeIcon className="h-6 w-6" />
+                  <EyeIcon className="h-5 w-5 text-white" />
                 )}
               </button>
             </div>
           </div>
-          <div className="flex flex-row  font-medium gap-3">
-            <p className=" text-[17px]">Forgot password ?</p>
-            <p className=" text-[17px]">Restore it</p>
+          <div className="flex flex-row mt-2 font-medium gap-3">
+            <p className=" text-[15px]">Forgot password ?</p>
+            <p className=" text-[15px]">Restore it</p>
           </div>
           <div className="mt-1 sm:mt-4">
             <button
-              className="bg-[#124E66] w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold shadow-lg z-50"
+              className="bg-[#124E66] w-full text-[16px] h-10 sm:h-10 flex justify-center items-center font-semibold shadow-lg z-50"
               onClick={() => {
                 mentorLoginFunction();
               }}
@@ -173,7 +192,7 @@ const MentorLogin = () => {
           </div>
           <div className="mt-1 sm:mt-4">
             <button
-              className="border-[2px] gap-3 bg-white text-black w-full text-[18px] h-11 sm:h-12 flex justify-center items-center font-semibold"
+              className="border-[2px] gap-3 bg-white text-black w-full text-[16px] h-11 sm:h-11 flex justify-center items-center font-semibold"
               onClick={handleLogin}
               type="button"
             >
@@ -183,12 +202,12 @@ const MentorLogin = () => {
           </div>
           <div className="w-full flex flex-col gap-3 mt-2">
             <span className="flex gap-3">
-              <p className="cursor-pointer text-[17px] font-medium">
+              <p className="cursor-pointer text-[15px] font-medium">
                 {" "}
                 Do not have an account?{" "}
               </p>
               <p
-                className="cursor-pointer text-[17px] font-medium"
+                className="cursor-pointer text-[15px] font-medium"
                 onClick={() => {
                   navigate("/mentor-signup");
                 }}
@@ -198,29 +217,29 @@ const MentorLogin = () => {
             </span>
           </div>
           <div className="w-full flex flex-col gap-3">
-            <span className="flex gap-3">
-              <p className=" text-[14px] font-light flex flex-wrap gap-2">
-                {" "}
+            <div className="flex flex-row gap-1 flex-wrap text-[13px] font-light">
+              {" "}
+              <p className="text-nowrap">
                 The site is protected by reCAPTCHA and the Google{" "}
-                <div className="flex items-center gap-2">
-                  <Link to="/privacy-policy">
-                    <p className="text-white text-[15px] font-semibold">
-                      Privacy and Policy
-                    </p>
-                  </Link>{" "}
-                  and{" "}
-                </div>
-                <div className="flex items-center gap-2">
-                  <Link to="/terms-conditions">
-                    {" "}
-                    <p className="text-white text-[15px] font-semibold">
-                      Terms and Service
-                    </p>
-                  </Link>{" "}
-                  apply
-                </div>
               </p>
-            </span>
+              <div className="flex items-center gap-1">
+                <Link to="/privacy-policy">
+                  <p className="text-white text-[14px] text-nowrap font-semibold">
+                    Privacy and Policy
+                  </p>
+                </Link>{" "}
+                and{" "}
+              </div>
+              <div className="flex items-center gap-1">
+                <Link to="/terms-conditions">
+                  {" "}
+                  <p className="text-white text-[14px] font-semibold">
+                    Terms and Service
+                  </p>
+                </Link>{" "}
+                apply
+              </div>
+            </div>
           </div>
         </div>
       </div>

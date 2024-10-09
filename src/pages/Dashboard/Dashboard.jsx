@@ -3,7 +3,10 @@ import React from "react";
 import Image1 from "../../assets/guru_image-removebg_edited.png";
 import Mentor from "../../common-components/mentor/Mentors";
 import { Link, useNavigate } from "react-router-dom";
-import { GetLoginType } from "../../utility/GetLoginType";
+import {
+  getCurrentUserInformation,
+  GetLoginType,
+} from "../../utility/GetLoginType";
 import HowWorks from "../../common-components/mentor/HowWorks";
 import StepInvolved from "../../common-components/mentor/StepInvolved";
 import Guide from "../../common-components/mentor/Guide";
@@ -18,6 +21,7 @@ const Dashboard = () => {
   const getLoginType = GetLoginType();
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("token") ? true : false;
+  const { firstName, lastName } = getCurrentUserInformation();
   return (
     <div className="h-full overflow-y-auto">
       {/* Header Section */}
@@ -34,7 +38,8 @@ const Dashboard = () => {
               Where Curiosity Meets Knowledge
             </pre>
             <p className="font-medium italic text-[18px] leading-[30px]">
-              Empower mind. Share your insights. Share the Future. Become a mentor and inspire the next generation today.
+              Empower mind. Share your insights. Share the Future. Become a
+              mentor and inspire the next generation today.
             </p>
             {/* <p className="text-lg mb-2 text-white italic">
               <span className="gradient-text1 text-xl">{"{ "}</span>
@@ -68,7 +73,9 @@ const Dashboard = () => {
             )}
             {isLoggedIn && (
               <div className="bg-[#124E66] w-fit flex  items-center gap-2 px-4 py-[10px] rounded-full mt-8">
-                <p className="text-[20px] text-white font-semibold tracking-wide	">Welcome Faisal Ahmed</p>
+                <p className="text-[20px] text-white font-semibold tracking-wide	">
+                  Welcome {firstName + lastName}{" "}
+                </p>
                 <span>
                   <PiHandsPrayingDuotone className="text-white text-[30px]" />
                 </span>
