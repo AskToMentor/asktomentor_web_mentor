@@ -291,7 +291,7 @@
 /* Custom CSS */
 .swal-custom-popup {
   width: 260px; /* Set the desired width */
-  height: 230px;
+  height: 210px;
   padding: 4px; /* Add padding for better spacing */
   border-radius: 10px; /* Optional: Customize border radius */
   overflow: hidden;
@@ -306,8 +306,9 @@
 .swal-custom-image {
   width: 100%; /* Adjust image width to fit the container */
   max-width: 100%; /* Ensure the image doesn't overflow */
-  height: 180px; /* Maintain aspect ratio */
+  height: 150px; /* Maintain aspect ratio */
   /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .swal-button-container {
@@ -323,6 +324,10 @@
   padding: 10px 20px; /* Button padding */
   cursor: pointer; /* Pointer cursor on hover */
 }
+.swal2-html-container{
+  overflow: hidden !important;
+  padding: 0px !important;
+}
 button.swal2-confirm.swal2-styled {
   height: 35px;
   width: 40px;
@@ -334,6 +339,9 @@ button.swal2-confirm.swal2-styled {
 }
 .swal2-confirm {
   background-color: #212a31 !important;
+}
+.swal2-container{
+  overflow: hidden;
 }
 .mentor-navbar-color {
   box-shadow: -4px 2px 10px 8px #274760;
