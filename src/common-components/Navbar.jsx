@@ -88,8 +88,8 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                       : "hover:text-black"
                   } ${
                     index == 0
-                      ? "header-hight-light text-[15px] font-bold"
-                      : " text-[15px] font-bold"
+                      ? "header-hight-light text-[14px] font-bold"
+                      : " text-[14px] font-bold"
                   }`}
                   onClick={() => handleLinkClick(link.text)}
                 >
@@ -104,8 +104,8 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                       : "hover:text-black"
                   } ${
                     index == 0
-                      ? "header-hight-light text-[15px] font-bold"
-                      : " text-[15px] font-bold"
+                      ? "header-hight-light text-[14px] font-bold"
+                      : " text-[14px] font-bold"
                   }`}
                   onClick={() => {
                     handelCheckLoggedIn(link?.href);
@@ -163,7 +163,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
           </label> */}
         <div className="h-9 flex flex-row bg-white rounded-lg">
           <button
-            className={`h-9 text-[15px] flex justify-center items-center ${
+            className={`h-9 text-[14px] flex justify-center items-center ${
               !isChecked ? "bg-[#124E66]" : "bg-white text-[#1E1E1E]"
             }`}
             onClick={handleCheckboxChange}
@@ -171,7 +171,7 @@ const Navbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
             Mentor
           </button>
           <button
-            className={`h-9 text-[15px] flex justify-center items-center ${
+            className={`h-9 text-[14px] flex justify-center items-center ${
               isChecked ? "bg-[#124E66]" : "bg-white text-[#1E1E1E]"
             }`}
             onClick={handleCheckboxChange}

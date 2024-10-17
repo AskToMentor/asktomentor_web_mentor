@@ -38,92 +38,100 @@ const MentorRegister = () => {
   return (
     <div className="h-full overflow-y-auto">
       <div className="login-container mb-10 mt-[1rem] sm:mt-[3rem] md:mt-[1rem] p-4 md:p-3 rounded-lg text-white w-[95%] mobile-lg:w-[80%] sm:w-[60%] md:w-[60%] lg:w-[55%] xl:w-[35%] mx-auto font-sans">
-        <span className="text-lg">User Information</span>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={(e) =>
-            setFormData({ ...formData, firstName: e.target.value })
-          }
-          className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={(e) =>
-            setFormData({ ...formData, lastName: e.target.value })
-          }
-          className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
-        />
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={(e) =>
-            setFormData({ ...formData, username: e.target.value })
-          }
-          className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
-        />
-        <span className="text-[16px]">Security</span>
-
-        <input
-          type="text"
-          name="password"
-          placeholder="Email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
-        />
-        <div className="relative rounded flex items-center text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800">
+        <div className="flex flex-col gap-1">
+          <span className="text-[18px] font-semibold pb-1">
+            User Information
+          </span>
           <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            value={formData.password}
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
             onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
+              setFormData({ ...formData, firstName: e.target.value })
             }
-            className="w-full  bg-gray-800 h-full rounded text-[14px] pr-14 focus:outline-none "
+            className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
           />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="p-0 m-0 h-fit bg-gray-800"
-          >
-            {showPassword ? (
-              <EyeSlashIcon className="h-5 w-5 text-white" />
-            ) : (
-              <EyeIcon className="h-5 w-5" />
-            )}
-          </button>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={(e) =>
+              setFormData({ ...formData, lastName: e.target.value })
+            }
+            className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
+          />
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
+            className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
+          />
         </div>
-        <div className="relative rounded flex items-center text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800">
+        <div className="flex flex-col gap-1">
+          <span className="text-[18px] font-semibold pb-1 pt-1">Security</span>
+
           <input
-            type={showConfirmPassword ? "text" : "password"}
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
+            type="text"
+            name="password"
+            placeholder="Email"
+            value={formData.email}
             onChange={(e) =>
-              setFormData({ ...formData, confirmPassword: e.target.value })
+              setFormData({ ...formData, email: e.target.value })
             }
-            className="w-full  bg-gray-800 h-full rounded text-[14px] pr-14 focus:outline-none "
+            className="w-full text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800 rounded focus:outline-none"
           />
-          <button
-            type="button"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="p-0 m-0 h-fit bg-gray-800"
-          >
-            {showConfirmPassword ? (
-              <EyeSlashIcon className="h-5 w-5" />
-            ) : (
-              <EyeIcon className="h-5 w-5" />
-            )}
-          </button>
+          <div className="relative rounded flex items-center text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              className="w-full  bg-gray-800 h-full rounded text-[14px] pr-14 focus:outline-none "
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="p-0 m-0 h-fit bg-gray-800"
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5 text-white" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          </div>
+          <div className="relative rounded flex items-center text-[14px] h-10 p-2 md:p-3 my-[6px] md:my-1 bg-gray-800">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={(e) =>
+                setFormData({ ...formData, confirmPassword: e.target.value })
+              }
+              className="w-full  bg-gray-800 h-full rounded text-[14px] pr-14 focus:outline-none "
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="p-0 m-0 h-fit bg-gray-800"
+            >
+              {showConfirmPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          </div>
         </div>
         <div className="my-3 text-sm">
           <p className="text-white font-semibold">Password Must Contain:</p>
@@ -148,8 +156,16 @@ const MentorRegister = () => {
         </label>
         <div className="mt-2 text-sm">
           This site is protected by reCAPTCHA and the Google
-          <span className="text-white font-semibold"> "Privacy Policy"</span> and
-          <span className="text-white font-semibold"> "Terms of Service"</span> apply
+          <span className="text-white font-semibold">
+            {" "}
+            "Privacy Policy"
+          </span>{" "}
+          and
+          <span className="text-white font-semibold">
+            {" "}
+            "Terms of Service"
+          </span>{" "}
+          apply
         </div>
         {showModal && (
           <ConfirmationModal onClose={handleCloseModal} payload={formData} />

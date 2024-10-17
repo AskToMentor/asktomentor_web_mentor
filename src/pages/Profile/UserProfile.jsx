@@ -56,29 +56,29 @@ const UserProfile = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-[#D3D9D5] text-[14px] font-medium">
+                <p className="text-[#D3D9D5] text-[12px] font-medium">
                   FAISAL AHMED
                 </p>
-                <p className="text-[#D3D9D5] text-[13px] font-light">
+                <p className="text-[#D3D9D5] text-[10px] font-light">
                   alexarawles@gmail.com
                 </p>
-                <p className="text-[#D3D9D5] text-[13px] font-light">
+                <p className="text-[#D3D9D5] text-[10px] font-light">
                   Udaipur, Rajasthan
                 </p>
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <p className="text-[#D3D9D5] text-[14px] font-medium">
+              <p className="text-[#D3D9D5] text-[11px] font-medium">
                 Average service cost
               </p>
               <span className="border-[1px] border-[#748D92] flex flex-row items-center p-1 w-fit px-3 rounded-lg">
-                <p className="text-white text-[13px] font-light">$</p>
-                <p className="text-[#748D92] text-[13px]font-light">35</p>
-                <p className="text-white text-[13px] font-light">/h P2P</p>
+                <p className="text-white text-[11px] font-light">$</p>
+                <p className="text-white text-[11px] font-light">35</p>
+                <p className="text-white text-[11px] font-light">/h P2P</p>
               </span>
             </div>
           </div>
-          <div className="bg-[#2F3B44] col-span-4 rounded-lg h-[250px] p-3 text-[15px] font-medium">
+          <div className="bg-[#2F3B44] col-span-4 rounded-lg h-[250px] p-3 text-[12px] font-medium">
             Description
           </div>
         </div>
@@ -89,10 +89,10 @@ const UserProfile = () => {
               className="flex flex-col bg-[#748D9291] rounded-lg justify-center items-center"
               key={index}
             >
-              <p className="text-[#D3D9D5] text-[21px] font-medium">
+              <p className="text-[#D3D9D5] text-[14px] font-medium">
                 {data?.count}
               </p>
-              <p className="text-[#D3D9D5] text-[13px] font-medium">
+              <p className="text-[#D3D9D5] text-[11px] font-medium">
                 {data?.name}
               </p>
             </div>
@@ -102,43 +102,43 @@ const UserProfile = () => {
         <div className="grid grid-cols-4 gap-5">
           <div className="bg-[#2F3B44] rounded-lg w-full h-[300px] p-3 flex flex-col gap-5">
             <div className="w-full flex flex-row items-center">
-              <p className="text-[#D3D9D5] text-[14px] font-medium w-[50%]">
+              <p className="text-[#D3D9D5] text-[12px] font-medium w-[50%]">
                 Services
               </p>
               <span className="flex flex-row justify-between w-[50%]">
                 <span className="flex flex-row gap-2">
                   <input type="radio" className="h-5 w-5" />
-                  <p className="text-[#D3D9D5] text-[13px] font-medium">
+                  <p className="text-[#D3D9D5] text-[11px] font-medium">
                     P2P/h
                   </p>
                 </span>
                 <span className="flex flex-row gap-2">
                   <input type="radio" className="h-5 w-5" />
-                  <p className="text-[#D3D9D5] text-[13px] font-medium">
+                  <p className="text-[#D3D9D5] text-[11px] font-medium">
                     P2P/h
                   </p>
                 </span>
               </span>
             </div>
             <div className="w-full flex flex-row items-center">
-              <p className="text-[#D3D9D5] text-[14px] font-medium w-[50%]">
+              <p className="text-[#D3D9D5] text-[12px] font-medium w-[50%]">
                 1 to 1
               </p>
               <span className="flex flex-row justify-between w-[50%]">
-                <span className="bg-[#124E66] p-1 text-[13px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
+                <span className="bg-[#124E66] p-1 text-[11px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
                   $ 200/h
                 </span>
-                <span className="bg-[#124E66] p-1 text-[13px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
+                <span className="bg-[#124E66] p-1 text-[11px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
                   $ 200/h
                 </span>
               </span>
             </div>
             <div className="w-full flex flex-row items-center">
-              <p className="text-[#D3D9D5] text-[14px] font-medium w-[50%]">
+              <p className="text-[#D3D9D5] text-[12px] font-medium w-[50%]">
                 Career Coaching
               </p>
               <span className="flex flex-row justify-between w-[50%]">
-                <span className="bg-[#124E66] p-1 text-[13px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
+                <span className="bg-[#124E66] p-1 text-[11px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
                   $ 200/h
                 </span>
               </span>
@@ -147,21 +147,21 @@ const UserProfile = () => {
           <div className="col-span-3  h-[300px]">
             <div className="w-full h-full flex flex-col gap-4">
               <div className="bg-[#2F3B44] h-[50%] rounded-lg p-[10px] flex flex-col gap-2">
-                <p className="text-[#D3D9D5] text-[14px] font-medium">
+                <p className="text-[#D3D9D5] text-[12px] font-medium">
                   Experience
                 </p>
-                <input
+                <textarea
                   type="text"
-                  className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-20"
+                  className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-20 text-[11px] focus:outline-none p-2"
                 />
               </div>
               <div className="bg-[#2F3B44] h-[50%] rounded-lg p-[10px] flex flex-col gap-2">
-                <p className="text-[#D3D9D5] text-[14px] font-medium">
+                <p className="text-[#D3D9D5] text-[12px] font-medium">
                   Education
                 </p>
-                <input
+                <textarea
                   type="text"
-                  className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-20"
+                  className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-20 text-[11px] focus:outline-none p-2"
                 />
               </div>
             </div>
@@ -171,14 +171,14 @@ const UserProfile = () => {
         <div className="grid grid-cols-4 gap-5">
           <div className="bg-[#2F3B44] rounded-lg h-[250px] p-3">
             <div className="flex flex-col gap-5">
-              <p className="text-[#D3D9D5] text-[14px] font-medium">Skills</p>
+              <p className="text-[#D3D9D5] text-[12px] font-medium">Skills</p>
               <div className="flex flex-wrap gap-3">
                 {skills?.map((data, index) => (
                   <div
                     key={index}
                     className="bg-[#124E66] text-white px-8 w-fit h-9 rounded-full p-2"
                   >
-                    <p className="text-white text-[13px] font-normal">
+                    <p className="text-white text-[11px] font-normal">
                       {data?.name}
                     </p>
                   </div>
@@ -213,12 +213,12 @@ const UserProfile = () => {
         <div className="grid grid-cols-4 gap-5">
           <div className="bg-[#2F3B44] rounded-lg h-[250px] p-3">
             <div className="flex flex-col gap-3 h-full">
-              <p className="text-[#D3D9D5] text-[14px] font-medium">
+              <p className="text-[#D3D9D5] text-[12px] font-medium">
                 Languages
               </p>
-              <input
+              <textarea
                 type="text"
-                className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-full"
+                className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-full text-[11px] focus:outline-none p-2"
               />
             </div>
           </div>
@@ -248,10 +248,10 @@ const UserProfile = () => {
         <div className="pb-16">
           <div className="bg-[#2F3B44] rounded-lg h-[200px] p-3">
             <div className="flex flex-col gap-2 h-full">
-              <p className="text-[#D3D9D5] text-[14px] font-medium">Comments</p>
-              <input
+              <p className="text-[#D3D9D5] text-[12px] font-medium">Comments</p>
+              <textarea
                 type="text"
-                className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-[150px]"
+                className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-full text-[11px] focus:outline-none p-2"
               />
             </div>
           </div>

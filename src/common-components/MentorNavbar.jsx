@@ -111,7 +111,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
       </Link>
       {pathname != "/" && pathname != "/blogs" && pathname != "/tools" && pathname != "/evalaute" ? (
         <div>
-          <div className="mentor-navbar-color p-2 flex flex-row items-center gap-5">
+          <div className="mentor-navbar-color p-2 flex flex-row items-center gap-5 h-14">
             {isMentorSearchOpen ? (
               <div
                 className="bg-[#1C1F28] border-blue-400 rounded-lg h-[30px] w-[40px] border-[1px] flex justify-center items-center cursor-pointer"
@@ -139,7 +139,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                 </span>
                 <input
                   type="text"
-                  className="bg-[#2A2E36] w-[420px] h-full focus:outline-none"
+                  className="bg-[#2A2E36] w-[420px] focus:outline-none"
                 />
               </div>
             ) : (
@@ -326,7 +326,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
               <GoHome
                 className={`${
                   pathname == "/mentor-panel" ? "text-[#124E66]" : "text-white"
-                } text-[35px] cursor-pointer `}
+                } text-[30px] cursor-pointer `}
               />
             </div>
             <div
@@ -337,11 +337,11 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
               <FaCalendarDays
                 className={`${
                   pathname == "/calender" ? "text-[#124E66]" : "text-white"
-                } text-[30px] cursor-pointer `}
+                } text-[22px] cursor-pointer `}
               />
             </div>
             <div>
-              <IoMdNotificationsOutline className="text-white text-[35px]" />
+              <IoMdNotificationsOutline className="text-white text-[30px]" />
             </div>
             <div
               onClick={() => {
@@ -351,7 +351,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
               <PiChatTeardropText
                 className={`${
                   pathname == "/chat" ? "text-[#124E66]" : "text-white"
-                } text-[35px] cursor-pointer `}
+                } text-[27px] cursor-pointer `}
               />
             </div>
             {/* <div

@@ -84,13 +84,13 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Right Section */}
-        <div className="flex h-full w-full items-center justify-center sm:justify-end">
+        {/* <div className="flex h-full w-full items-center justify-center sm:justify-end">
           <img
             src={Image1}
             alt="Icon"
             className="h-[600px] fle justify-center items-center sm:h-[550px] lg:h-[650px] "
           />
-        </div>
+        </div> */}
       </div>
       <div className="px-2 sm:px-4 md:px-8 lg:px-14">
         <Guide />

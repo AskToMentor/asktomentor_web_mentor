@@ -49,7 +49,7 @@ const ManuallySignUpForm = ({}) => {
     if (file) {
       const payload = {
         profile_image: file,
-        userId: "73088369",
+        userId: registration_user_id,
       };
       const image_response = saveProfileImage(payload);
       console.log("image_response", image_response);
@@ -225,6 +225,7 @@ const ManuallySignUpForm = ({}) => {
           subCategoryId: generalSetting?.subCategoryId,
           desc: generalSetting?.desc,
           serviceType: JSON.stringify(services),
+          userId: registration_user_id,
         };
         console.log("payload", payload);
         const response = await saveMentorQuestion(payload);

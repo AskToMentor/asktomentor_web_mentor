@@ -104,97 +104,96 @@ const Layout = ({ children }) => {
                 <span>
                   <IoIosLogIn className="text-[25px]" />
                 </span>
-                <p className="text-[18px] lg:text-[16px] font-bold">Login</p>
+                <p className="text-[18px] lg:text-[14px] font-bold">Login</p>
               </div>
             )}
             {isLoggedIn && (
-              <div className="flex flex-col gap-2 mt-2">
+              <div className="flex flex-col gap-2 mt-2 z-50">
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
                     navigate("/mentor-panel");
                   }}
                 >
                   <span>
-                    <GoHome className="text-[25px]" />
+                    <GoHome className="text-[21px]" />
                   </span>
-                  <p className="text-[16px] font-bold">Home</p>
+                  <p className="text-[14px] font-bold">Home</p>
                 </div>
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
                     navigate("/mentor-profile");
                   }}
                 >
                   <span>
-                    <CgProfile className="text-[25px]" />
+                    <CgProfile className="text-[21px]" />
                   </span>
-                  <p className="text-[16px] font-bold">Profile</p>
+                  <p className="text-[14px] font-bold">Profile</p>
                 </div>
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
-                  onClick={() => {
-                    setIsSideBarOpen(false);
-                    navigate("/setting");
-                  }}
-                >
-                  <span>
-                    <IoSettingsOutline className="text-[25px]" />
-                  </span>
-                  <p className="text-[16px] font-bold">Settings</p>
-                </div>
-                <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
                     navigate("/evalaute");
                   }}
                 >
                   <span>
-                    <PiExamLight className="text-[25px]" />
+                    <PiExamLight className="text-[21px]" />
                   </span>
-                  <p className="text-[16px] font-bold">Evaluate</p>
+                  <p className="text-[14px] font-bold">Evaluate</p>
                 </div>
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
-                    navigate("/subscription");
+                    navigate("/tools");
                   }}
                 >
-                  <span>
-                    <TbPremiumRights className="text-[25px]" />
-                  </span>
-                  <p className="text-[16px] font-bold">Subscription</p>
+                  <FaTools className={`text-white`} />
+                  <p className="text-[14px] font-bold">Tools</p>
                 </div>
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
                     navigate("/blogs");
                   }}
                 >
                   <span>
-                    <IoNewspaper className="text-[25px]" />
+                    <IoNewspaper className="text-[21px]" />
                   </span>
-                  <p className="text-[16px] font-bold">Blogs</p>
+                  <p className="text-[14px] font-bold">Blogs</p>
                 </div>
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
-                    navigate("/tools");
+                    navigate("/subscription");
                   }}
                 >
-                  <FaTools
-                    className={`text-white`}
-                  />
-                   <p className="text-[16px] font-bold">Tools</p>
+                  <span>
+                    <TbPremiumRights className="text-[21px]" />
+                  </span>
+                  <p className="text-[14px] font-bold">Subscription</p>
                 </div>
                 <div
-                  className="flex flex-row items-center gap-5 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
+                  onClick={() => {
+                    setIsSideBarOpen(false);
+                    navigate("/setting");
+                  }}
+                >
+                  <span>
+                    <IoSettingsOutline className="text-[21px]" />
+                  </span>
+                  <p className="text-[14px] font-bold">Settings</p>
+                </div>
+
+                <div
+                  className="flex flex-row items-center gap-3 cursor-pointer w-[100%] hover:bg-[#748D9299] h-10 px-2 rounded-lg"
                   onClick={() => {
                     setIsSideBarOpen(false);
                     localStorage.removeItem("token");
@@ -204,9 +203,9 @@ const Layout = ({ children }) => {
                   }}
                 >
                   <span>
-                    <CiLogout className="text-[25px]" />
+                    <CiLogout className="text-[21px]" />
                   </span>
-                  <p className="text-[16px] font-bold">Logout</p>
+                  <p className="text-[14px] font-bold">Logout</p>
                 </div>
               </div>
             )}
