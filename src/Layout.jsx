@@ -204,7 +204,7 @@ const Layout = ({ children }) => {
                     setIsSideBarOpen(false);
                     localStorage.removeItem("token");
                     localStorage.clear();
-                    ShowSucessmessages("You have successfully logged out");
+                    // ShowSucessmessages("You have successfully logged out");
                     navigate("/login");
                   }}
                 >

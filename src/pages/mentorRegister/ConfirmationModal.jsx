@@ -93,8 +93,7 @@ const ConfirmationModal = ({ onClose, payload }) => {
         <h3 className="text-[26px] font-semibold">Submit Sign Up ?</h3>
         <p className="mt-6 text-[14px]">
           Pressing the "Continue" button confirms that your account will be
-          created and will be ready to use. Other steps can be skipped if
-          necessary. You will not be able to return to this step.
+          created and will be ready to use.
         </p>
         <div className="mt-8 flex space-x-4">
           <button
