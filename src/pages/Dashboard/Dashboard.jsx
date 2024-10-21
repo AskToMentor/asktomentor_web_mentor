@@ -1,6 +1,7 @@
 import React from "react";
 // import Image1 from "../../assets/guru_image.png";
 import Image1 from "../../assets/guru_image-removebg_edited.png";
+import Image2 from "../../assets/ATM.png";
 import Mentor from "../../common-components/mentor/Mentors";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -23,7 +24,7 @@ const Dashboard = () => {
   const isLoggedIn = localStorage.getItem("token") ? true : false;
   const { firstName, lastName } = getCurrentUserInformation();
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto ">
       {/* Header Section */}
       <div className="w-full h-auto lg:h-[700px] mx-auto grid grid-cols-1 sm:grid-cols-2 items-center">
         <div className="flex justify-center h-full pl-10 sm:pt-12 lg:pt-28">
@@ -84,13 +85,13 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Right Section */}
-        {/* <div className="flex h-full w-full items-center justify-center sm:justify-end">
+        <div className="flex w-full items-start justify-center sm:justify-end h-[600px] sm:h-[550px] lg:h-[650px] mb-10">
           <img
-            src={Image1}
+            src={Image2}
             alt="Icon"
-            className="h-[600px] fle justify-center items-center sm:h-[550px] lg:h-[650px] "
+            className=" fle justify-center items-center h-full "
           />
-        </div> */}
+        </div>
       </div>
       <div className="px-2 sm:px-4 md:px-8 lg:px-14">
         <Guide />

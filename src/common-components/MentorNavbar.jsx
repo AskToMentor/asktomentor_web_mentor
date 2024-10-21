@@ -109,7 +109,11 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
           />
         </div>
       </Link>
-      {pathname != "/" && pathname != "/blogs" && pathname != "/tools" && pathname != "/evalaute" ? (
+      {pathname != "/" &&
+      pathname != "/blogs" &&
+      pathname != "/tools" &&
+      pathname != "/evalaute" &&
+      pathname != "/mentor-profile" ? (
         <div>
           <div className="mentor-navbar-color p-2 flex flex-row items-center gap-5 h-14">
             {isMentorSearchOpen ? (
@@ -119,7 +123,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                   setIsMentorProfileOpen(false);
                 }}
               >
-                <IoOptionsOutline />
+                <IoOptionsOutline className="text-white" />
               </div>
             ) : (
               <div
@@ -128,7 +132,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                   setIsMentorProfileOpen(true);
                 }}
               >
-                <FaChevronLeft />
+                <FaChevronLeft className="text-white" />
               </div>
             )}
 
@@ -139,7 +143,7 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                 </span>
                 <input
                   type="text"
-                  className="bg-[#2A2E36] w-[420px] focus:outline-none"
+                  className="bg-[#2A2E36] w-[420px] focus:outline-none text-white text-[13px]"
                 />
               </div>
             ) : (
@@ -316,45 +320,50 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
       )}
 
       <div className="flex items-center gap-3">
-        {pathname != "/" && pathname != "/blogs" && pathname != "/tools" && pathname != "/evalaute"  && (
-          <>
-            <div
-              onClick={() => {
-                navigate("/mentor-panel");
-              }}
-            >
-              <GoHome
-                className={`${
-                  pathname == "/mentor-panel" ? "text-[#124E66]" : "text-white"
-                } text-[30px] cursor-pointer `}
-              />
-            </div>
-            <div
-              onClick={() => {
-                navigate("/calender");
-              }}
-            >
-              <FaCalendarDays
-                className={`${
-                  pathname == "/calender" ? "text-[#124E66]" : "text-white"
-                } text-[22px] cursor-pointer `}
-              />
-            </div>
-            <div>
-              <IoMdNotificationsOutline className="text-white text-[30px]" />
-            </div>
-            <div
-              onClick={() => {
-                navigate("/chat");
-              }}
-            >
-              <PiChatTeardropText
-                className={`${
-                  pathname == "/chat" ? "text-[#124E66]" : "text-white"
-                } text-[27px] cursor-pointer `}
-              />
-            </div>
-            {/* <div
+        {pathname != "/" &&
+          pathname != "/blogs" &&
+          pathname != "/tools" &&
+          pathname != "/evalaute" && (
+            <>
+              <div
+                onClick={() => {
+                  navigate("/mentor-panel");
+                }}
+              >
+                <GoHome
+                  className={`${
+                    pathname == "/mentor-panel"
+                      ? "text-[#124E66]"
+                      : "text-white"
+                  } text-[30px] cursor-pointer `}
+                />
+              </div>
+              <div
+                onClick={() => {
+                  navigate("/calender");
+                }}
+              >
+                <FaCalendarDays
+                  className={`${
+                    pathname == "/calender" ? "text-[#124E66]" : "text-white"
+                  } text-[22px] cursor-pointer `}
+                />
+              </div>
+              <div>
+                <IoMdNotificationsOutline className="text-white text-[30px]" />
+              </div>
+              <div
+                onClick={() => {
+                  navigate("/chat");
+                }}
+              >
+                <PiChatTeardropText
+                  className={`${
+                    pathname == "/chat" ? "text-[#124E66]" : "text-white"
+                  } text-[27px] cursor-pointer `}
+                />
+              </div>
+              {/* <div
               onClick={() => {
                 navigate("/tools");
               }}
@@ -365,8 +374,8 @@ const MentorNavbar = ({ setIsSideBarOpen, isSideBarOpen }) => {
                 } text-[25px] cursor-pointer `}
               />
             </div> */}
-          </>
-        )}
+            </>
+          )}
 
         <div
           className="bg-[#124E66] text-white h-12 w-[50px] cursor-pointer rounded-full flex justify-center items-center"

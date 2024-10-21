@@ -59,9 +59,9 @@ const GeneralSettings = ({
       <div className="login-container w-[70%] p-4 rounded-lg">
         <div className="flex flex-col gap-6">
           <div>
-            <h4 className="text-[18px] font-medium">General settings</h4>
+            <h4 className="text-[14px] font-medium">General settings</h4>
             <select
-              className=" mt-2 bg-[#FFFFFF36] w-full px-2 border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
+              className=" mt-2 bg-[#FFFFFF36] w-full px-2 text-[12px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
               onChange={(e) => {
                 setGeneralSetting({
                   ...generalSetting,
@@ -89,7 +89,7 @@ const GeneralSettings = ({
           <div className="flex flex-col">
             <textarea
               placeholder="Descriptions"
-              className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
+              className="bg-[#FFFFFF36] text-[12px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2 text-white"
               onChange={(e) => {
                 setGeneralSetting({
                   ...generalSetting,
@@ -101,7 +101,7 @@ const GeneralSettings = ({
           </div>
           <div className="">
             <select
-              className="general-fields bg-[#FFFFFF36] w-full px-2 border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
+              className="general-fields bg-[#FFFFFF36] w-full px-2 text-white text-[12px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
               onChange={(e) => {
                 console.log("e.target.id", e.target.id);
                 const selectedName =
@@ -132,7 +132,7 @@ const GeneralSettings = ({
           </div>
           <div>
             <select
-              className="general-fields bg-[#FFFFFF36] w-full px-2 border-white text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
+              className="general-fields bg-[#FFFFFF36] w-full px-2 text-white text-[12px] font-normal leading-[16px] focus:outline-none h-11 rounded-lg p-2"
               onChange={(e) => {
                 console.log("e.target.id", e.target.id);
                 const selectedId =
@@ -166,7 +166,7 @@ const GeneralSettings = ({
           </div>
         </div>
         <div className="mt-4 w-full">
-          <p className="text-[16px] font-semibold">
+          <p className="text-[14px] font-semibold text-white">
             For whom you’lll be provide this service?
           </p>
           <div className="flex flex-row gap-4 items-center mt-4 w-full">
@@ -205,7 +205,7 @@ const GeneralSettings = ({
                 />
                 <span className="custom-checkbox-box"></span>
               </label>
-              <p className="text-[15px] font-light">P2P(person to person)</p>
+              <p className="text-[13px] font-light">P2P(person to person)</p>
             </div>
             <div
               className={`${
@@ -238,7 +238,7 @@ const GeneralSettings = ({
                   }}
                   value={services[0]?.price}
                 />
-                <p className="text-[14px] font-normal">/hour</p>
+                <p className="text-[12px] font-normal">/hour</p>
               </div>
               <div
                 className={`${
@@ -258,7 +258,7 @@ const GeneralSettings = ({
                   });
                 }}
               >
-                <p>Free</p>
+                <p className="text-[12px] font-normal">Free</p>
               </div>
             </div>
           </div>
@@ -299,7 +299,7 @@ const GeneralSettings = ({
                 />
                 <span className="custom-checkbox-box"></span>
               </label>
-              <p className="text-[15px] font-light"> P2B(person to Business)</p>
+              <p className="text-[13px] font-light"> P2B(person to Business)</p>
             </div>
             <div
               className={`${
@@ -319,7 +319,7 @@ const GeneralSettings = ({
                 }}
               >
                 <input
-                  className="bg-inherit border-[1px] border-white w-[60px] focus:outline-none px-2 rounded-lg text-white text-[14px] h-9"
+                  className="bg-inherit border-[1px] border-white w-[60px] focus:outline-none px-2 rounded-lg text-white text-[12px] h-9"
                   type="text"
                   placeholder="hour"
                   onChange={(e) => {
@@ -336,7 +336,7 @@ const GeneralSettings = ({
                   }}
                   value={services[1]?.price}
                 />
-                <p className="text-[14px] font-normal">/hour</p>
+                <p className="text-[12px] font-normal">/hour</p>
               </div>
               <div
                 className={`${
@@ -358,7 +358,7 @@ const GeneralSettings = ({
                   });
                 }}
               >
-                <p>Free</p>
+                <p className="text-[12px] font-normal">Free</p>
               </div>
             </div>
           </div>
@@ -368,27 +368,27 @@ const GeneralSettings = ({
         <p className="text-[15px] font-medium">Service Setting</p>
         <div className="flex flex-col gap-[10px] mt-3 w-full">
           <span className="flex flex-row gap-1 items-center w-full">
-            <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
               Name:
             </p>
-            <p className="text-white text-[14px] font-normal">
+            <p className="text-white text-[12px] font-normal">
               {serviceSetting?.name}
             </p>
           </span>
           <span className="flex flex-row gap-1 items-center w-full">
-            <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
               Subcategory:
             </p>
-            <p className="text-white text-[14px] font-normal">
+            <p className="text-white text-[12px] font-normal">
               {serviceSetting?.sub_category}
             </p>
           </span>
           <span className="flex flex-row gap-1 items-center w-full">
-            <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
               {" "}
               Customer Type:
             </p>
-            <span className="text-white text-[14px] font-normal flex flex-row gap-2">
+            <span className="text-white text-[12px] font-normal flex flex-row gap-2">
               <p
                 className={`border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg ${
                   serviceSetting?.customer_type_1 ? "flex" : "hidden"
@@ -409,10 +409,10 @@ const GeneralSettings = ({
         </div>
         <div className="flex flex-col gap-[10px] mt-3 w-full">
           <span className="flex flex-row gap-1 items-center w-full">
-            <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
               Pricing :
             </p>
-            <span className="text-white text-[14px] font-normal flex flex-col gap-2">
+            <span className="text-white text-[12px] font-normal flex flex-col gap-2">
               <span
                 className={`${
                   serviceSetting?.customer_type_1 ? "flex" : "hidden"
@@ -434,10 +434,10 @@ const GeneralSettings = ({
             </span>
           </span>
           <span className="flex w-full">
-            <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%] ">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%] ">
               Date & Time:
             </p>
-            <p className="text-white text-[14px] font-medium">
+            <p className="text-white text-[12px] font-medium">
               {availableDays.map((day, index) => (
                 <li key={index} className="text-white text-[13px] font-normal">
                   {day}

@@ -134,7 +134,7 @@ const MentorSettings = () => {
               <EditSkills />
             </div>
           )}
-           {settingPath?.route == "/edit-reviews" && (
+          {settingPath?.route == "/edit-reviews" && (
             <div>
               <Reviews />
             </div>

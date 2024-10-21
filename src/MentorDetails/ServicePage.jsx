@@ -126,6 +126,19 @@ const ServicePage = ({
   const addGlobalTimeRange = () => {
     setGlobalTimeRanges([...globalTimeRanges, { start: "", end: "" }]);
   };
+  // Function to handle removal of time input for global (all days)
+  const removeGlobalTimeRange = (index) => {
+    const updatedTimeRanges = globalTimeRanges.filter((_, i) => i !== index);
+    setGlobalTimeRanges(updatedTimeRanges);
+  };
+  // Function to remove a time range for individual days
+  const removeDayTimeRange = (day, index) => {
+    const updatedTimeRanges = timeForDays[day].filter((_, i) => i !== index);
+    setTimeForDays((prev) => ({
+      ...prev,
+      [day]: updatedTimeRanges,
+    }));
+  };
 
   // Function to add another time range for individual day
   const addDayTimeRange = (day) => {
@@ -227,17 +240,17 @@ const ServicePage = ({
   const availableDays = Object?.entries(selectedDays)
     .filter(([day, isAvailable]) => isAvailable) // Filter days where value is true
     .map(([day]) => day); // Map to get the day names only
-
+  console.log("globalTimeRanges", globalTimeRanges);
   return (
     <div className="flex flex-col w-full h-full">
       {loading && Loader(loading)}
       <div className="flex flex-row w-full gap-3  h-full">
         {/* Main Content */}
         <div className="login-container w-[70%] rounded-lg p-4 px-8 h-full">
-          <p className="text-[16px] font-medium">
+          <p className="text-[13px] font-medium">
             Setup Preparing Questionnaires
           </p>
-          <p className="text-[13px] font-normal mt-2">
+          <p className="text-[12px] font-normal mt-2">
             When will you provide your services?*
           </p>
 
@@ -253,7 +266,7 @@ const ServicePage = ({
                 />
                 <span className="custom-checkbox-box"></span>
               </label>
-              <p className="text-[13px] font-light">All Days</p>
+              <p className="text-[12px] font-light">All Days</p>
             </div>
 
             {/* Global Time Inputs */}
@@ -264,7 +277,7 @@ const ServicePage = ({
                     <input
                       type="time"
                       placeholder="hh:mm"
-                      className="h-8 bg-[#616161] rounded-lg text-[14px] px-2"
+                      className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
                       value={time.start}
                       onChange={(e) =>
                         handleGlobalTimeChange(index, "start", e.target.value)
@@ -274,19 +287,30 @@ const ServicePage = ({
                     <input
                       type="time"
                       placeholder="hh:mm"
-                      className="h-8 bg-[#616161] rounded-lg text-[14px] px-2"
+                      className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
                       value={time.end}
                       onChange={(e) =>
                         handleGlobalTimeChange(index, "end", e.target.value)
                       }
                       disabled={!allDaysChecked}
                     />
+
+                    {globalTimeRanges.length > 1 &&
+                      time.start !== "" &&
+                      time.end !== "" && (
+                        <button
+                          onClick={() => removeGlobalTimeRange(index)}
+                          className="border-[1px] border-white shadow-xl h-8 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
+                        >
+                          -
+                        </button>
+                      )}
                   </div>
                 ))}
               </div>
               <button
                 onClick={addGlobalTimeRange}
-                className="border-[1px] border-white shadow-xl h-9 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
+                className="border-[1px] border-white shadow-xl h-8 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
                 disabled={globalTimeRanges?.some(
                   (time) => time.start === "" || time.end === ""
                 )}
@@ -319,13 +343,13 @@ const ServicePage = ({
                   <div className="flex flex-col gap-4 ">
                     {timeForDays[day]?.map((time, index) => (
                       <div
-                        className="flex flex-row gap-4 items-center"
+                        className="flex flex-row gap-3 items-center"
                         key={index}
                       >
                         <input
                           type="time"
                           placeholder="hh:mm"
-                          className="h-8 bg-[#616161] rounded-lg text-[13px] px-2"
+                          className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
                           value={time.start}
                           onChange={(e) =>
                             handleDayTimeChange(
@@ -340,7 +364,7 @@ const ServicePage = ({
                         <input
                           type="time"
                           placeholder="hh:mm"
-                          className="h-8 bg-[#616161] rounded-lg text-[13px] px-2"
+                          className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
                           value={time.end}
                           onChange={(e) =>
                             handleDayTimeChange(
@@ -352,12 +376,22 @@ const ServicePage = ({
                           }
                           disabled={!selectedDays[day]}
                         />
+                        {timeForDays[day].length > 1 &&
+                          time.start !== "" &&
+                          time.end !== "" && (
+                            <button
+                              onClick={() => removeDayTimeRange(day, index)}
+                              className="border-[1px] border-white shadow-xl h-8 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
+                            >
+                              -
+                            </button>
+                          )}
                       </div>
                     ))}
                   </div>
                   <button
                     onClick={() => addDayTimeRange(day)}
-                    className="border-[1px] border-white shadow-xl h-9 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
+                    className="border-[1px] border-white shadow-xl h-8 w-[10px] flex justify-center items-center bg-white text-ask-to-mentor-primary text-[21px]"
                     disabled={
                       timeForDays[day]?.some(
                         (time) => time.start === "" || time.end === ""
@@ -454,7 +488,7 @@ const ServicePage = ({
         {step < 8 && (
           <div>
             <button
-              className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
+              className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center text-[14px]"
               onClick={() => {
                 navigate("/mentor-profile");
               }}
@@ -468,7 +502,7 @@ const ServicePage = ({
             className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
             onClick={prevStep}
           >
-            <IoIosArrowDropleft className="text-[28px]" />
+            <IoIosArrowDropleft className="text-[23px]" />
           </button>
 
           <button
@@ -481,7 +515,7 @@ const ServicePage = ({
               // }
             }}
           >
-            <IoIosArrowDropright className="text-[28px]" />
+            <IoIosArrowDropright className="text-[23px]" />
           </button>
         </div>
       </div>

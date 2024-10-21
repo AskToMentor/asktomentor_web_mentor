@@ -17,22 +17,26 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("");
   const popupRef = useRef(null);
-  // useEffect(() => {
-  //   // Function to handle click outside
-  //   const handleClickOutside = (event) => {
-  //     if (popupRef.current && !popupRef.current.contains(event.target)) {
-  //       setIsSideBarOpen(false);
-  //     }
-  //   };
+  // Function to close the sidebar when clicking outside
+  const handleClickOutside = (event) => {
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+      setIsSideBarOpen(false); // Close the sidebar
+    }
+  };
 
-  //   // Add event listener
-  //   document.addEventListener("mousedown", handleClickOutside);
+  useEffect(() => {
+    if (isSideBarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
 
-  //   // Clean up the event listener on component unmount
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
+    // Clean up the event listener when the component is unmounted or when sidebar is closed
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSideBarOpen]);
+
   const navLinks = [
     { href: "/evalaute", text: "Evaluate" },
     { href: "/blogs", text: "Blogs" },
@@ -67,7 +71,9 @@ const Layout = ({ children }) => {
         </div>
         {isSideBarOpen && (
           <div
-            className="absolute right-2 sm:right-4 z-50 rounded-lg bg-[#124E66] h-fit w-[200px] mt-[17%] md:mt-[10%] desktop-lg:mt-[5%] text-white p-4"
+            className={`absolute right-2 sm:right-4 z-50 rounded-lg bg-[#124E66] h-fit w-[200px] mt-[17%] md:mt-[10%] desktop-lg:mt-[5%] text-white ${
+              !isLoggedIn ? "p-1" : "p-3"
+            }`}
             ref={popupRef}
           >
             <div className="flex flex-col">

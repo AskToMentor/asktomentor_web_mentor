@@ -9,10 +9,10 @@ const Finish = () => {
     <div className="login-container h-[500px] rounded-lg">
       <div className="h-[450px] flex justify-center flex-col items-center">
         <Lottie animationData={animation} className="w-[400px] !h-[350px]" />
-        <h3 className="text-[26px] font-bold">Congratulations!</h3>
-        <p className="text-[15px] font-normal">your account almost ready</p>
+        <h3 className="text-[23px] font-bold">Congratulations!</h3>
+        <p className="text-[14px] font-normal">your account almost ready</p>
         <button
-          className="bg-ask-to-mentor-primary w-[150px] mt-4"
+          className="bg-ask-to-mentor-primary w-[150px] mt-4 text-[14px]"
           onClick={() => {
             navigate("/login");
           }}

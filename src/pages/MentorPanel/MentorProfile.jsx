@@ -224,7 +224,7 @@ const MentorProfile = () => {
     };
   }, []);
   return (
-    <div className="p-10 overflow-y-auto h-full">
+    <div className="p-10 overflow-y-auto h-full bg-[#2F3943]">
       <div className="overflow-hidden max-w-full flex flex-col">
         <div
           className="flex flex-row gap-4 overflow-y-hidden overflow-x-auto mt-10 mentor-scroll-container"
@@ -251,7 +251,7 @@ const MentorProfile = () => {
       </div>
       <div className="mt-5">
         <div className="text-white font-normal text-2xl flex-wrap flex items-center gap-2">
-          <p className="text-[30px] font-semibold leading-[60px] text-white">
+          <p className="text-[23px] font-semibold leading-[30px] text-white">
             Account & Consulting
           </p>
         </div>
@@ -301,7 +301,7 @@ const MentorProfile = () => {
       </div>
       <div>
         <div className="text-white font-normal text-2xl flex-wrap flex items-center gap-2">
-          <p className="text-[30px] font-semibold leading-[60px] text-white">
+          <p className="text-[23px] font-semibold leading-[30px] text-white">
             Admin Support
           </p>
         </div>
@@ -354,7 +354,7 @@ const MentorProfile = () => {
       </div>
       <div>
         <div className="text-white font-normal text-2xl flex-wrap flex items-center gap-2">
-          <p className="text-[30px] font-semibold leading-[60px] text-white">
+          <p className="text-[23px] font-semibold leading-[30px] text-white">
             Customer Service
           </p>
         </div>

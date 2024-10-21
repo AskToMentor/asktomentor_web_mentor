@@ -64,7 +64,7 @@ const AppServices = ({
   const getStepContent = (step) => {
     switch (step) {
       case 4:
-        return <AddService />;
+        return <AddService step={step}  setStep={setStep} />;
       case 5:
         return (
           <GeneralSettings

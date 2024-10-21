@@ -32,11 +32,31 @@ const ManuallySignUpForm = ({}) => {
   const activeColor = (index) =>
     step >= index ? "bg-ask-to-mentor-primary" : "bg-gray-300";
   const processSteps = [
-    "Start",
-    "Personal info",
-    "Skills",
-    "Services",
-    "Finish",
+    {
+      id: 1,
+      name: "Start",
+      step: 1,
+    },
+    {
+      id: 2,
+      name: "Personal info",
+      step: 2,
+    },
+    {
+      id: 3,
+      name: "Skills",
+      step: 3,
+    },
+    {
+      id: 4,
+      name: "Services",
+      step: 4,
+    },
+    {
+      id: 5,
+      name: "Finish",
+      step: 8,
+    },
   ];
   const [loading, setLoading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
@@ -119,6 +139,7 @@ const ManuallySignUpForm = ({}) => {
     date_time: "",
   });
   const [services, setServices] = useState([]);
+  console.log("services", services);
   const saveFormData = async () => {
     console.log("hello");
     console.log("selectedSkillsID", selectedSkillsID);
@@ -211,10 +232,11 @@ const ManuallySignUpForm = ({}) => {
         } else if (services?.length <= 0) {
           ShowErrorMessages("Please select the service type");
           return;
-        } else if (services?.length > 0 && services[0]?.type == "") {
-          ShowErrorMessages("Please select the service type");
-          return;
-        } else if (services?.length > 0 && services[1]?.type == "") {
+        } else if (
+          services?.length > 0 &&
+          services[0]?.type == "" &&
+          services[1]?.type == ""
+        ) {
           ShowErrorMessages("Please select the service type");
           return;
         }
@@ -269,7 +291,7 @@ const ManuallySignUpForm = ({}) => {
       }
     }
   };
-  console.log("selectedDays",selectedDays)
+  console.log("selectedDays", step);
   return (
     <div className="h-full mb-20 overflow-y-auto">
       {loading && Loader(loading)}
@@ -303,7 +325,7 @@ const ManuallySignUpForm = ({}) => {
             {processSteps?.map((item, index) => (
               <React.Fragment key={index}>
                 <div className="flex flex-col text-[13px] mobile-lg:text-[16px] gap-5 items-center">
-                  <p>{item}</p>
+                  <p>{item?.name}</p>
                 </div>
               </React.Fragment>
             ))}
@@ -312,15 +334,15 @@ const ManuallySignUpForm = ({}) => {
           <div className="hidden md:flex items-start flex-col">
             {processSteps?.map((item, index) => (
               <React.Fragment key={index}>
-                <div className={`w-fit gap-4 h-fit flex`}>
+                <div className={`w-fit gap-4 h-fit flex items-center`}>
                   <span
-                    className={`w-8 h-8  flex justify-center  items-center rounded-full  ${activeColor(
-                      index + 1
+                    className={`w-8 h-8  text-[13px] flex justify-center  items-center rounded-full  ${activeColor(
+                      item?.step
                     )} `}
                   >
                     {index + 1}
                   </span>
-                  <p>{item}</p>
+                  <p className="text-white text-[13px]">{item?.name}</p>
                 </div>
                 <div
                   className={`h-16 border-dashed border-[1px] ml-[15px] ${activeColor(
@@ -335,13 +357,15 @@ const ManuallySignUpForm = ({}) => {
           {step === 1 && (
             <div className="flex justify-between">
               <div>
-                <p className="text-[25px] font-semibold">Let's get started!</p>
-                <p>Just enter your basic details to create your account</p>
+                <p className="text-[20px] font-semibold">Let's get started!</p>
+                <p className="text-[14px]">
+                  Just enter your basic details to create your account
+                </p>
               </div>
               <div>
                 <button className="bg-ask-to-mentor-primary text-white py-2 w-fit rounded-full gap-2 flex flex-row items-center justify-center mx-auto">
-                  <IoLogoLinkedin className="text-[35px] " /> Import from
-                  LinkedIn
+                  <IoLogoLinkedin className="text-[25px] " />
+                  <p className="text-[13px]">Import from LinkedIn</p>
                 </button>
               </div>
             </div>
@@ -352,10 +376,10 @@ const ManuallySignUpForm = ({}) => {
             <div className="personal-info login-container rounded-[10px] p-3 px-16 pb-10">
               <div className="flex items-center justify-between gap-3">
                 <div className="form-group">
-                  <h1 className="text-[32px] font-semibold text-left">
+                  <h1 className="text-[20px] font-medium text-left">
                     Connect with us
                   </h1>
-                  <p className="text-white text-[16px] font-normal leading-[27.24px]">
+                  <p className="text-white text-[13px] font-normal leading-[27.24px]">
                     Share a bit about your background and passions.
                   </p>
                 </div>
@@ -368,7 +392,7 @@ const ManuallySignUpForm = ({}) => {
                     placeholder="Upload"
                   /> */}
                   {image ? (
-                    <div className="mt-4 w-24 h-24 rounded-full overflow-hidden border-[2px] border-[#748D92]">
+                    <div className="mt-4 w-20 h-20 rounded-full overflow-hidden border-[2px] border-[#748D92]">
                       <img
                         src={image}
                         alt="Profile"
@@ -376,11 +400,11 @@ const ManuallySignUpForm = ({}) => {
                       />
                     </div>
                   ) : (
-                    <div className="h-[110px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[110px] flex justify-end rounded-full border-[2px] border-[#748D92]"></div>
+                    <div className="h-[80px] !bg-[#5B636A] text-[#5B636A]  z-50 w-[80px] flex justify-end rounded-full border-[2px] border-[#748D92]"></div>
                   )}
                   <label
                     htmlFor="file-upload"
-                    className="text-white cursor-pointer"
+                    className="text-white cursor-pointer text-[13px]"
                   >
                     Add profile picture
                   </label>
@@ -394,7 +418,7 @@ const ManuallySignUpForm = ({}) => {
                 </div>
               </div>
               <div className="form-group">
-                <label>About yourself</label>
+                <label className="text-[13px]">About yourself</label>
                 <textarea
                   placeholder="Tell us about yourself, your interest, your experiences"
                   className="bg-[#FFFFFF36] border-white text-[14px] font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
@@ -408,7 +432,7 @@ const ManuallySignUpForm = ({}) => {
                 ></textarea>
               </div>
               <div>
-                <label>Social media links</label>
+                <label className="text-[13px]">Social media links</label>
                 <div className="flex flex-col gap-6 mt-2">
                   <div className="flex w-full bg-[#FFFFFF36] flex-row items-center rounded-lg">
                     <span className="px-2">
@@ -417,7 +441,7 @@ const ManuallySignUpForm = ({}) => {
                     <input
                       type="text"
                       placeholder="Facebook ID"
-                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                      className="bg-[#FFFFFF36] border-white w-full text-[12px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
                       onChange={(e) => {
                         setPersonalInfoData({
                           ...personalInfoData,
@@ -434,7 +458,7 @@ const ManuallySignUpForm = ({}) => {
                     <input
                       type="text"
                       placeholder="Instagram ID"
-                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                      className="bg-[#FFFFFF36] border-white w-full text-[12px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
                       onChange={(e) => {
                         setPersonalInfoData({
                           ...personalInfoData,
@@ -451,7 +475,7 @@ const ManuallySignUpForm = ({}) => {
                     <input
                       type="text"
                       placeholder="X ID"
-                      className="bg-[#FFFFFF36] border-white w-full text-[14px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
+                      className="bg-[#FFFFFF36] border-white w-full text-[12px] font-normal leading-[16px] focus:outline-none h-11 rounded-r-lg p-2"
                       onChange={(e) => {
                         setPersonalInfoData({
                           ...personalInfoData,
@@ -523,7 +547,7 @@ const ManuallySignUpForm = ({}) => {
             {step < 7 && (
               <div>
                 <button
-                  className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
+                  className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center text-[14px]"
                   onClick={() => {
                     navigate("/mentor-profile");
                   }}
@@ -535,7 +559,7 @@ const ManuallySignUpForm = ({}) => {
             <div className="flex gap-5 ">
               {step == 1 && (
                 <button
-                  className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center"
+                  className="bg-ask-to-mentor-primary w-[100px] h-11 flex justify-center items-center text-[14px]"
                   onClick={() => {
                     nextStep();
                     saveFormData();
@@ -549,7 +573,7 @@ const ManuallySignUpForm = ({}) => {
                   className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
                   onClick={prevStep}
                 >
-                  <IoIosArrowDropleft className="text-[28px]" />
+                  <IoIosArrowDropleft className="text-[23px]" />
                 </button>
               )}
               {step < 7 && step > 1 && (
@@ -559,12 +583,14 @@ const ManuallySignUpForm = ({}) => {
                     if (step == 2 || step == 3 || step == 5 || step == 6) {
                       saveFormData();
                       // nextStep();
+                    } else if (step == 4) {
+                      setStep(8);
                     } else {
                       nextStep();
                     }
                   }}
                 >
-                  <IoIosArrowDropright className="text-[28px]" />
+                  <IoIosArrowDropright className="text-[23px]" />
                 </button>
               )}
             </div>

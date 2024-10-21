@@ -68,7 +68,7 @@ const Skills = ({
           <input
             type="text"
             placeholder="Search"
-            className="w-full bg-[#FFFFFF36] text-white pl-10 p-2.5 rounded-[5px] hover:outline-none"
+            className="w-full bg-[#FFFFFF36] text-white pl-10 p-2.5 rounded-[5px] hover:outline-none text-[12px]"
             onChange={handleSearch}
           />
         </div>
@@ -77,7 +77,7 @@ const Skills = ({
             ? filteredSkills?.map((skill, index) => (
                 <div
                   key={index}
-                  className="h-10 flex justify-center items-center px-6 text-sm rounded-[20px] bg-ask-to-mentor-primary cursor-pointer "
+                  className="h-10 flex justify-center items-center px-6 text-[12px] rounded-[20px] bg-ask-to-mentor-primary cursor-pointer "
                   onClick={() => addSkill(skill)}
                 >
                   {skill?.skillName}
@@ -87,14 +87,14 @@ const Skills = ({
         </div>
       </div>
       <div className="p-2 w-full md:w-[45%] flex flex-col justify-between rounded-[5px]">
-        <h3 className="text-[17px] font-semibold">My Skill Lists</h3>
+        <h3 className="text-[13px] font-semibold">My Skill Lists</h3>
         <div className="bg-[#2F3943] h-full rounded-lg p-4 pt-7 mt-2">
           <div className="flex flex-wrap gap-2.5 ">
             {selectedSkills.length > 0 ? (
               selectedSkills.map((skill, index) => (
                 <div
                   key={index}
-                  className="h-10 flex justify-center  gap-4 items-center px-6 text-sm rounded-[20px] bg-[#26404E] cursor-pointer border-[1px] border-[#748D92]"
+                  className="h-10 flex justify-center  gap-4 items-center px-6 text-[12px] rounded-[20px] bg-[#26404E] cursor-pointer border-[1px] border-[#748D92]"
                 >
                   <p> {skill?.skillName}</p>
                   <p

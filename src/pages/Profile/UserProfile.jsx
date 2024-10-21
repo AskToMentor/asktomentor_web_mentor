@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import profileImage from "../../assets/guruji.png";
+import { getMentorProfileData } from "../../service/SignUpProcess";
 
 const UserProfile = () => {
   const experienceArray = [
@@ -42,6 +43,27 @@ const UserProfile = () => {
       name: "Express JS",
     },
   ];
+  const [mentorData, setMentorData] = useState();
+  useEffect(() => {
+    getMentorCategoriesByCategoryId();
+  }, []);
+  const getMentorCategoriesByCategoryId = async () => {
+    try {
+      if (localStorage.getItem("registered_user_id")) {
+        const userId = localStorage.getItem("registered_user_id");
+        const response = await getMentorProfileData(userId);
+        if (response?.success) {
+          // setCategoryData(response?.data);
+          console.log("response?.data", response?.data);
+          setMentorData(response?.data?.[0]);
+        }
+      }
+    } catch (error) {
+      console.log("error is", error);
+    } finally {
+    }
+  };
+  console.log("mentorData", mentorData);
   return (
     <div className="h-full w-full p-10 overflow-y-auto flex flex-col justify-between">
       <div className="w-full flex flex-col gap-7 ">
@@ -57,14 +79,15 @@ const UserProfile = () => {
               </div>
               <div className="flex flex-col gap-1">
                 <p className="text-[#D3D9D5] text-[12px] font-medium">
-                  FAISAL AHMED
+                  {mentorData?.firstName ?? "N/A"}{" "}
+                  {mentorData?.lastName ?? "N/A"}
                 </p>
                 <p className="text-[#D3D9D5] text-[10px] font-light">
-                  alexarawles@gmail.com
+                  {mentorData?.email ?? "N/A"}
                 </p>
-                <p className="text-[#D3D9D5] text-[10px] font-light">
-                  Udaipur, Rajasthan
-                </p>
+                {/* <p className="text-[#D3D9D5] text-[10px] font-light">
+                  {mentorData?.lastName ?? "N/A"}
+                </p> */}
               </div>
             </div>
             <div className="flex flex-col gap-2">
@@ -78,8 +101,13 @@ const UserProfile = () => {
               </span>
             </div>
           </div>
-          <div className="bg-[#2F3B44] col-span-4 rounded-lg h-[250px] p-3 text-[12px] font-medium">
-            Description
+          <div className="bg-[#2F3B44] col-span-4 rounded-lg h-[250px] p-3 flex flex-col gap-3">
+            <p className="text-[12px] font-medium"> Description</p>
+            <textarea
+              type="text"
+              className="border-[1px] border-white border-dashed bg-[#2F3B44] w-full h-full text-[11px] focus:outline-none p-2"
+              value={mentorData?.settingsInfo?.desc ?? "N/A"}
+            />
           </div>
         </div>
         {/* Experience */}
@@ -115,31 +143,31 @@ const UserProfile = () => {
                 <span className="flex flex-row gap-2">
                   <input type="radio" className="h-5 w-5" />
                   <p className="text-[#D3D9D5] text-[11px] font-medium">
-                    P2P/h
+                    P2B/h
                   </p>
                 </span>
               </span>
             </div>
             <div className="w-full flex flex-row items-center">
               <p className="text-[#D3D9D5] text-[12px] font-medium w-[50%]">
-                1 to 1
+                {mentorData?.settingsInfo?.coachingOfferingsInfo?.name}
               </p>
               <span className="flex flex-row justify-between w-[50%]">
                 <span className="bg-[#124E66] p-1 text-[11px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
-                  $ 200/h
+                  ${" "}
+                  {mentorData?.settingsInfo?.serviceType[0]?.type ==
+                  "P2P(PersontoPerson)"
+                    ? mentorData?.settingsInfo?.serviceType[0]?.price ?? "0"
+                    : "0"}
+                  /h
                 </span>
                 <span className="bg-[#124E66] p-1 text-[11px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
-                  $ 200/h
-                </span>
-              </span>
-            </div>
-            <div className="w-full flex flex-row items-center">
-              <p className="text-[#D3D9D5] text-[12px] font-medium w-[50%]">
-                Career Coaching
-              </p>
-              <span className="flex flex-row justify-between w-[50%]">
-                <span className="bg-[#124E66] p-1 text-[11px] font-medium rounded-lg px-3 h-9 flex justify-center items-center">
-                  $ 200/h
+                  ${" "}
+                  {mentorData?.settingsInfo?.serviceType[0]?.type ==
+                  "P2B(PersontoBusiness)"
+                    ? mentorData?.settingsInfo?.serviceType[0]?.price ?? "0"
+                    : "0"}
+                  /h
                 </span>
               </span>
             </div>
@@ -173,13 +201,13 @@ const UserProfile = () => {
             <div className="flex flex-col gap-5">
               <p className="text-[#D3D9D5] text-[12px] font-medium">Skills</p>
               <div className="flex flex-wrap gap-3">
-                {skills?.map((data, index) => (
+                {mentorData?.skillInfo?.map((data, index) => (
                   <div
                     key={index}
                     className="bg-[#124E66] text-white px-8 w-fit h-9 rounded-full p-2"
                   >
                     <p className="text-white text-[11px] font-normal">
-                      {data?.name}
+                      {data?.skillName}
                     </p>
                   </div>
                 ))}

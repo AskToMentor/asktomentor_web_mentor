@@ -115,7 +115,7 @@ const MentorLogin = () => {
         const data = response?.data;
         console.log("response", response);
         localStorage.setItem("currentUser", JSON.stringify(data));
-        window.location.reload();
+        // window.location.reload();
       }
     } catch (error) {
       console.log("error is", error);
