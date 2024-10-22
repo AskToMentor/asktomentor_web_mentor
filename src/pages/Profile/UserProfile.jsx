@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import profileImage from "../../assets/guruji.png";
-import { getMentorProfileData } from "../../service/SignUpProcess";
+import {
+  getMentorProfileData,
+  getMentorUserDetails,
+} from "../../service/SignUpProcess";
 
 const UserProfile = () => {
   const experienceArray = [
@@ -45,13 +48,33 @@ const UserProfile = () => {
   ];
   const [mentorData, setMentorData] = useState();
   useEffect(() => {
-    getMentorCategoriesByCategoryId();
+    const isLoggedIn = localStorage.getItem("token") ? true : false;
+    if (isLoggedIn) {
+      getMentorDetails();
+    } else {
+      getMentorCategoriesByCategoryId();
+    }
   }, []);
   const getMentorCategoriesByCategoryId = async () => {
     try {
       if (localStorage.getItem("registered_user_id")) {
         const userId = localStorage.getItem("registered_user_id");
         const response = await getMentorProfileData(userId);
+        if (response?.success) {
+          // setCategoryData(response?.data);
+          console.log("response?.data", response?.data);
+          setMentorData(response?.data?.[0]);
+        }
+      }
+    } catch (error) {
+      console.log("error is", error);
+    } finally {
+    }
+  };
+  const getMentorDetails = async () => {
+    try {
+      if (localStorage.getItem("registered_user_id")) {
+        const response = await getMentorUserDetails();
         if (response?.success) {
           // setCategoryData(response?.data);
           console.log("response?.data", response?.data);
