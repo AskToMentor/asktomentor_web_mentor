@@ -12,12 +12,29 @@ const GeneralSettings = ({
   setServiceSetting,
   serviceSetting,
   selectedDays,
+  setDefaultSelect,
+  defaultSelect,
+  setDefaultSelectP2B,
+  defaultSelectP2B,
 }) => {
   const [offeringData, setOfferingData] = useState();
   const [categoryData, setCategoryData] = useState();
   const [subCategoryData, setSubCategoryData] = useState();
-  const [defaultSelect, setDefaultSelect] = useState(false);
-  const [defaultSelectP2B, setDefaultSelectP2B] = useState(false);
+  // const [defaultSelect, setDefaultSelect] = useState(false);
+  // const [defaultSelectP2B, setDefaultSelectP2B] = useState(false);
+  const [currency, setCurrency] = useState("inr");
+  const [currency1, setCurrency1] = useState("inr");
+
+
+  const handleCurrencyChange = (event) => {
+    setCurrency(event.target.value);
+    console.log("Selected Currency:", event.target.value);
+  };
+  const handleCurrencyChange1 = (event) => {
+    setCurrency1(event.target.value);
+    console.log("Selected Currency:", event.target.value);
+  };
+
 
   const getMentorSkills = async () => {
     const response = await getMentorOfferingData();
@@ -50,10 +67,10 @@ const GeneralSettings = ({
     }
   };
   const availableDays = Object?.entries(selectedDays)
-    .filter(([day, isAvailable]) => isAvailable) // Filter days where value is true
-    .map(([day]) => day); // Map to get the day names only
+    ?.filter(([day, isAvailable]) => isAvailable) // Filter days where value is true
+    ?.map(([day]) => day); // Map to get the day names only
 
-    console.log("services",services)
+  console.log("services", services);
   return (
     <div className="flex flex-row w-full gap-3">
       <div className="login-container w-[70%] p-4 rounded-lg">
@@ -238,11 +255,28 @@ const GeneralSettings = ({
                   }}
                   value={services[0]?.price}
                 />
+                <select
+                  id="currency"
+                  value={currency}
+                  onChange={handleCurrencyChange}
+                  className={`text-[11px] h-8 ${
+                    defaultSelect
+                      ? "!bg-[#2F3943]"
+                      : "!bg-ask-to-mentor-primary"
+                  } rounded-lg border-[1px] border-white border-dashed focus:outline-none ml-2 `}
+                >
+                  <option value="usd" className="text-[11px]">
+                    💵 (USD)
+                  </option>
+                  <option value="inr" className="text-[11px]">
+                    ₹ (INR)
+                  </option>
+                </select>
                 <p className="text-[12px] font-normal">/hour</p>
               </div>
               <div
                 className={`${
-                  defaultSelect ? "bg-ask-to-mentor-primary" : "bg-[#2F3943] "
+                  defaultSelect ? "bg-ask-to-mentor-primary" : "bg-[#2F3943]"
                 } text-[14px] font-normal flex h-12 w-[100px] flex-row rounded-r-lg items-center px-2 cursor-pointer`}
                 onClick={() => {
                   setDefaultSelect(true);
@@ -266,7 +300,6 @@ const GeneralSettings = ({
             <div className="w-[50%] flex flex-row gap-3">
               <label className="custom-checkbox">
                 <input
-                  
                   type="checkbox"
                   className="h-[20px] w-[20px] pt-4 hidden-checkbox"
                   onChange={() => {
@@ -303,9 +336,7 @@ const GeneralSettings = ({
             </div>
             <div
               className={`${
-                services[1]?.type == "P2B(PersontoBusiness)"
-                  ? "flex"
-                  : "hidden"
+                services[1]?.type == "P2B(PersontoBusiness)" ? "flex" : "hidden"
               }`}
             >
               <div
@@ -336,6 +367,23 @@ const GeneralSettings = ({
                   }}
                   value={services[1]?.price}
                 />
+                <select
+                  id="currency"
+                  value={currency1}
+                  onChange={handleCurrencyChange1}
+                  className={`text-[11px] h-8 ${
+                    defaultSelectP2B
+                      ? "!bg-[#2F3943]"
+                      : "!bg-ask-to-mentor-primary"
+                  } rounded-lg border-[1px] border-white border-dashed focus:outline-none ml-2 `}
+                >
+                  <option value="usd" className="text-[11px]">
+                    💵 (USD)
+                  </option>
+                  <option value="inr" className="text-[11px]">
+                    ₹ (INR)
+                  </option>
+                </select>
                 <p className="text-[12px] font-normal">/hour</p>
               </div>
               <div
@@ -418,19 +466,23 @@ const GeneralSettings = ({
                   serviceSetting?.customer_type_1 ? "flex" : "hidden"
                 } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
               >
-                {serviceSetting?.pricing_1}
-                {serviceSetting?.customer_type_1 == "P2P" ? "/h P2P" : ""}
+                {defaultSelect ? "Free" : serviceSetting?.pricing_1}
+                {!defaultSelect && serviceSetting?.customer_type_1 == "P2P"
+                  ? "/h P2P"
+                  : ""}
               </span>
               <span
                 className={`${
                   serviceSetting?.customer_type_2 ? "flex" : "hidden"
                 } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
               >
-                {serviceSetting?.pricing_2}
-                {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""}
+                {/* {serviceSetting?.pricing_2}
+                {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""} */}
+                {defaultSelectP2B ? "Free" : serviceSetting?.pricing_2}
+                {!defaultSelectP2B && serviceSetting?.customer_type_2 == "P2B"
+                  ? "/h P2B"
+                  : ""}
               </span>
-              {/* // {serviceSetting?.pricing_1}
-                // {serviceSetting?.pricing_2} */}
             </span>
           </span>
           <span className="flex w-full">

@@ -58,13 +58,17 @@ const AppServices = ({
   timeForDays,
   setServiceSetting,
   serviceSetting,
+  setDefaultSelect,
+  defaultSelect,
+  setDefaultSelectP2B,
+  defaultSelectP2B,
 }) => {
   console.log("step...", step);
   const [activeStep, setActiveStep] = React.useState(step);
   const getStepContent = (step) => {
     switch (step) {
       case 4:
-        return <AddService step={step}  setStep={setStep} />;
+        return <AddService step={step} setStep={setStep} />;
       case 5:
         return (
           <GeneralSettings
@@ -75,6 +79,10 @@ const AppServices = ({
             setServiceSetting={setServiceSetting}
             serviceSetting={serviceSetting}
             selectedDays={selectedDays}
+            setDefaultSelect={setDefaultSelect}
+            defaultSelect={defaultSelect}
+            setDefaultSelectP2B={setDefaultSelectP2B}
+            defaultSelectP2B={defaultSelectP2B}
           />
         );
       case 6:
@@ -87,6 +95,10 @@ const AppServices = ({
             setServiceSetting={setServiceSetting}
             serviceSetting={serviceSetting}
             selectedDays={selectedDays}
+            setDefaultSelect={setDefaultSelect}
+            defaultSelect={defaultSelect}
+            setDefaultSelectP2B={setDefaultSelectP2B}
+            defaultSelectP2B={defaultSelectP2B}
           />
         );
       case 7:
@@ -105,6 +117,10 @@ const AppServices = ({
             timeForDays={timeForDays}
             setServiceSetting={setServiceSetting}
             serviceSetting={serviceSetting}
+            setDefaultSelect={setDefaultSelect}
+            defaultSelect={defaultSelect}
+            setDefaultSelectP2B={setDefaultSelectP2B}
+            defaultSelectP2B={defaultSelectP2B}
           />
         );
       default:

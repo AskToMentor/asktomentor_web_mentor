@@ -100,6 +100,10 @@ const ManuallySignUpForm = ({}) => {
   const [generalSettingsId, setGeneralSettingsId] = useState();
   const [totalQuestion, setTotalQuestion] = useState(0);
 
+  // Default Select
+  const [defaultSelect, setDefaultSelect] = useState(false);
+  const [defaultSelectP2B, setDefaultSelectP2B] = useState(false);
+
   // Time slots State:
   // -------------------
   const [allDaysChecked, setAllDaysChecked] = useState(false);
@@ -540,6 +544,10 @@ const ManuallySignUpForm = ({}) => {
               timeForDays={timeForDays}
               setServiceSetting={setServiceSetting}
               serviceSetting={serviceSetting}
+              setDefaultSelect={setDefaultSelect}
+              defaultSelect={defaultSelect}
+              setDefaultSelectP2B={setDefaultSelectP2B}
+              defaultSelectP2B={defaultSelectP2B}
             />
           )}
           {step === 8 && <Finish />}
@@ -581,8 +589,8 @@ const ManuallySignUpForm = ({}) => {
                   className="bg-ask-to-mentor-primary w-[80px] h-11 flex justify-center items-center"
                   onClick={() => {
                     if (step == 2 || step == 3 || step == 5 || step == 6) {
-                      saveFormData();
-                      // nextStep();
+                      // saveFormData();
+                      nextStep();
                     } else if (step == 4) {
                       setStep(8);
                     } else {

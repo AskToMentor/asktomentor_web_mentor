@@ -1,22 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Box,
-  Typography,
-  Grid,
-  FormControlLabel,
-  Button,
-  Switch,
-  Card,
-  CardContent,
-} from "@mui/material";
 import "./service-page.css";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Popup from "./summery";
 import { useState } from "react";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { saveMentorQuestionArray } from "../service/SignUpProcess";
@@ -24,6 +7,7 @@ import ShowSucessmessages from "../alert-messages/ShowSucessmessages";
 import Loader from "../Loader/Loader";
 import ShowErrorMessages from "../alert-messages/ShowErrorMessages";
 import { useNavigate } from "react-router-dom";
+import TimePicker from "../common-components/timer/TimePicker";
 
 const ServicePage = ({
   step,
@@ -41,6 +25,10 @@ const ServicePage = ({
   timeForDays,
   setServiceSetting,
   serviceSetting,
+  setDefaultSelect,
+  defaultSelect,
+  setDefaultSelectP2B,
+  defaultSelectP2B,
 }) => {
   const [loading, setLoading] = useState(false);
   // New Logic
@@ -82,6 +70,53 @@ const ServicePage = ({
   //   Saturday: [{ start: "", end: "" }],
   //   Sunday: [{ start: "", end: "" }],
   // });
+  const checkOverlap = (newStart, newEnd, timeRanges) => {
+    // Convert times to a comparable format
+    const parseTime = (time) => {
+      console.log("time", time);
+      if (typeof time === "string") {
+        // Handle string input like "07:00 PM"
+        let [hours, minutes] = time.split(":");
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
+        return { hours, minutes };
+      } else if (time instanceof Date) {
+        // If it's a Date object, extract hours and minutes
+        const hours = time.getHours();
+        const minutes = time.getMinutes();
+        return { hours, minutes };
+      } else if (typeof time === "object" && time !== null) {
+        // Handle objects that contain time information (adjust this based on your TimePicker output)
+        const { hours, minutes } = time;
+        return { hours, minutes };
+      } else {
+        // Fallback for unexpected input
+        return { hours: 0, minutes: 0 };
+      }
+    };
+
+    const toMinutes = (time) => time.hours * 60 + time.minutes;
+
+    const newStartParsed = parseTime(newStart);
+    const newEndParsed = parseTime(newEnd);
+    const newStartInMinutes = toMinutes(newStartParsed);
+    const newEndInMinutes = toMinutes(newEndParsed);
+
+    return timeRanges.some(({ start, end }) => {
+      const startParsed = parseTime(start);
+      const endParsed = parseTime(end);
+      const startInMinutes = toMinutes(startParsed);
+      const endInMinutes = toMinutes(endParsed);
+
+      // Check if the new range overlaps with the existing range
+      return (
+        (newStartInMinutes >= startInMinutes &&
+          newStartInMinutes < endInMinutes) ||
+        (newEndInMinutes > startInMinutes && newEndInMinutes <= endInMinutes) ||
+        (newStartInMinutes <= startInMinutes && newEndInMinutes >= endInMinutes)
+      );
+    });
+  };
 
   const handleAllDaysChange = (e) => {
     const checked = e.target.checked;
@@ -149,34 +184,60 @@ const ServicePage = ({
   };
 
   // Handle individual time change for both global and specific days
-  const handleGlobalTimeChange = (index, type, value) => {
-    const updatedTimeRanges = globalTimeRanges?.map((time, i) =>
-      i === index ? { ...time, [type]: value } : time
-    );
-    setGlobalTimeRanges(updatedTimeRanges);
+  const handleGlobalTimeChange = (index, type, newTime) => {
+    const updatedGlobalTimes = [...globalTimeRanges];
 
-    // If "All Days" is checked, propagate time change to all days
-    if (allDaysChecked) {
-      const updatedTimeForDays = Object?.keys(timeForDays)?.reduce(
-        (acc, day) => {
-          acc[day] = updatedTimeRanges;
-          return acc;
-        },
-        {}
-      );
-      setTimeForDays(updatedTimeForDays);
+    const otherRanges = globalTimeRanges.filter((_, i) => i !== index); // Exclude current index
+
+    if (type === "start") {
+      if (checkOverlap(newTime, updatedGlobalTimes[index].end, otherRanges)) {
+        alert(
+          "Time slot overlaps with an existing one. Please choose another time."
+        );
+        return;
+      }
+      updatedGlobalTimes[index].start = newTime;
+    } else if (type === "end") {
+      if (checkOverlap(updatedGlobalTimes[index].start, newTime, otherRanges)) {
+        alert(
+          "Time slot overlaps with an existing one. Please choose another time."
+        );
+        return;
+      }
+      updatedGlobalTimes[index].end = newTime;
     }
+
+    setGlobalTimeRanges(updatedGlobalTimes);
   };
 
-  const handleDayTimeChange = (day, index, type, value) => {
-    const updatedTimeRanges = timeForDays[day]?.map((time, i) =>
-      i === index ? { ...time, [type]: value } : time
-    );
-    setTimeForDays((prev) => ({
-      ...prev,
-      [day]: updatedTimeRanges,
-    }));
+  const handleDayTimeChange = (day, index, type, newTime) => {
+    const updatedTimes = { ...timeForDays };
+    const dayTimes = [...updatedTimes[day]];
+
+    const otherRanges = dayTimes.filter((_, i) => i !== index); // Exclude current index
+
+    if (type === "start") {
+      if (checkOverlap(newTime, dayTimes[index].end, otherRanges)) {
+        alert(
+          "Time slot overlaps with an existing one. Please choose another time."
+        );
+        return;
+      }
+      dayTimes[index].start = newTime;
+    } else if (type === "end") {
+      if (checkOverlap(dayTimes[index].start, newTime, otherRanges)) {
+        alert(
+          "Time slot overlaps with an existing one. Please choose another time."
+        );
+        return;
+      }
+      dayTimes[index].end = newTime;
+    }
+
+    updatedTimes[day] = dayTimes;
+    setTimeForDays(updatedTimes);
   };
+
   console.log("timeForDays", timeForDays);
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
@@ -241,6 +302,11 @@ const ServicePage = ({
     .filter(([day, isAvailable]) => isAvailable) // Filter days where value is true
     .map(([day]) => day); // Map to get the day names only
   console.log("globalTimeRanges", globalTimeRanges);
+  console.log("timeForDays..", timeForDays);
+  Object.entries(timeForDays)["Monday"]?.map((item, index) => {
+    console.log("item", item);
+  });
+  console.log("item...", timeForDays["Monday"]);
   return (
     <div className="flex flex-col w-full h-full">
       {loading && Loader(loading)}
@@ -274,23 +340,17 @@ const ServicePage = ({
               <div className="flex flex-col gap-4 ">
                 {globalTimeRanges?.map((time, index) => (
                   <div className="flex flex-row gap-4 items-center" key={index}>
-                    <input
-                      type="time"
-                      placeholder="hh:mm"
-                      className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
+                    <TimePicker
                       value={time.start}
-                      onChange={(e) =>
-                        handleGlobalTimeChange(index, "start", e.target.value)
+                      onChange={(newTime) =>
+                        handleGlobalTimeChange(index, "start", newTime)
                       }
                       disabled={!allDaysChecked}
                     />
-                    <input
-                      type="time"
-                      placeholder="hh:mm"
-                      className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
+                    <TimePicker
                       value={time.end}
-                      onChange={(e) =>
-                        handleGlobalTimeChange(index, "end", e.target.value)
+                      onChange={(newTime) =>
+                        handleGlobalTimeChange(index, "end", newTime)
                       }
                       disabled={!allDaysChecked}
                     />
@@ -346,33 +406,17 @@ const ServicePage = ({
                         className="flex flex-row gap-3 items-center"
                         key={index}
                       >
-                        <input
-                          type="time"
-                          placeholder="hh:mm"
-                          className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
+                        <TimePicker
                           value={time.start}
-                          onChange={(e) =>
-                            handleDayTimeChange(
-                              day,
-                              index,
-                              "start",
-                              e.target.value
-                            )
+                          onChange={(newTime) =>
+                            handleDayTimeChange(day, index, "start", newTime)
                           }
                           disabled={!selectedDays[day]}
                         />
-                        <input
-                          type="time"
-                          placeholder="hh:mm"
-                          className="h-8 bg-[#616161] rounded-lg text-[12px] px-2 w-[110px]"
+                        <TimePicker
                           value={time.end}
-                          onChange={(e) =>
-                            handleDayTimeChange(
-                              day,
-                              index,
-                              "end",
-                              e.target.value
-                            )
+                          onChange={(newTime) =>
+                            handleDayTimeChange(day, index, "end", newTime)
                           }
                           disabled={!selectedDays[day]}
                         />
@@ -445,41 +489,62 @@ const ServicePage = ({
               <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%]">
                 Pricing :
               </p>
-              <span className="text-white text-[14px] font-normal flex flex-col gap-2">
+              <span className="text-white text-[12px] font-normal flex flex-col gap-2">
                 <span
                   className={`${
-                    serviceSetting?.pricing_1 ? "flex" : "hidden"
+                    serviceSetting?.customer_type_1 ? "flex" : "hidden"
                   } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
                 >
-                  {serviceSetting?.pricing_1}
-                  {serviceSetting?.customer_type_1 == "P2P" ? "/h P2P" : ""}
+                  {defaultSelect ? "Free" : serviceSetting?.pricing_1}
+                  {!defaultSelect && serviceSetting?.customer_type_1 == "P2P"
+                    ? "/h P2P"
+                    : ""}
                 </span>
                 <span
                   className={`${
-                    serviceSetting?.pricing_2 ? "flex" : "hidden"
+                    serviceSetting?.customer_type_2 ? "flex" : "hidden"
                   } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
                 >
-                  {serviceSetting?.pricing_2}
-                  {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""}
+                  {/* {serviceSetting?.pricing_2}
+                {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""} */}
+                  {defaultSelectP2B ? "Free" : serviceSetting?.pricing_2}
+                  {!defaultSelectP2B && serviceSetting?.customer_type_2 == "P2B"
+                    ? "/h P2B"
+                    : ""}
                 </span>
-                {/* // {serviceSetting?.pricing_1}
-                // {serviceSetting?.pricing_2} */}
               </span>
             </span>
             <span className="flex w-full">
               <p className="text-[#748D92] text-[14px] font-normal text-nowrap w-[40%] ">
                 Date & Time:
               </p>
-              <p className="text-white text-[14px] font-medium ">
+              <div className="text-white text-[14px] font-medium ">
                 {availableDays.map((day, index) => (
-                  <li
-                    key={index}
-                    className="text-white text-[13px] font-normal"
-                  >
-                    {day}
-                  </li>
+                  <div className="">
+                    <li
+                      key={index}
+                      className="text-white text-[13px] font-normal"
+                    >
+                      {day}
+                    </li>
+                    <div className="flex flex-col gap-1">
+                      {timeForDays[day]?.map((item) => (
+                        <div className="flex gap-2">
+                          <p className="text-white text-[11px] font-normal">
+                            {item?.start.hours ?? 0} :{" "}
+                            {item?.start.minutes ?? 0}: {item?.start.period}{" "}
+                          </p>
+                          <p>-</p>
+                          <p className="text-white text-[11px] font-normal">
+                            {item?.end.hours ?? 0} : {item?.end.minutes ?? 0}:{" "}
+                            {item?.end.period}{" "}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ))}
-              </p>
+              </div>
             </span>
           </div>
         </div>

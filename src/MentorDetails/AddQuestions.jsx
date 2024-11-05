@@ -12,6 +12,10 @@ const AddQuestions = ({
   setServiceSetting,
   serviceSetting,
   selectedDays,
+  setDefaultSelect,
+  defaultSelect,
+  setDefaultSelectP2B,
+  defaultSelectP2B,
 }) => {
   console.log("totalQuestion", serviceSetting);
   const availableDays = Object?.entries(selectedDays)
@@ -47,7 +51,9 @@ const AddQuestions = ({
               new Array(totalQuestion)?.fill(1)?.map((data, index) => (
                 <div className="mt-2">
                   <div className="flex flex-col gap-2">
-                    <p className="button-text text-[13px] text-white">Question {index + 1}</p>
+                    <p className="button-text text-[13px] text-white">
+                      Question {index + 1}
+                    </p>
                     <textarea
                       placeholder="Descriptions"
                       className="bg-[#FFFFFF36] w-full border-white text-[12px] text-white font-normal leading-[16px] focus:outline-none h-[80px] rounded-lg p-2"
@@ -83,7 +89,9 @@ const AddQuestions = ({
                         />
                         <span className="custom-checkbox-box"></span>
                       </label>
-                      <p className="text-[13px] font-light text-white">Required</p>
+                      <p className="text-[13px] font-light text-white">
+                        Required
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -107,83 +115,84 @@ const AddQuestions = ({
         </div>
       </div>
       <div className="w-[30%] bg-[#1A3B4A] rounded-lg h-fit p-3">
-          <p className="text-[13px] font-medium">Service Setting</p>
-          <div className="flex flex-col gap-[10px] mt-3 w-full">
-            <span className="flex flex-row gap-1 items-center w-full">
-              <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
-                Name:
-              </p>
-              <p className="text-white text-[12px] font-normal">
-                {serviceSetting?.name}
-              </p>
-            </span>
-            <span className="flex flex-row gap-1 items-center w-full">
-              <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
-                Subcategory:
-              </p>
-              <p className="text-white text-[12px] font-normal">
-                {serviceSetting?.sub_category}
-              </p>
-            </span>
-            <span className="flex flex-row gap-1 items-center w-full">
-              <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
+        <p className="text-[13px] font-medium">Service Setting</p>
+        <div className="flex flex-col gap-[10px] mt-3 w-full">
+          <span className="flex flex-row gap-1 items-center w-full">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
+              Name:
+            </p>
+            <p className="text-white text-[12px] font-normal">
+              {serviceSetting?.name}
+            </p>
+          </span>
+          <span className="flex flex-row gap-1 items-center w-full">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
+              Subcategory:
+            </p>
+            <p className="text-white text-[12px] font-normal">
+              {serviceSetting?.sub_category}
+            </p>
+          </span>
+          <span className="flex flex-row gap-1 items-center w-full">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
+              {" "}
+              Customer Type:
+            </p>
+            <span className="text-white text-[12px] font-normal flex flex-row gap-2">
+              <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
                 {" "}
-                Customer Type:
+                {serviceSetting?.customer_type_1}
               </p>
-              <span className="text-white text-[12px] font-normal flex flex-row gap-2">
-                <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
-                  {" "}
-                  {serviceSetting?.customer_type_1}
-                </p>
-                <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
-                  {serviceSetting?.customer_type_2}
-                </p>
-              </span>
-            </span>
-          </div>
-          <div className="flex flex-col gap-[10px] mt-3 w-full">
-            <span className="flex flex-row gap-1 items-center w-full">
-              <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
-                Pricing :
-              </p>
-              <span className="text-white text-[12px] font-normal flex flex-col gap-2">
-                <span
-                  className={`${
-                    serviceSetting?.pricing_1 ? "flex" : "hidden"
-                  } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
-                >
-                  {serviceSetting?.pricing_1}
-                  {serviceSetting?.customer_type_1 == "P2P" ? "/h P2P" : ""}
-                </span>
-                <span
-                  className={`${
-                    serviceSetting?.pricing_2 ? "flex" : "hidden"
-                  } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
-                >
-                  {serviceSetting?.pricing_2}
-                  {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""}
-                </span>
-                {/* // {serviceSetting?.pricing_1}
-                // {serviceSetting?.pricing_2} */}
-              </span>
-            </span>
-            <span className="flex w-full">
-              <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%] ">
-                Date & Time:
-              </p>
-              <p className="text-white text-[12px] font-medium">
-                {availableDays.map((day, index) => (
-                  <li
-                    key={index}
-                    className="text-white text-[13px] font-normal"
-                  >
-                    {day}
-                  </li>
-                ))}
+              <p className="border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg">
+                {serviceSetting?.customer_type_2}
               </p>
             </span>
-          </div>
+          </span>
         </div>
+        <div className="flex flex-col gap-[10px] mt-3 w-full">
+          <span className="flex flex-row gap-1 items-center w-full">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%]">
+              Pricing :
+            </p>
+            <span className="text-white text-[12px] font-normal flex flex-col gap-2">
+              <span
+                className={`${
+                  serviceSetting?.customer_type_1 ? "flex" : "hidden"
+                } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
+              >
+                {defaultSelect ? "Free" : serviceSetting?.pricing_1}
+                {!defaultSelect && serviceSetting?.customer_type_1 == "P2P"
+                  ? "/h P2P"
+                  : ""}
+              </span>
+              <span
+                className={`${
+                  serviceSetting?.customer_type_2 ? "flex" : "hidden"
+                } border-[1px] border-dashed h-7 text-[13px] flex justify-center items-center px-3 rounded-lg`}
+              >
+                {/* {serviceSetting?.pricing_2}
+                {serviceSetting?.customer_type_2 == "P2B" ? "/h P2B" : ""} */}
+                {defaultSelectP2B ? "Free" : serviceSetting?.pricing_2}
+                {!defaultSelectP2B && serviceSetting?.customer_type_2 == "P2B"
+                  ? "/h P2B"
+                  : ""}
+              </span>
+            </span>
+          </span>
+          <span className="flex w-full">
+            <p className="text-[#748D92] text-[13px] font-normal text-nowrap w-[40%] ">
+              Date & Time:
+            </p>
+            <p className="text-white text-[12px] font-medium">
+              {availableDays.map((day, index) => (
+                <li key={index} className="text-white text-[13px] font-normal">
+                  {day}
+                </li>
+              ))}
+            </p>
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

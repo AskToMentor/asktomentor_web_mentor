@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { CgProfile } from "react-icons/cg";
 import { useLocation, useNavigate } from "react-router-dom";
 import EditProfile from "../Profile/EditProfile";
@@ -12,6 +12,7 @@ import { CiCreditCard1 } from "react-icons/ci";
 import EditAppSerivecs from "../../MentorDetails/EditAppSerivecs";
 import EditSkills from "../../MentorDetails/EditSkills";
 import Reviews from "../../MentorDetails/Reviews";
+import { getMentorUserDetails } from "../../service/SignUpProcess";
 
 const MentorSettings = () => {
   const settingsMenu = [
@@ -19,35 +20,35 @@ const MentorSettings = () => {
       id: 1,
       name: "Profile",
       route: "/edit-profile",
-      icon: <CgProfile className="text-[27px]" />,
+      icon: <CgProfile className="text-[21px]" />,
       headingName: "Editing Profile",
     },
     {
       id: 2,
       name: "Services",
       route: "/edit-services",
-      icon: <FaTools className="text-[19px]" />,
+      icon: <FaTools className="text-[15px]" />,
       headingName: "Editing Service",
     },
     {
       id: 3,
       name: "Skills",
       route: "/skills",
-      icon: <HiMiniPencilSquare className="text-[27px]" />,
+      icon: <HiMiniPencilSquare className="text-[21px]" />,
       headingName: "Skills",
     },
     {
       id: 4,
       name: "My Reviews",
       route: "/edit-reviews",
-      icon: <PiChatTeardropText className="text-[27px]" />,
+      icon: <PiChatTeardropText className="text-[21px]" />,
       headingName: "Reviews",
     },
     {
       id: 5,
       name: "Payment Information",
       route: "/payment-information",
-      icon: <CiCreditCard1 className="text-[27px]" />,
+      icon: <CiCreditCard1 className="text-[21px]" />,
       headingName: "Payment Information",
     },
   ];
@@ -64,13 +65,34 @@ const MentorSettings = () => {
   const [step, setStep] = useState(4);
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+  const [mentorData, setMentorData] = useState();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("token") ? true : false;
+    if (isLoggedIn) {
+      getMentorDetails();
+    }
+  }, []);
+  const getMentorDetails = async () => {
+    try {
+      const response = await getMentorUserDetails();
+      if (response?.success) {
+        // setCategoryData(response?.data);
+        console.log("response?.data", response?.data);
+        setMentorData(response?.data?.[0]);
+      }
+    } catch (error) {
+      console.log("error is", error);
+    } finally {
+    }
+  };
   return (
     <div className="w-full h-full overflow-y-auto">
       <div className="grid grid-cols-10 px-2 sm:px-4 md:px-8 lg:px-14 gap-4 mt-8 ">
-        <div className="col-span-2 text-white text-[23px] font-medium">
+        <p className="col-span-2 text-white text-[17px] font-medium">
           Settings
-        </div>
-        <div className="col-span-2 text-white text-[23px] font-medium">
+        </p>
+        <div className="col-span-2 text-white text-[17px] font-medium">
           {settingPath.headingName}
         </div>
       </div>
@@ -90,14 +112,14 @@ const MentorSettings = () => {
               }}
             >
               <span>{data?.icon}</span>
-              <p className="text-white text-[16px] font-normal">{data?.name}</p>
+              <p className="text-white text-[14px] font-normal">{data?.name}</p>
             </div>
           ))}
         </div>
         <div className="col-span-8 rounded-lg ">
           {settingPath?.route == "/edit-profile" && (
             <div>
-              <EditProfile />
+              <EditProfile mentorData={mentorData}/>
             </div>
           )}
           {settingPath?.route == "/edit-services" && (
